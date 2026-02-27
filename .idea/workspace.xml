@@ -4,16 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="49fd6356-d128-4105-b049-553e895d04f8" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/Mike-SportsWear.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nike_Dataset.csv" beforeDir="false" afterPath="$PROJECT_DIR$/backend/data/Nike_Dataset.csv" afterDir="false" />
+    <list default="true" id="49fd6356-d128-4105-b049-553e895d04f8" name="Changes" comment="Working test communication between frontend and backend">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/Readme.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/nullspace/mike/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/nullscape/mike/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/styles.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/template.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/webpack.config.js" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,7 +22,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="19" />
+    <option name="cachedIndexableFilesCount" value="26" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -54,6 +55,10 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.Main.executor": "Run",
+    "Maven.backend [clean].executor": "Run",
+    "Maven.backend [compile].executor": "Run",
+    "Maven.backend [install].executor": "Run",
+    "Maven.backend [validate].executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RequestMappingsPanelOrder0": "0",
     "RequestMappingsPanelOrder1": "1",
@@ -85,17 +90,17 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/frontend" />
       <recent name="$PROJECT_DIR$/backend/data" />
       <recent name="$PROJECT_DIR$/backend" />
       <recent name="$PROJECT_DIR$/backend/src/main/java" />
-      <recent name="$PROJECT_DIR$/frontend" />
       <recent name="$PROJECT_DIR$/Backend" />
     </key>
   </component>
   <component name="RunManager">
     <configuration name="Main" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="backend" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="nullspace.mike.Main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="nullscape.mike.Main" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -104,8 +109,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-30f59d01ecdd-2fc7cc6b9a17-intellij.indexing.shared.core-IU-253.30387.90" />
-        <option value="bundled-js-predefined-d6986cc7102b-9b0f141eb926-JavaScript-IU-253.30387.90" />
+        <option value="bundled-jdk-30f59d01ecdd-2fc7cc6b9a17-intellij.indexing.shared.core-IU-253.31033.145" />
+        <option value="bundled-js-predefined-d6986cc7102b-9b0f141eb926-JavaScript-IU-253.31033.145" />
       </set>
     </attachedChunks>
   </component>
@@ -120,12 +125,26 @@
       <workItem from="1771893086406" duration="2919000" />
       <workItem from="1771896895622" duration="528000" />
       <workItem from="1771897907933" duration="671000" />
-      <workItem from="1771898864519" duration="9380000" />
+      <workItem from="1771898864519" duration="12512000" />
+      <workItem from="1772204833079" duration="4211000" />
     </task>
+    <task id="LOCAL-00001" summary="Working test communication between frontend and backend">
+      <option name="closed" value="true" />
+      <created>1771911413207</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1771911413207</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Working test communication between frontend and backend" />
+    <option name="LAST_COMMIT_MESSAGE" value="Working test communication between frontend and backend" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
