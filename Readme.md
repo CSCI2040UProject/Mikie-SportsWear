@@ -5,6 +5,5 @@
 - Install [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
 - Run backend main<br>
 - Open the frontend folder in terminal
-- Run `npm install`
-- Run `npx webpack serve`
+- Run `npm run dev`
 

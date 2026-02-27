@@ -1,4 +1,4 @@
-package nullspace.mike;
+package nullscape.mike;
 
 import com.sun.net.httpserver.HttpServer;
 import com.sun.net.httpserver.HttpHandler;
@@ -33,7 +33,7 @@ class HelloWorldHandler implements HttpHandler {
             return;
         }
 
-        String response = "Hello World!";
+        String response = "Hello from the java backend server!";
         exchange.sendResponseHeaders(200, response.length());
         try (OutputStream os = exchange.getResponseBody()) {
             os.write(response.getBytes());
