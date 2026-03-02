@@ -12,7 +12,7 @@ public class Main {
 
         HttpServer server = HttpServer.create(new InetSocketAddress(8080), 0);
 
-        server.createContext("/helloworld/", new HelloWorldHandler());
+        server.createContext("/api/helloworld/", new HelloWorldHandler());
 
         server.start();
         System.out.println("Server is listening on port 8080...");

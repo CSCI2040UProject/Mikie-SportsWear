@@ -1,7 +1,5 @@
 import {useEffect, useState} from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import '../styles/App.css'
 
 function FetchUserData({ url }) {
     const [data, setData] = useState(null);
@@ -36,7 +34,7 @@ function App() {
   return (
     <>
         <div>
-            <FetchUserData url="http://localhost:8080/helloworld/" />
+            <FetchUserData url="http://localhost:8080/api/helloworld/"/>
         </div>
     </>
   )
