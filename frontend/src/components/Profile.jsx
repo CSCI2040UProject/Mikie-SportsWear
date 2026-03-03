@@ -6,7 +6,7 @@ function Profile() {
     const [signUp, setSignUp] = useState(false);
 
     async function sendInfo({data, signUp}) {
-        const endpoint = signUp ? 'http://localhost:8080/api/register/' : 'http://localhost:8080/api/login/';
+        const endpoint = signUp ? '/api/register/' : '/api/login/';
         try {
             const response = await fetch(endpoint, {
                 method: "POST",
