@@ -9,5 +9,12 @@ export default defineConfig({
     watch: {
       usePolling: true,
     },
+
+    proxy: {
+      '/api': {
+        target: process.env.VITE_BACKEND_URL || 'http://localhost:8080', // Your Java backend URL
+        changeOrigin: true,
+      }
+    }
   },
 })

@@ -34,7 +34,7 @@ function App() {
   return (
     <>
         <div>
-            <FetchUserData url="http://localhost:8080/api/helloworld/"/>
+            <FetchUserData url="/api/helloworld/"/>
         </div>
     </>
   )
