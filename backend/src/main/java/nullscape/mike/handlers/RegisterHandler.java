@@ -76,7 +76,7 @@ public class RegisterHandler implements HttpHandler {
             // Variable "response" should still be null if the username doesn't already exist
             if (message.isEmpty()) {
                 // Write to the user database
-                try (BufferedWriter bw = new BufferedWriter(new FileWriter("backend/src/resources/userData.csv", true))) {
+                try (BufferedWriter bw = new BufferedWriter(new FileWriter("src/resources/userData.csv", true))) {
                     String line = registerReq.username + "," + registerReq.password + ",0\n";
                     bw.write(line);
                     message = "Success!!";
