@@ -27,6 +27,7 @@ public class LoginHandler implements HttpHandler {
     @Override
     public void handle(HttpExchange exchange) throws IOException {
         exchange.getResponseHeaders().set("Content-Type", "application/json");
+        int responseCode = 200;
 
         // Handle preflight requests from browsers
         if ("OPTIONS".equalsIgnoreCase(exchange.getRequestMethod())) {
@@ -47,13 +48,14 @@ public class LoginHandler implements HttpHandler {
             // As long as the names of the variables in the java class line up with the names in the JSON gson sorta just figures it out
 
             // Check if an account with this username already exists
-            try (BufferedReader br = new BufferedReader(new FileReader("backend/src/resources/userData.csv"))) {
+            try (BufferedReader br = new BufferedReader(new FileReader("src/resources/userData.csv"))) {
                 br.readLine(); // Skip the labels
                 while (true) {
                     String line = br.readLine();
 
                     if (line == null) {
                         message = "Invalid username/password!";
+                        responseCode = 401;
                         break;
                     } else {
                         String[] currInfo = line.split(",");
@@ -71,7 +73,7 @@ public class LoginHandler implements HttpHandler {
             String response = "{\"message\": \"" + message + "\"}";
             exchange.getResponseHeaders().set("Content-Type", "application/json");
             byte[] responseBytes = response.getBytes();
-            exchange.sendResponseHeaders(200, responseBytes.length); // Use 401 for unauthorized
+            exchange.sendResponseHeaders(responseCode, responseBytes.length); // Use 401 for unauthorized
 
             try (OutputStream os = exchange.getResponseBody()) {
                 os.write(responseBytes);
