@@ -3,7 +3,7 @@ import {Link} from "react-router";
 import {useState} from "react";
 
 function Profile() {
-    const [signUp, setSignUp] = useState(false);
+    const [signUp, setSignUp] = useState(true);
 
     async function sendInfo({data, signUp}) {
         const endpoint = signUp ? '/api/register/' : '/api/login/';
@@ -16,7 +16,7 @@ function Profile() {
                 throw new Error(response.statusText);
             }
             const result = await response.json();
-            console.log(result);
+            alert(result.message)
         } catch (error) {
             console.log(error);
         }

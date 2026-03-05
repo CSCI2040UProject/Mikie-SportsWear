@@ -5,10 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="49fd6356-d128-4105-b049-553e895d04f8" name="Changes" comment="Solved the browser security issue">
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/nullscape/mike/handlers/LoginHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/nullscape/mike/handlers/RegisterHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/resources/userData.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/data/Nike_Dataset.csv" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/resources/Nike_Dataset.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/java/nullscape/mike/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/nullscape/mike/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/Header.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Header.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/Profile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Profile.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,6 +20,13 @@
   </component>
   <component name="EmbeddingIndexingInfo">
     <option name="cachedIndexableFilesCount" value="36" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -98,14 +108,14 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Dave\Project\Mike-SportsWear\backend\src" />
       <recent name="$PROJECT_DIR$/frontend/src" />
       <recent name="$PROJECT_DIR$/frontend/src/components" />
       <recent name="$PROJECT_DIR$/frontend/src/styles" />
       <recent name="$PROJECT_DIR$/frontend" />
-      <recent name="$PROJECT_DIR$/backend/data" />
     </key>
   </component>
-  <component name="RunManager" selected="Docker.docker-compose.yml: Compose Deployment">
+  <component name="RunManager" selected="Spring Boot.Main">
     <configuration name="Main" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="backend" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="nullscape.mike.Main" />
