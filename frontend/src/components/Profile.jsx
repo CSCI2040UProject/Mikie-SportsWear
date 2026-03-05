@@ -12,11 +12,19 @@ function Profile() {
                 method: "POST",
                 body: JSON.stringify(data)
             });
+
+            const result = await response.json();
+
+            if (response.status === 401) {
+                alert(result.message);
+            }
+
             if (!response.ok) {
                 throw new Error(response.statusText);
             }
-            const result = await response.json();
+
             alert(result.message)
+
         } catch (error) {
             console.log(error);
         }
