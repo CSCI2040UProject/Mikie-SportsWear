@@ -17,7 +17,7 @@ public class UserService {
         int numbers = 0;
         int symbols = 0;
         int upper = 0;
-        for(char a : username.toCharArray()){
+        for(char a : password.toCharArray()){
             size++;
             if(Character.isDigit(a)){
                 numbers++;
