@@ -1,0 +1,44 @@
+package nullscape.mike.service;
+
+import nullscape.mike.model.User;
+
+import java.time.ZoneOffset;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
+
+public class SessionManager {
+    // Map the token to a User
+    private static final Map<String, User> activeSessions = new HashMap<>();
+
+    // Called when a user successfully logs in
+    public static String createSession(User user) {
+        // Generate a random token
+        String token = UUID.randomUUID().toString();
+
+        activeSessions.put(token, user);
+        return token;
+    }
+
+    public static String CreateCookieHeader(String token) {
+        String expires = DateTimeFormatter.RFC_1123_DATE_TIME.format(ZonedDateTime.now(ZoneOffset.UTC).plusDays(1));
+        return "auth_token=" + token + "; Path=/; Max-Age=86400; Expires=" + expires + "; SameSite=Lax";
+    }
+
+    // Called on protected routes to check if the user's cookie is valid
+    public static User getUserFromToken(String token) {
+        if (token == null) return null;
+        return activeSessions.get(token);
+    }
+
+    // Called when a user logs out
+    public static void removeSession(String token) {
+        if (token != null) {
+            activeSessions.remove(token);
+        }
+    }
+
+
+}

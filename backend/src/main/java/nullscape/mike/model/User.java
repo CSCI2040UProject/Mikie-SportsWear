@@ -7,15 +7,10 @@ public class User {
     private boolean isAdmin;
     // private ArrayList<String> wishlist;
 
-    User(String username, String password, boolean isAdmin) {
+    public User(String username, String password, boolean isAdmin) {
         this.username = username;
         this.password = password;
         this.isAdmin = isAdmin;
-    }
-
-    // TODO: Check user database if the username and password provided actually exists
-    public boolean validateUser() {
-        return false;
     }
 
     public String getUsername() {

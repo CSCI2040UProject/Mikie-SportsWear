@@ -1,29 +1,39 @@
 import styles from "../styles/Profile.module.css";
 import {Link} from "react-router";
 import {useState} from "react";
+import { useOutletContext } from "react-router"
 
 function Profile() {
     const [signUp, setSignUp] = useState(true);
+    const { setUsername } = useOutletContext();
 
     async function sendInfo({data, signUp}) {
         const endpoint = signUp ? '/api/register/' : '/api/login/';
         try {
             const response = await fetch(endpoint, {
                 method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
                 body: JSON.stringify(data)
             });
 
-            const result = await response.json();
-
             if (response.status === 401) {
-                alert(result.message);
-            }
-
-            if (!response.ok) {
+                alert("Incorrect username or password!");
+                return;
+            } else if (response.status === 409) {
+                alert("Username already exists!");
+                return;
+            } else if (!response.ok) {
                 throw new Error(response.statusText);
             }
 
-            alert(result.message)
+            const result = await response.json();
+
+            setUsername(result.username);
+            localStorage.setItem("username", data.username);
+
+            alert("Success!");
 
         } catch (error) {
             console.log(error);

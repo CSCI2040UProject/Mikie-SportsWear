@@ -4,14 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="49fd6356-d128-4105-b049-553e895d04f8" name="Changes" comment="Solved the browser security issue">
-      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations/backend__compile_exec_java____.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations/dev.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations/docker_compose_yml__Compose_Deployment.xml" afterDir="false" />
+    <list default="true" id="49fd6356-d128-4105-b049-553e895d04f8" name="Changes" comment="Changes to filepaths and working directory to make code work in and out of docker plus better run configs. return code 401 for invalid credentials.">
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/nullscape/mike/repository/UserRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/nullscape/mike/service/SessionManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/nullscape/mike/service/UserService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/nullscape/mike/handlers/LoginHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/nullscape/mike/handlers/LoginHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/nullscape/mike/handlers/RegisterHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/nullscape/mike/handlers/RegisterHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/nullscape/mike/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/nullscape/mike/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/nullscape/mike/handlers/LoginHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/nullscape/mike/controller/LoginHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/nullscape/mike/handlers/RegisterHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/nullscape/mike/controller/RegisterHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/nullscape/mike/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/nullscape/mike/model/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/Layout.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Layout.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/Header.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Header.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/Profile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Profile.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/routes.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/routes.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/styles/Header.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/styles/Header.module.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,7 +27,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="42" />
+    <option name="cachedIndexableFilesCount" value="49" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -35,6 +43,7 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
@@ -71,6 +80,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.Main.executor": "Run",
+    "Docker.Docker Frontend/Backend.executor": "Run",
     "Docker.docker-compose.yml: Compose Deployment.executor": "Run",
     "Maven.backend [clean].executor": "Run",
     "Maven.backend [compile,exec:java...].executor": "Run",
@@ -103,7 +113,7 @@
     "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.intentionPowerPack",
+    "settings.editor.selected.configurable": "editor.preferences.fonts.default",
     "to.speed.mode.migration.done": "true",
     "ts.external.directory.path": "/Applications/IntelliJ IDEA.app/Contents/plugins/javascript-plugin/jsLanguageServicesImpl/external",
     "vue.rearranger.settings.migration": "true"
@@ -130,12 +140,6 @@
       <item itemvalue="Maven.Backend" />
       <item itemvalue="npm.Frontend" />
     </list>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Docker.Docker Frontend/Backend" />
-        <item itemvalue="Docker.Docker Frontend/Backend" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -162,7 +166,9 @@
       <workItem from="1772428998539" duration="1576000" />
       <workItem from="1772476444278" duration="7787000" />
       <workItem from="1772595963409" duration="5002000" />
-      <workItem from="1772686536293" duration="2393000" />
+      <workItem from="1772686536293" duration="3043000" />
+      <workItem from="1772689604368" duration="4223000" />
+      <workItem from="1772756874913" duration="16617000" />
     </task>
     <task id="LOCAL-00001" summary="Working test communication between frontend and backend">
       <option name="closed" value="true" />
@@ -204,7 +210,23 @@
       <option name="project" value="LOCAL" />
       <updated>1772515529426</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Changes to filepaths and working directory to make code work in and out of docker plus better run configs. return code 401 for invalid credentials.">
+      <option name="closed" value="true" />
+      <created>1772689156592</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1772689156592</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Changes to filepaths and working directory to make code work in and out of docker plus better run configs. return code 401 for invalid credentials.">
+      <option name="closed" value="true" />
+      <created>1772689500172</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1772689500172</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -227,7 +249,8 @@
     <MESSAGE value="login and sign-up form added" />
     <MESSAGE value="Solved the browser security issue" />
     <MESSAGE value="file path stuff" />
-    <option name="LAST_COMMIT_MESSAGE" value="file path stuff" />
+    <MESSAGE value="Changes to filepaths and working directory to make code work in and out of docker plus better run configs. return code 401 for invalid credentials." />
+    <option name="LAST_COMMIT_MESSAGE" value="Changes to filepaths and working directory to make code work in and out of docker plus better run configs. return code 401 for invalid credentials." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

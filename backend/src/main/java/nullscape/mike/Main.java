@@ -1,15 +1,13 @@
 package nullscape.mike;
 
-import com.google.gson.Gson;
-import com.sun.net.httpserver.HttpServer;
-import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpExchange;
+import com.sun.net.httpserver.HttpHandler;
+import com.sun.net.httpserver.HttpServer;
+import nullscape.mike.controller.LoginHandler;
+import nullscape.mike.controller.RegisterHandler;
 
-import nullscape.mike.handlers.*;
-
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.net.InetSocketAddress;
 
 public class Main {

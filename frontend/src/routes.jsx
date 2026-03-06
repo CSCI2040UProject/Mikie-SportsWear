@@ -13,19 +13,12 @@ const routes = [
                 index: true,
                 element: <App />,
             },
-        ],
-    },
-    {
-        path: "/profile/",
-        element: <Layout />,
-        errorElement: <ErrorPage />,
-        children: [
             {
-                index: true,
-                element: <Profile/>,
+                path: "profile",
+                element: <Profile />,
             },
         ],
-    },
+    }
 ];
 
 export default routes;
