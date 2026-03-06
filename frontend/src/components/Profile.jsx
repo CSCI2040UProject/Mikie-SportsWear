@@ -65,11 +65,11 @@ function Profile() {
             <form onSubmit={handleSubmitLogin}>
                 <div>
                     <label htmlFor="username">Username</label>
-                    <input name="username" id="username" minLength="3" type="text" placeholder="Username" required/>
+                    <input name="username" id="username" minLength="3" maxLength="20" pattern="[a-zA-z0-9]" type="text" placeholder="Username" required/>
                 </div>
                 <div>
                     <label htmlFor="password">Password</label>
-                    <input name="password" id="password" minLength="3" type="Password" placeholder="Password" required/>
+                    <input name="password" id="password" minLength="3" maxLength="20" type="Password" placeholder="Password" required/>
                 </div>
                 <div className={styles.buttons}>
                     <button type="submit">login</button>
@@ -88,15 +88,15 @@ function Profile() {
             <form onSubmit={handleSubmitRegister}>
                 <div>
                     <label htmlFor="username">Username</label>
-                    <input name="username" id="username" minLength="3" type="text" placeholder="Username" required/>
+                    <input name="username" id="username" minLength="3" maxLength="20" pattern="[a-zA-z0-9]" type="text" placeholder="Username" required/>
                 </div>
                 <div>
                     <label htmlFor="password">Password</label>
-                    <input name="password" id="password" minLength="3" type="Password" placeholder="Password" required/>
+                    <input name="password" id="password" minLength="3" maxLength="20" type="Password" placeholder="Password" required/>
                 </div>
                 <div>
                     <label htmlFor="password-confirm">Confirm Password</label>
-                    <input name="confirmPassword" id="password-confirm" minLength="3" type="Password" placeholder="Password" required/>
+                    <input name="confirmPassword" id="password-confirm" minLength="3" maxLength="20" type="Password" placeholder="Password" required/>
                 </div>
                 <div className={styles.buttons}>
                     <button type="submit">Sign-up</button>
