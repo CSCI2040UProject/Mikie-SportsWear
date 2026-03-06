@@ -65,7 +65,7 @@ function Profile() {
             <form onSubmit={handleSubmitLogin}>
                 <div>
                     <label htmlFor="username">Username</label>
-                    <input name="username" id="username" minLength="3" maxLength="20" pattern="[a-zA-z0-9]" type="text" placeholder="Username" required/>
+                    <input name="username" id="username" minLength="3" maxLength="20" pattern="[a-zA-z0-9]+" type="text" placeholder="Username" required/>
                 </div>
                 <div>
                     <label htmlFor="password">Password</label>
@@ -88,7 +88,7 @@ function Profile() {
             <form onSubmit={handleSubmitRegister}>
                 <div>
                     <label htmlFor="username">Username</label>
-                    <input name="username" id="username" minLength="3" maxLength="20" pattern="[a-zA-z0-9]" type="text" placeholder="Username" required/>
+                    <input name="username" id="username" minLength="3" maxLength="20" pattern="[a-zA-z0-9]+" type="text" placeholder="Username" required/>
                 </div>
                 <div>
                     <label htmlFor="password">Password</label>
