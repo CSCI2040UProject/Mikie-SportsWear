@@ -29,6 +29,26 @@ public class RegisterHandler implements HttpHandler {
         }
     }
 
+    public Boolean validPassword(String temp){
+        int size = 0;
+        int numbers = 0;
+        int symbols = 0;
+        int upper = 0;
+        for(char a : temp.toCharArray()){
+            size++;
+            if(Character.isDigit(a)){
+                numbers++;
+            }
+            if(!Character.isLetterOrDigit(a) || !Character.isWhitespace(a)){
+                symbols++;
+            }
+            if(Character.isUpperCase(a)){
+                upper++;
+            }
+        }
+        return (size>=8)&&(numbers>=4)&&(symbols>=2)&&(upper>0);
+    }
+
     @Override
     public void handle(HttpExchange exchange) throws IOException {
 
