@@ -3,8 +3,11 @@ package nullscape.mike;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
+import nullscape.mike.controller.ItemController;
 import nullscape.mike.controller.LoginHandler;
 import nullscape.mike.controller.RegisterHandler;
+import nullscape.mike.model.Catalog;
+import nullscape.mike.repository.ItemRepository;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -18,6 +21,8 @@ public class Main {
         server.createContext("/api/helloworld/", new HelloWorldHandler());
         server.createContext("/api/login/", new LoginHandler());
         server.createContext("/api/register", new RegisterHandler());
+        ItemRepository.makeCatalog();
+        server.createContext("/api/catalog", new ItemController());
 
         server.start();
         System.out.println("Server is listening on port 8080...");
