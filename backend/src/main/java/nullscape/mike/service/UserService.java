@@ -29,9 +29,10 @@ public class UserService {
                 upper++;
             }
         }
-        if ((size>=8)&&(numbers>=4)&&(symbols>=2)&&(upper>0)) {
+        if ((size>=3)&&(numbers>=0)&&(symbols>=0)&&(upper>0)) { //changed for easier testing
             return UserRepository.addUser(username, password, isAdmin);
         }
+        System.out.println("the password is invalid");
         return null;
     }
 

@@ -34,3 +34,8 @@ form > div {
     width: 100%;
     justify-content: center;
 }
+
+.loggedInStyle{
+    display: flex;
+    flex-direction: column;
+}
