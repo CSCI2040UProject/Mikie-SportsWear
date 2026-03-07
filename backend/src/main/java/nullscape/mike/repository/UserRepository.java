@@ -22,7 +22,7 @@ public class UserRepository {
                     String[] currInfo = line.split(",");
                     if (username.equals(currInfo[0])) {
                         String password = currInfo[1];
-                        boolean isAdmin = currInfo[2].equals("1");
+                        boolean isAdmin = currInfo[2].equals("true");
                         return new User(username, password, isAdmin);
                     }
                 }
@@ -37,7 +37,7 @@ public class UserRepository {
         User existingUser = UserRepository.findByUsername(username);
         if (existingUser == null) {
             try (BufferedWriter bw = new BufferedWriter(new FileWriter("src/resources/userData.csv", true))) {
-                String line = username + "," + password + "," + isAdmin + "\n";
+                String line = username + "," + password + "," + isAdmin  + "\n";
                 bw.write(line);
             } catch (Exception e) {
                 e.printStackTrace();

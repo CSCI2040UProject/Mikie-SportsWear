@@ -1,11 +1,11 @@
 import styles from "../styles/Profile.module.css";
 import {Link} from "react-router";
-import {useState} from "react";
+import {useContext, useState} from "react";
 import { useOutletContext } from "react-router"
 
 function Profile() {
-    const [signUp, setSignUp] = useState(true);
-    const { setUsername } = useOutletContext();
+    const [signUp, setSignUp] = useState(false);
+    const {user, setUser, loggedIn, setLoggedIn } = useOutletContext();
 
     async function sendInfo({data, signUp}) {
         const endpoint = signUp ? '/api/register/' : '/api/login/';
@@ -30,10 +30,10 @@ function Profile() {
 
             const result = await response.json();
 
-            setUsername(result.username);
-            localStorage.setItem("username", data.username);
-
-            alert("Success!");
+            setUser(result);
+            setLoggedIn(true);
+            localStorage.setItem("Login", JSON.stringify(result));
+            localStorage.setItem("loggedIn", JSON.stringify(true));
 
         } catch (error) {
             console.log(error);
@@ -58,6 +58,44 @@ function Profile() {
         } else {
             sendInfo({data, signUp});
         }
+    }
+
+    async function handleSubmitLogout() {
+        const endpoint = "/api/logout/";
+        try {
+            const response = await fetch(endpoint, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "text/plain",
+                },
+            });
+
+            if (response.status === 400) {
+                alert("An error occured while logging out!");
+                throw new Error(response.statusText);
+            }
+            console.log(response);
+            setUser("");
+            setLoggedIn(false);
+            localStorage.removeItem("Login");
+            localStorage.removeItem("loggedIn");
+        } catch (error){
+            console.log(error);
+        }
+    }
+
+
+
+    function LoggedInPage(){
+        return(
+        <div className={styles.loggedInStyle}>
+            <h1>Username: {user.username}</h1>
+            <h1>Access Level: {user.isAdmin ? 'Admin' : 'User'}</h1>
+            <button onClick={handleSubmitLogout}>Log out</button>
+            <br/>
+        </div>
+
+        )
     }
 
     function LoginForm() {
@@ -109,6 +147,13 @@ function Profile() {
         )
     }
 
+    if (loggedIn) {
+        return (
+            <div className={styles.profile}>
+                {<LoggedInPage />}
+            </div>
+        )
+    }
     return (
         <div className={styles.profile}>
             {signUp === false ? <LoginForm /> : <RegisterForm />}

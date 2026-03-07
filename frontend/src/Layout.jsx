@@ -1,15 +1,15 @@
-import { Outlet } from "react-router";
+import {Outlet, useOutletContext} from "react-router";
 import Header from "./components/Header.jsx";
-import {useState} from "react";
+import {createContext, useState} from "react";
 
 const Layout = () => {
-    const [username, setUsername] = useState(localStorage.getItem("username") || "");
-
+    const [user, setUser] = useState(JSON.parse(localStorage.getItem("Login")) || "");
+    const [loggedIn, setLoggedIn] = useState(JSON.parse(localStorage.getItem("loggedIn")) || false);
     return (
         <>
-            <Header username={username} />
+            <Header username={user} />
             <main>
-                <Outlet context={{ setUsername }}/>
+                <Outlet context={{user, setUser, loggedIn, setLoggedIn }} />
             </main>
         </>
     );
