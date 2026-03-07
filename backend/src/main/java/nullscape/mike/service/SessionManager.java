@@ -40,5 +40,23 @@ public class SessionManager {
         }
     }
 
+    //Extracts the token from the cookie
+    public static String extractToken(String cookieHeader) {
+        if (cookieHeader == null || cookieHeader.isEmpty()) {
+            return null;
+        }
+
+        String[] cookies = cookieHeader.split(";");
+
+        for (String cookie : cookies) {
+            String trimmed = cookie.trim();
+            if (trimmed.startsWith("auth_token=")) {
+                return trimmed.substring("auth_token=".length());
+            }
+        }
+
+        return null;
+    }
+
 
 }
