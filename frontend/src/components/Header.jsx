@@ -7,10 +7,12 @@ const Header = ({username}) => {
     const newUsername = username.username;
     return (
         <header className={styles.header}>
-            <h1><Link to="/">Mikie</Link></h1>
+            <Link to="/">
+                <img src={"/public/nike-logo.svg"} alt="Mikie" />
+            </Link>
                 <Link to="/profile/">
                     <div>
-                    <h3>{newUsername ? newUsername : "Profile"}</h3>
+                    <h3>{newUsername ? ("Hi, " + newUsername) : "Log in"}</h3>
                     <Icon path={mdiAccount} size={1} />
                     </div>
                 </Link>

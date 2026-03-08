@@ -58,5 +58,10 @@ public class SessionManager {
         return null;
     }
 
-
+    // Called to remove a user's session by username
+    public static void removeByUsername(String username) {
+        if (username != null) {
+            activeSessions.values().removeIf(user -> username.equals(user.getUsername()));
+        }
+    }
 }
