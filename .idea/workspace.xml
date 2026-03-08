@@ -4,23 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="49fd6356-d128-4105-b049-553e895d04f8" name="Changes" comment="Restructuring and cookies">
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/nullscape/mike/controller/UserHandler.java" afterDir="false" />
+    <list default="true" id="49fd6356-d128-4105-b049-553e895d04f8" name="Changes" comment="Make other users admin">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/nullscape/mike/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/nullscape/mike/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/nullscape/mike/controller/RegisterHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/nullscape/mike/controller/RegisterHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/nullscape/mike/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/nullscape/mike/repository/UserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/nullscape/mike/service/SessionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/nullscape/mike/service/SessionManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/nullscape/mike/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/nullscape/mike/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/nullscape/mike/controller/UserHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/nullscape/mike/controller/UserHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/resources/userData.csv" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/resources/userData.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/public/nike-logo.svg" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/public/nike-logo.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/assets/react.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/Header.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Header.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/Profile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Profile.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/styles/Header.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/styles/Header.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/styles/Profile.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/styles/Profile.module.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -172,7 +160,7 @@
       <workItem from="1772756874913" duration="17008000" />
       <workItem from="1772807998132" duration="2551000" />
       <workItem from="1772905350936" duration="6125000" />
-      <workItem from="1772912142479" duration="12534000" />
+      <workItem from="1772912142479" duration="15732000" />
     </task>
     <task id="LOCAL-00001" summary="Working test communication between frontend and backend">
       <option name="closed" value="true" />
@@ -238,7 +226,15 @@
       <option name="project" value="LOCAL" />
       <updated>1772773943879</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Make other users admin">
+      <option name="closed" value="true" />
+      <created>1772929019892</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1772929019893</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -264,7 +260,8 @@
     <MESSAGE value="Changes to filepaths and working directory to make code work in and out of docker plus better run configs. return code 401 for invalid credentials." />
     <MESSAGE value="Restructuring and cookies" />
     <MESSAGE value="loading the catalog into memory and sending the JSON to the frontend" />
-    <option name="LAST_COMMIT_MESSAGE" value="loading the catalog into memory and sending the JSON to the frontend" />
+    <MESSAGE value="Make other users admin" />
+    <option name="LAST_COMMIT_MESSAGE" value="Make other users admin" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

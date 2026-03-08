@@ -110,7 +110,7 @@ function Profile() {
             alert("Successful!")
             const result = await response.json();
 
-            if (user.username === result.username) {
+            if (modifyUser.password !== null || user.username === result.username) {
                 setUser(result);
                 setLoggedIn(true);
                 localStorage.setItem("Login", JSON.stringify(result));
@@ -128,11 +128,13 @@ function Profile() {
             e.preventDefault();
             const formData = new FormData(e.target);
             const modifyUser = Object.fromEntries(formData.entries());
-            if (modifyUser.username !== "" && modifyUser.password !== "") {
+            if (modifyUser.username !== "" || modifyUser.password !== "") {
                 if (modifyUser.password !== modifyUser.confirmPassword) {
                     alert("Passwords don't match");
                 } else {
                     console.log("modifyUser", modifyUser);
+                    modifyUser.isAdmin = user.isAdmin;
+                    handleModifyUser({modifyUser});
                 }
             }
         }
@@ -174,13 +176,13 @@ function Profile() {
             </div>
             <br/>
             <form onSubmit={editUser}>
-                <h4>Change your own credentials</h4>
+                <h4>Update your own credentials</h4>
                 <div>
                     <label htmlFor="username">Change your Username</label>
                     <input name="username" id="username" minLength="3" maxLength="20" pattern="[a-zA-z0-9]+" type="text" placeholder="Username"/>
                 </div>
                 <div>
-                    <label htmlFor="password">Password</label>
+                    <label htmlFor="password">Change your Password</label>
                     <input name="password" id="password" minLength="3" maxLength="20" type="Password" placeholder="Password"/>
                 </div>
                 <div>

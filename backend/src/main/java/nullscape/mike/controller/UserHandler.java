@@ -52,16 +52,29 @@ public class UserHandler implements HttpHandler {
             try {
                 InputStream is = exchange.getRequestBody();
                 Request request = jsonParser.fromJson(new String(is.readAllBytes()), Request.class);
+
+                if (request == null) {
+                    exchange.sendResponseHeaders(400, -1);
+                    return;
+                }
+
                 String cookieHeader = exchange.getRequestHeaders().getFirst("Cookie");
                 request.token = SessionManager.extractToken(cookieHeader);
 
                 User requestingUser = SessionManager.getUserFromToken(request.token);
 
+                if (requestingUser == null) {
+                    exchange.sendResponseHeaders(401, -1);
+                    return;
+                }
                 User newUser;
-                if (requestingUser.getUsername().equals(request.username)) { //Modifying yourself
-
+                if (request.password != null) { //Modifying yourself
                     SessionManager.removeSession(request.token);
-                    newUser = UserRepository.modifyUser(requestingUser, new User((request.username == null) ? requestingUser.getUsername() : request.username, (request.password == null) ? requestingUser.getPassword() : request.password, requestingUser.isAdmin()));
+
+                    String updatedUsername = (request.username == null || request.username.trim().isEmpty()) ? requestingUser.getUsername() : request.username;
+                    String updatedPassword = (request.password.trim().isEmpty()) ? requestingUser.getPassword() : request.password;
+
+                    newUser = UserRepository.modifyUser(requestingUser, new User(updatedUsername, updatedPassword, requestingUser.isAdmin()));
                     String newCookieHeader = SessionManager.CreateCookieHeader(SessionManager.createSession(newUser));
                     exchange.getResponseHeaders().add("Set-Cookie", newCookieHeader);
                 } else if (requestingUser.isAdmin()) {
