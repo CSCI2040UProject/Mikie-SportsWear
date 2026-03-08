@@ -23,6 +23,8 @@ function FetchUserData({ url }) {
         loadData();
     }, [url]);
 
+
+
     if (error) return <div>Error loading data!</div>;
     if (!data) return <div>Loading...</div>;
 
