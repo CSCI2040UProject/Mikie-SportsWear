@@ -19,7 +19,7 @@ public class RegisterHandler implements HttpHandler {
         String password;
     }
 
-    private static class Response {
+    static class Response {
         String username;
         boolean isAdmin;
 

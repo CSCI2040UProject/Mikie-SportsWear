@@ -6,6 +6,7 @@ import com.sun.net.httpserver.HttpServer;
 import nullscape.mike.controller.LoginHandler;
 import nullscape.mike.controller.RegisterHandler;
 import nullscape.mike.controller.LogoutHandler;
+import nullscape.mike.controller.UserHandler;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -20,6 +21,7 @@ public class Main {
         server.createContext("/api/login/", new LoginHandler());
         server.createContext("/api/register", new RegisterHandler());
         server.createContext("/api/logout", new LogoutHandler());
+        server.createContext("/api/user", new UserHandler());
 
         server.start();
         System.out.println("Server is listening on port 8080...");

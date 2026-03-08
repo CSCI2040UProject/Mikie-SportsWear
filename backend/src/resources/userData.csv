@@ -1,2 +1,3 @@
 Username,Password,isAdmin
-test,test,false
+testUser,test,false
+test,test,true
