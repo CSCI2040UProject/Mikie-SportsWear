@@ -1,0 +1,14 @@
+.catalog {
+    display: grid;
+    grid-template-columns: repeat( auto-fit, minmax(350px, 1fr) );
+}
+
+.item{
+
+}
+
+.item img{
+    aspect-ratio: 1 / 1;
+    width: 75%;
+    height: 75%;
+}
