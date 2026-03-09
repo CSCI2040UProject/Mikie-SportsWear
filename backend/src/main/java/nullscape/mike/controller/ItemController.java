@@ -22,7 +22,7 @@ public class ItemController implements HttpHandler {
             return;
         }
 
-        // Only accept POST requests
+        // Only accept GET requests
         if (!"GET".equalsIgnoreCase(exchange.getRequestMethod())) {
             exchange.sendResponseHeaders(405, -1);
             return;
