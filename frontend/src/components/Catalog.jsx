@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from 'react'
-import '../styles/Catalog.module.css'
+import styles from '../styles/Catalog.module.css'
 
 function Catalog({}){
     const [data, setData] = useState(null);
@@ -62,9 +62,11 @@ function Catalog({}){
             <div>
                 <p>Showing {Math.min(visibleCount, data.length)} of {data.length} items from the catalog.</p>
                 {/* Only render items up to the visibleCount */}
+                <div className={styles.catalog}>
                 {data.slice(0, visibleCount).map((item, index) => (
                     <CreateItem key={item.itemId || index} item={item} />
                 ))}
+                </div>
                 
                 {/* Invisible element at the bottom to trigger the observer */}
                 {visibleCount < data.length && (
@@ -79,8 +81,9 @@ function Catalog({}){
 
 function CreateItem({item}) {
     return (
-        <div className="item">
+        <div className={styles.item}>
             <img src={item.itemImages[0]} alt="Item" />
+            <h5>{item.itemName}</h5>
         </div>
     )
 }
