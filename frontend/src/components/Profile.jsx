@@ -263,6 +263,6 @@ function Profile() {
             {signUp === false ? <LoginForm /> : <RegisterForm />}
         </div>
     );
-};
+}
 
 export default Profile;
