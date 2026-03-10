@@ -1,0 +1,70 @@
+.profile {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    margin: 5vh;
+}
+
+.profile > div {
+    display: flex;
+    gap: 5%;
+    justify-content: center;
+    flex-grow: 1;
+}
+
+.buttons{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.buttons div {
+    display: flex;
+    align-items: center;
+}
+
+.buttons div button {
+    border: none;
+    background: none;
+    color: -webkit-link;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    gap: 10px;
+}
+
+form > div {
+    display: flex;
+    gap: 5%;
+    width: 100%;
+    justify-content: center;
+}
+
+#loggedInStyle{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    align-items: center;
+}
+
+#loggedInStyle > div, #loggedInStyle form {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    justify-content: center;
+    width: max(400px, 50%);
+}
+
+#loggedInStyle h4, h2{
+    margin: 0;
+}
+
+#loggedInStyle button {
+    margin-left: 5%;
+}
