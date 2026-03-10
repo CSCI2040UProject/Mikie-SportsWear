@@ -4,87 +4,88 @@ import java.util.Arrays;
 
 //Product_ID,Name,Description,Categories,Price,Color,Other_Colors,Product_URL,Image_URLs
 public class Item {
-    private String itemId;
-    private String itemName;
-    private String itemDescription;
-    private String[] itemCategories;
-    private String itemPrice;
-    private String itemColor;
+    private String id;
+    private String name;
+    private String description;
+    private String[] categories;
+    private String price;
+    private String color;
     private String[] otherColors;
     private String productUrl;
-    private String[] itemImages;
+    private String thumbnailUrl;
+    private String[] images;
 
     @Override
     public String toString() {
         return "Item{" +
-                "itemId='" + itemId + '\'' +
-                ", itemName='" + itemName + '\'' +
-                ", itemDescription='" + itemDescription + '\'' +
-                ", itemCategories=" + Arrays.toString(itemCategories) +
-                ", itemPrice='" + itemPrice + '\'' +
-                ", itemColor='" + itemColor + '\'' +
+                "itemId='" + id + '\'' +
+                ", itemName='" + name + '\'' +
+                ", itemDescription='" + description + '\'' +
+                ", itemCategories=" + Arrays.toString(categories) +
+                ", itemPrice='" + price + '\'' +
+                ", itemColor='" + color + '\'' +
                 ", otherColors=" + Arrays.toString(otherColors) +
                 ", productUrl='" + productUrl + '\'' +
-                ", itemImages=" + Arrays.toString(itemImages) +
+                ", itemImages=" + Arrays.toString(images) +
                 '}';
     }
 
     public Item() {
     }
 
-    public Item(String itemId, String itemName, String itemDescription, String[] itemCategories, String itemPrice, String itemColor, String[] otherColors, String productUrl, String[] itemImages) {
-        this.itemId = itemId;
-        this.itemName = itemName;
-        this.itemDescription = itemDescription;
-        this.itemCategories = itemCategories;
-        this.itemPrice = itemPrice;
-        this.itemColor = itemColor;
+    public Item(String id, String name, String description, String[] categories, String price, String color, String[] otherColors, String productUrl, String thumbnailUrl, String[] images) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.categories = categories;
+        this.price = price;
+        this.color = color;
         this.otherColors = otherColors;
         this.productUrl = productUrl;
-        this.itemImages = itemImages;
+        this.images = images;
     }
 
 
-    public String getItemId() {
-        return itemId;
+    public String getId() {
+        return id;
     }
-    public void setItemId(String itemId) {
-        this.itemId = itemId;
-    }
-
-    public String getItemName() {
-        return itemName;
-    }
-    public void setItemName(String itemName) {
-        this.itemName = itemName;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public String getItemDescription() {
-        return itemDescription;
+    public String getName() {
+        return name;
     }
-    public void setItemDescription(String itemDescription) {
-        this.itemDescription = itemDescription;
-    }
-
-    public String[] getItemCategories() {
-        return itemCategories;
-    }
-    public void setItemCategories(String[] itemCategories) {
-        this.itemCategories = itemCategories;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getItemPrice() {
-        return itemPrice;
+    public String getDescription() {
+        return description;
     }
-    public void setItemPrice(String itemPrice) {
-        this.itemPrice = itemPrice;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public String getItemColor() {
-        return itemColor;
+    public String[] getCategories() {
+        return categories;
     }
-    public void setItemColor(String itemColor) {
-        this.itemColor = itemColor;
+    public void setCategories(String[] categories) {
+        this.categories = categories;
+    }
+
+    public String getPrice() {
+        return price;
+    }
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
+    public String getColor() {
+        return color;
+    }
+    public void setColor(String color) {
+        this.color = color;
     }
 
     public String[] getOtherColors() {
@@ -101,10 +102,17 @@ public class Item {
         this.productUrl = productUrl;
     }
 
-    public String[] getItemImages() {
-        return itemImages;
+    public String getThumbnailUrl() {
+        return thumbnailUrl;
     }
-    public void setItemImages(String[] itemImages) {
-        this.itemImages = itemImages;
+    public void setThumbnailUrl(String thumbnailUrl) {
+        this.thumbnailUrl = thumbnailUrl;
+    }
+
+    public String[] getImages() {
+        return images;
+    }
+    public void setImages(String[] images) {
+        this.images = images;
     }
 }
