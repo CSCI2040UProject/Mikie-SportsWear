@@ -9,6 +9,7 @@
     background-color: white;
     align-items: center;
     justify-content: space-between;
+    margin-bottom: 15px;
 }
 
 .header div{
@@ -18,8 +19,8 @@
     margin: 10px;
 }
 
-img{
+.header img {
     height: 50px;
     margin-left: 10px;
-    margin-top: 5px;
+    margin-top: 10px;
 }

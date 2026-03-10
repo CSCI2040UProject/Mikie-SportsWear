@@ -3,6 +3,7 @@ import ErrorPage from "./components/ErrorPage.jsx";
 import Layout from "./Layout.jsx";
 import Profile from "./components/Profile.jsx";
 import Catalog from "./components/Catalog.jsx";
+import Item from "./components/Item.jsx";
 
 const routes = [
     {
@@ -17,6 +18,10 @@ const routes = [
             {
                 index: true,
                 element: <Catalog />,
+            },
+            {
+                path: "item/:id",
+                element: <Item/>,
             },
             {
                 path: "profile",
