@@ -1,14 +1,24 @@
 .catalog {
     display: grid;
     grid-template-columns: repeat( auto-fit, minmax(350px, 1fr) );
-}
-
-.item{
-
+    gap: 10px;
+    margin: 20px auto;
+    width: clamp(100px, 95%, 2250px);
+    place-self: center;
 }
 
 .item img{
-    aspect-ratio: 1 / 1;
-    width: 75%;
-    height: 75%;
+    width: 100%;
+    height: auto;
 }
+
+.item a {
+    color: black; 
+    text-decoration: none;
+}
+
+.item h4 {
+    color: black;
+}
+
+

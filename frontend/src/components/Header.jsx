@@ -8,7 +8,7 @@ const Header = ({username}) => {
     return (
         <header className={styles.header}>
             <Link to="/">
-                <img src={"/public/mikie.svg"} alt="Mikie" />
+                <img src="/Mikie.svg" alt="Mikie" />
             </Link>
                 <Link to="/profile/">
                     <div>

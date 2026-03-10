@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef } from 'react'
 import styles from '../styles/Catalog.module.css'
+import {Link} from "react-router";
 
 function Catalog({}){
     const [data, setData] = useState(null);
@@ -81,10 +82,12 @@ function Catalog({}){
 
 function CreateItem({item}) {
     return (
+        <Link to={'/item/' + item.id}>
         <div className={styles.item}>
             <img src={item.thumbnailUrl} alt="Item" />
             <h4>{item.name}</h4>
         </div>
+        </Link>
     )
 }
 
