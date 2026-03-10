@@ -11,7 +11,7 @@ import java.util.List;
 public class ItemRepository {
     public static Item makeCatalog() {
 
-        //Product_ID,Name,Description,Categories,Price,Color,Other_Colors,Product_URL,Image_URLs
+        //"Product_ID","Name","Description","Categories","Price","Color","Other_Colors","Product_URL","Thumbnail_URL","Image_URLs"
         try (BufferedReader br = new BufferedReader(new FileReader("src/resources/Nike_Dataset.csv"))) {
             br.readLine(); // Skip the labels
             while (true) {
@@ -24,15 +24,16 @@ public class ItemRepository {
                     String[] currInfo = parseCSVLine(line);
                     item = new Item();
                     if (currInfo.length >= 9) {
-                        item.setItemId(currInfo[0]);
-                        item.setItemName(currInfo[1]);
-                        item.setItemDescription(currInfo[2]);
-                        item.setItemCategories(cleanArrayString(currInfo[3]));
-                        item.setItemPrice(currInfo[4]);
-                        item.setItemColor(currInfo[5]);
+                        item.setId(currInfo[0]);
+                        item.setName(currInfo[1]);
+                        item.setDescription(currInfo[2]);
+                        item.setCategories(cleanArrayString(currInfo[3]));
+                        item.setPrice(currInfo[4]);
+                        item.setColor(currInfo[5]);
                         item.setOtherColors(cleanArrayString(currInfo[6]));
                         item.setProductUrl(currInfo[7]);
-                        item.setItemImages(cleanArrayString(currInfo[8]));
+                        item.setThumbnailUrl(currInfo[8]);
+                        item.setImages(cleanArrayString(currInfo[9]));
                     }
                 }
                 Catalog.addItem(item);
