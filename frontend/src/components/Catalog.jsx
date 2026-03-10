@@ -4,7 +4,7 @@ import styles from '../styles/Catalog.module.css'
 function Catalog({}){
     const [data, setData] = useState(null);
     const [error, setError] = useState(null);
-    const [visibleCount, setVisibleCount] = useState(20); // Initial items to display
+    const [visibleCount, setVisibleCount] = useState(40); // Initial items to display
     const observer = useRef();
     const url = "/api/catalog";
 
@@ -64,7 +64,7 @@ function Catalog({}){
                 {/* Only render items up to the visibleCount */}
                 <div className={styles.catalog}>
                 {data.slice(0, visibleCount).map((item, index) => (
-                    <CreateItem key={item.itemId || index} item={item} />
+                    <CreateItem key={item.id || index} item={item} />
                 ))}
                 </div>
                 
@@ -82,8 +82,8 @@ function Catalog({}){
 function CreateItem({item}) {
     return (
         <div className={styles.item}>
-            <img src={item.itemImages[0]} alt="Item" />
-            <h5>{item.itemName}</h5>
+            <img src={item.thumbnailUrl} alt="Item" />
+            <h4>{item.name}</h4>
         </div>
     )
 }
