@@ -4,12 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="49fd6356-d128-4105-b049-553e895d04f8" name="Changes" comment="Switch to react and build frontend with vite">
+    <list default="true" id="49fd6356-d128-4105-b049-553e895d04f8" name="Changes" comment="Make other users admin">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/Readme.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/vite.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/vite.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/nullscape/mike/controller/UserHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/nullscape/mike/controller/UserHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/resources/userData.csv" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/resources/userData.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/Profile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Profile.jsx" afterDir="false" />
+    <list default="true" id="49fd6356-d128-4105-b049-553e895d04f8" name="Changes" comment="Restructuring and cookies">
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/nullscape/mike/controller/ItemController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/nullscape/mike/model/Catalog.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/nullscape/mike/model/Item.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/nullscape/mike/repository/ItemRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/Catalog.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/styles/Catalog.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/nullscape/mike/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/nullscape/mike/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/App.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/main.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/routes.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/routes.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,7 +28,14 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="28" />
+    <option name="cachedIndexableFilesCount" value="49" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -26,6 +44,7 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
@@ -47,6 +66,9 @@
     <commands />
     <urls />
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
   &quot;associatedIndex&quot;: 8
@@ -58,9 +80,12 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.ItemRepository.executor": "Run",
     "Application.Main.executor": "Run",
+    "Docker.Docker Frontend/Backend.executor": "Run",
     "Docker.docker-compose.yml: Compose Deployment.executor": "Run",
     "Maven.backend [clean].executor": "Run",
+    "Maven.backend [compile,exec:java...].executor": "Run",
     "Maven.backend [compile].executor": "Run",
     "Maven.backend [install].executor": "Run",
     "Maven.backend [validate].executor": "Run",
@@ -74,9 +99,10 @@
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "Spring Boot.Main.executor": "Run",
     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "14-item-database",
     "junie.onboarding.icon.badge.shown": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "/Users/rhysdeswart/WhonnockOne/Documents/Code/2025-2026/CSCI 2040U/Mike-SportsWear",
@@ -85,54 +111,37 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "npm.dev.executor": "Run",
     "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.intentionPowerPack",
+    "settings.editor.selected.configurable": "editor.preferences.fonts.default",
     "to.speed.mode.migration.done": "true",
+    "ts.external.directory.path": "/Applications/IntelliJ IDEA.app/Contents/plugins/javascript-plugin/jsLanguageServicesImpl/external",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/frontend" />
-      <recent name="$PROJECT_DIR$/backend/data" />
-      <recent name="$PROJECT_DIR$/backend" />
-      <recent name="$PROJECT_DIR$/backend/src/main/java" />
-      <recent name="$PROJECT_DIR$/Backend" />
+      <recent name="$PROJECT_DIR$/frontend/public" />
+      <recent name="C:\Users\Dave\Project\Mike-SportsWear\backend\src" />
+      <recent name="$PROJECT_DIR$/frontend/src" />
+      <recent name="$PROJECT_DIR$/frontend/src/components" />
+      <recent name="$PROJECT_DIR$/frontend/src/styles" />
     </key>
   </component>
-  <component name="RunManager">
-    <configuration name="Main" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
-      <module name="backend" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="nullscape.mike.Main" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="Docker.Docker Frontend/Backend">
     <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
-      <deployment type="docker-compose.yml" />
-      <method v="2" />
-    </configuration>
-    <configuration name="docker-compose.yml: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
       <deployment type="docker-compose.yml">
-        <settings>
-          <option name="commandLineOptions" value="--build" />
-          <option name="sourceFilePath" value="docker-compose.yml" />
-          <option name="upForceRecreate" value="true" />
-        </settings>
+        <settings />
       </deployment>
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
-      <item itemvalue="Spring Boot.Main" />
+      <item itemvalue="Docker.Docker Frontend/Backend" />
+      <item itemvalue="Maven.Backend" />
+      <item itemvalue="npm.Frontend" />
     </list>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -157,6 +166,14 @@
       <workItem from="1772204833079" duration="5422000" />
       <workItem from="1772427638011" duration="1343000" />
       <workItem from="1772428998539" duration="1576000" />
+      <workItem from="1772476444278" duration="7787000" />
+      <workItem from="1772595963409" duration="5002000" />
+      <workItem from="1772686536293" duration="3043000" />
+      <workItem from="1772689604368" duration="4223000" />
+      <workItem from="1772756874913" duration="17008000" />
+      <workItem from="1772807998132" duration="2551000" />
+      <workItem from="1772822160962" duration="378000" />
+      <workItem from="1772823156281" duration="12505000" />
     </task>
     <task id="LOCAL-00001" summary="Working test communication between frontend and backend">
       <option name="closed" value="true" />
@@ -174,7 +191,63 @@
       <option name="project" value="LOCAL" />
       <updated>1772216737538</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="login and sign-up form added">
+      <option name="closed" value="true" />
+      <created>1772511240008</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1772511240008</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Solved the browser security issue">
+      <option name="closed" value="true" />
+      <created>1772515390531</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1772515390531</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Solved the browser security issue">
+      <option name="closed" value="true" />
+      <created>1772515529426</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1772515529426</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Changes to filepaths and working directory to make code work in and out of docker plus better run configs. return code 401 for invalid credentials.">
+      <option name="closed" value="true" />
+      <created>1772689156592</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1772689156592</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Changes to filepaths and working directory to make code work in and out of docker plus better run configs. return code 401 for invalid credentials.">
+      <option name="closed" value="true" />
+      <created>1772689500172</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1772689500172</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Restructuring and cookies">
+      <option name="closed" value="true" />
+      <created>1772773943879</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1772773943879</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Make other users admin">
+      <option name="closed" value="true" />
+      <created>1772929019892</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1772929019893</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -194,7 +267,14 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Working test communication between frontend and backend" />
     <MESSAGE value="Switch to react and build frontend with vite" />
-    <option name="LAST_COMMIT_MESSAGE" value="Switch to react and build frontend with vite" />
+    <MESSAGE value="login and sign-up form added" />
+    <MESSAGE value="Solved the browser security issue" />
+    <MESSAGE value="file path stuff" />
+    <MESSAGE value="Changes to filepaths and working directory to make code work in and out of docker plus better run configs. return code 401 for invalid credentials." />
+    <MESSAGE value="Restructuring and cookies" />
+    <MESSAGE value="loading the catalog into memory and sending the JSON to the frontend" />
+    <MESSAGE value="Make other users admin" />
+    <option name="LAST_COMMIT_MESSAGE" value="Make other users admin" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

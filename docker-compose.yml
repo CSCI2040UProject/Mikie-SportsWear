@@ -2,6 +2,8 @@ services:
   frontend:
     image: node:22-alpine
     working_dir: /app
+    environment:
+      - VITE_BACKEND_URL=http://backend:8080
     volumes:
       - ./frontend:/app
       - /app/node_modules # Prevents host node_modules from overriding container's

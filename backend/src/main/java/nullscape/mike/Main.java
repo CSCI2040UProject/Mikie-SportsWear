@@ -1,10 +1,18 @@
 package nullscape.mike;
 
-import com.sun.net.httpserver.HttpServer;
-import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpExchange;
-import java.io.OutputStream;
+import com.sun.net.httpserver.HttpHandler;
+import com.sun.net.httpserver.HttpServer;
+import nullscape.mike.controller.ItemController;
+import nullscape.mike.controller.LoginHandler;
+import nullscape.mike.controller.RegisterHandler;
+import nullscape.mike.controller.LogoutHandler;
+import nullscape.mike.controller.UserHandler;
+import nullscape.mike.model.Catalog;
+import nullscape.mike.repository.ItemRepository;
+
 import java.io.IOException;
+import java.io.OutputStream;
 import java.net.InetSocketAddress;
 
 public class Main {
@@ -12,7 +20,13 @@ public class Main {
 
         HttpServer server = HttpServer.create(new InetSocketAddress(8080), 0);
 
-        server.createContext("/helloworld/", new HelloWorldHandler());
+        server.createContext("/api/helloworld/", new HelloWorldHandler());
+        server.createContext("/api/login/", new LoginHandler());
+        server.createContext("/api/register", new RegisterHandler());
+        server.createContext("/api/logout", new LogoutHandler());
+        server.createContext("/api/user", new UserHandler());
+        ItemRepository.makeCatalog();
+        server.createContext("/api/catalog", new ItemController());
 
         server.start();
         System.out.println("Server is listening on port 8080...");
@@ -22,19 +36,12 @@ public class Main {
 class HelloWorldHandler implements HttpHandler {
     @Override
     public void handle(HttpExchange exchange) throws IOException {
-
-        //This is needed because of some security stuff that I don't understand
-        exchange.getResponseHeaders().add("Access-Control-Allow-Origin", "*");
-        exchange.getResponseHeaders().add("Access-Control-Allow-Methods", "GET, OPTIONS");
-        exchange.getResponseHeaders().add("Access-Control-Allow-Headers", "Content-Type,Authorization");
-
-        if (exchange.getRequestMethod().equalsIgnoreCase("OPTIONS")) {
-            exchange.sendResponseHeaders(204, -1);
-            return;
-        }
-
         String response = "Hello from the java backend server!";
-        exchange.sendResponseHeaders(200, response.length());
+
+        exchange.getResponseHeaders().set("Content-Type", "text/plain"); //tell the browser that the content type is plain text as opposed to JSON
+        exchange.sendResponseHeaders(200, response.length()); //set the headers for the response
+        //HTTP code 200 = OK
+
         try (OutputStream os = exchange.getResponseBody()) {
             os.write(response.getBytes());
         }
