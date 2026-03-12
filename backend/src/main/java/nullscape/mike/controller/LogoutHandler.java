@@ -30,6 +30,7 @@ public class LogoutHandler implements HttpHandler {
 
             String response = "Logged out successfully";
 
+            //Set the cookie to something unfeasible so the browser knows to wipe its cookies
             exchange.getResponseHeaders().add(
                     "Set-Cookie",
                     "auth_token=; Path=/; Max-Age=0; Expires=Thu, 01 Jan 1970 00:00:00 GMT; SameSite=Lax"

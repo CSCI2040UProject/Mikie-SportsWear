@@ -49,6 +49,7 @@ public class RegisterHandler implements HttpHandler {
             Request request = jsonParser.fromJson(new String(is.readAllBytes()), Request.class);
             // As long as the names of the variables in the java class line up with the names in the JSON gson sorta just figures it out
 
+            //TODO: break this chain of dependencies and return better error messages to the frontend
             User authUser = UserService.registerUser(request.username, request.password, false);
 
             if (authUser != null) { // Registration successful
@@ -74,7 +75,8 @@ public class RegisterHandler implements HttpHandler {
                     os.write(responseBytes);
                 }
             } else {
-                // User already exists
+                //TODO: currently this always returns if there's any error creating the new user
+                // Fix this so that it ONLY happens if there's an existing user
                 exchange.sendResponseHeaders(409, -1); // 409 Conflict
             }
 

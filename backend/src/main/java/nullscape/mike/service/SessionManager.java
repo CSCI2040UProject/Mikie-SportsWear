@@ -22,6 +22,7 @@ public class SessionManager {
         return token;
     }
 
+    //Take a token and format it into a header that the browser accepts
     public static String CreateCookieHeader(String token) {
         String expires = DateTimeFormatter.RFC_1123_DATE_TIME.format(ZonedDateTime.now(ZoneOffset.UTC).plusDays(1));
         return "auth_token=" + token + "; Path=/; Max-Age=86400; Expires=" + expires + "; SameSite=Lax";

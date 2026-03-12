@@ -16,7 +16,7 @@ const routes = [
                 element: <App />,
             },
             {
-                index: true,
+                index: true, // setting index makes this child the front page
                 element: <Catalog />,
             },
             {

@@ -17,7 +17,8 @@ import java.util.Map;
 public class ItemController implements HttpHandler {
     private static final Gson jsonParser = new GsonBuilder().disableHtmlEscaping().create();
 
-    private Map<String, String> parseQueryParams(String query) { // this should get the parameters passed in through the url
+    // this should get the parameters passed in through the url e.g. items?id=123
+    private Map<String, String> parseQueryParams(String query) {
         Map<String, String> queryPairs = new HashMap<>();
         if (query == null || query.isEmpty()) {
             return queryPairs;
@@ -50,13 +51,19 @@ public class ItemController implements HttpHandler {
             return;
         }
 
-        try {
-            InputStream is = exchange.getRequestBody();
-            Map<String, String> params = parseQueryParams(exchange.getRequestURI().getQuery()); //params.get("id"); e.g. /items?id=123
-            //TODO Check if the frontend is requesting a specific item or all if the id is blank
-            //We could also check if the frontend is requesting a specific slice of the data instead of all of it
+        // We could be able to tell if the user is trying to modify or add an item if they send a POST request
 
-            // As long as the names of the variables in the java class line up with the names in the JSON gson sorta just figures it out
+        try {
+            Map<String, String> params = parseQueryParams(exchange.getRequestURI().getQuery()); //items?id=123
+            //TODO: Check if the frontend is requesting a specific item or all if the id is blank
+            // If the frontend is requesting a specific item send all data
+            //TODO: Check if the frontend is requesting a specific slice of the data instead of all of it
+            //TODO: Only send the necessary data to the frontend when it's displaying the catalog overview
+            // Like name, price, and id
+
+            // Currently the frontend is getting the whole catalog just for one item
+            // When this is changed the frontend will need to also change
+
 
             exchange.getResponseHeaders().set("Content-Type", "application/json");
 

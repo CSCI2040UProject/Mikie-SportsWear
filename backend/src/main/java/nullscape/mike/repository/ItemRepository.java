@@ -9,8 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ItemRepository {
-    public static Item makeCatalog() {
 
+    //Load each item in from the CSV then add it to the catalog
+    public static void makeCatalog() {
         //"Product_ID","Name","Description","Categories","Price","Color","Other_Colors","Product_URL","Thumbnail_URL","Image_URLs"
         try (BufferedReader br = new BufferedReader(new FileReader("src/resources/Nike_Dataset.csv"))) {
             br.readLine(); // Skip the labels
@@ -41,8 +42,9 @@ public class ItemRepository {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return null;
     }
+
+    //Nightmare code for handling more or less quotes etc. than expected in the data
 
     private static String[] parseCSVLine(String line) {
         List<String> result = new ArrayList<>();
