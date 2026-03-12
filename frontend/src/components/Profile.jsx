@@ -20,6 +20,7 @@ function Profile() {
                 body: JSON.stringify(data)
             });
 
+            // TODO: improve messaging to the user once the backend is sending more verbose error messages
             if (response.status === 401) {
                 alert("Incorrect username or password!");
                 return;

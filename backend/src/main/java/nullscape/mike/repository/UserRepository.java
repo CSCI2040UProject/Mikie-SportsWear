@@ -35,6 +35,7 @@ public class UserRepository {
         return null;
     }
 
+    //Write a new user to the CSV
     public static User addUser(String username, String password, boolean isAdmin) {
         User existingUser = UserRepository.findByUsername(username);
         if (existingUser == null) {
@@ -49,8 +50,9 @@ public class UserRepository {
         return null;
     }
 
+    //Remove a user from the CSV file matching the credentials from a User object
     public static void removeUser(User user) {
-        List<String> data = new ArrayList<>();
+        List<String> data = new ArrayList<>(); //all the current data from the CSV file is saved here
         if (findByUsername(user.getUsername()) != null) {
             try (BufferedReader br = new BufferedReader(new FileReader("src/resources/userData.csv"))) {
                 br.readLine(); // Skip the labels
@@ -61,7 +63,7 @@ public class UserRepository {
                         break;
                     } else {
                         String[] currInfo = line.split(",");
-                        if (!currInfo[0].equals(user.getUsername())) {
+                        if (!currInfo[0].equals(user.getUsername())) { //Skip the user we're trying to remove
                             data.add(line);
                         }
                     }
@@ -71,7 +73,8 @@ public class UserRepository {
                 e.printStackTrace();
             }
         }
-        //Add to file
+
+        //Write the current data back to the file
         try (FileWriter fw = new FileWriter("src/resources/userData.csv")) {
             BufferedWriter out = new BufferedWriter(fw);
             out.write("Username,Password,isAdmin\n");
@@ -84,6 +87,8 @@ public class UserRepository {
             e.printStackTrace();
         }
     }
+
+    //This has to remove the user then add it back to the file
     public static User modifyUser(User existingUser, User newUser) {
         UserRepository.removeUser(existingUser);
         return (UserRepository.addUser(newUser.getUsername(), newUser.getPassword(), newUser.isAdmin()));

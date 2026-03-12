@@ -15,6 +15,7 @@ import java.util.Objects;
 public class UserHandler implements HttpHandler {
     private static final Gson jsonParser = new Gson();
 
+    //These classes are needed so that Gson can put the incoming JSON objects into java objects
     private static class Request {
         String username;
         String password;
@@ -32,11 +33,6 @@ public class UserHandler implements HttpHandler {
             this.username = username;
             this.isAdmin = admin;
         }
-    }
-
-
-    private void modifyOther() {
-
     }
 
     @Override
@@ -63,10 +59,11 @@ public class UserHandler implements HttpHandler {
 
                 User requestingUser = SessionManager.getUserFromToken(request.token);
 
-                if (requestingUser == null) {
+                if (requestingUser == null) { //If the requesting user isn't logged in
                     exchange.sendResponseHeaders(401, -1);
                     return;
                 }
+
                 User newUser;
                 if (request.password != null) { //Modifying yourself
                     SessionManager.removeSession(request.token);
@@ -77,7 +74,8 @@ public class UserHandler implements HttpHandler {
                     newUser = UserRepository.modifyUser(requestingUser, new User(updatedUsername, updatedPassword, requestingUser.isAdmin()));
                     String newCookieHeader = SessionManager.CreateCookieHeader(SessionManager.createSession(newUser));
                     exchange.getResponseHeaders().add("Set-Cookie", newCookieHeader);
-                } else if (requestingUser.isAdmin()) {
+                }
+                else if (requestingUser.isAdmin()) { //Modifying someone else to be an admin
                     User userToModify = Objects.requireNonNull(UserRepository.findByUsername(request.username));
                     SessionManager.removeByUsername(request.username);
                     newUser = UserRepository.modifyUser(userToModify, new User(userToModify.getUsername(), userToModify.getPassword(), request.isAdmin));
@@ -106,7 +104,7 @@ public class UserHandler implements HttpHandler {
             }
 
         } else if ("GET".equalsIgnoreCase(exchange.getRequestMethod())) {
-
+            //TODO: Return info about a user like the username and isAdmin
         }
     }
 }

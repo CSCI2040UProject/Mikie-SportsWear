@@ -3,12 +3,7 @@ package nullscape.mike;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
-import nullscape.mike.controller.ItemController;
-import nullscape.mike.controller.LoginHandler;
-import nullscape.mike.controller.RegisterHandler;
-import nullscape.mike.controller.LogoutHandler;
-import nullscape.mike.controller.UserHandler;
-import nullscape.mike.model.Catalog;
+import nullscape.mike.controller.*;
 import nullscape.mike.repository.ItemRepository;
 
 import java.io.IOException;

@@ -40,6 +40,7 @@ export default function Item() {
     if (error) return <div>Error loading data!</div>;
     if (!data) return <div>Loading...</div>;
 
+    // TODO: When the backend is changed to get one specific item use that instead
     const item = data.find(i => String(i.id) === String(id)); //Downloading the full 13MB catalog just to get one object...
     return (
         <div className={styles.container}>

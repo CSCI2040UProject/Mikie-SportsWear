@@ -12,5 +12,5 @@ public class Catalog {
 
     public static void printCatalog() {
         System.out.println("Catalog{catalog=" + catalog + "}");
-    }
+    } //For testing
 }
