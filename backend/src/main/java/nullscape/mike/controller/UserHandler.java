@@ -104,7 +104,6 @@ public class UserHandler implements HttpHandler {
             }
 
         } else if ("GET".equalsIgnoreCase(exchange.getRequestMethod())) {
-            //TODO: Return info about a user like the username and isAdmin
         }
     }
 }

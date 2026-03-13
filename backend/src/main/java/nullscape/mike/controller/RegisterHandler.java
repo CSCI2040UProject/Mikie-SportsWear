@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import nullscape.mike.model.User;
+import nullscape.mike.repository.UserRepository;
 import nullscape.mike.service.SessionManager;
 import nullscape.mike.service.UserService;
 
@@ -22,11 +23,17 @@ public class RegisterHandler implements HttpHandler {
     static class Response {
         String username;
         boolean isAdmin;
+        String errorMessage;
 
         Response(String username, boolean admin) {
             this.username = username;
             this.isAdmin = admin;
         }
+
+        Response(String errorMessage){
+            this.errorMessage = errorMessage;
+        }
+
     }
 
     @Override
@@ -49,7 +56,36 @@ public class RegisterHandler implements HttpHandler {
             Request request = jsonParser.fromJson(new String(is.readAllBytes()), Request.class);
             // As long as the names of the variables in the java class line up with the names in the JSON gson sorta just figures it out
 
-            //TODO: break this chain of dependencies and return better error messages to the frontend
+            // Check if the username/password is missing
+            if (request.username == null || request.username.trim().isEmpty() || request.password == null || request.password.trim().isEmpty()) {
+                Response response = new Response("Username and password are required");
+                String responseJson = jsonParser.toJson(response);
+                byte[] responseBytes = responseJson.getBytes();
+
+                exchange.getResponseHeaders().set("Content-Type", "application/json");
+                exchange.sendResponseHeaders(400, responseBytes.length);
+
+                try (OutputStream os = exchange.getResponseBody()) {
+                    os.write(responseBytes);
+                }
+                return;
+            }
+            // Check if the username already exists
+            // Check the database first to see if the username is already taken
+            User existUser = UserRepository.findByUsername(request.username);
+            if (existUser != null) {
+                Response response = new Response("Username already exists");
+                String responseJson = jsonParser.toJson(response);
+                byte[] responseBytes = responseJson.getBytes();
+
+                exchange.getResponseHeaders().set("Content-Type", "application/json");
+                exchange.sendResponseHeaders(409, responseBytes.length);
+
+                try (OutputStream os = exchange.getResponseBody()) {
+                    os.write(responseBytes);
+                }
+                return;
+            }
             User authUser = UserService.registerUser(request.username, request.password, false);
 
             if (authUser != null) { // Registration successful
@@ -75,11 +111,17 @@ public class RegisterHandler implements HttpHandler {
                     os.write(responseBytes);
                 }
             } else {
-                //TODO: currently this always returns if there's any error creating the new user
-                // Fix this so that it ONLY happens if there's an existing user
-                exchange.sendResponseHeaders(409, -1); // 409 Conflict
-            }
+                // if it is not an existing user but registration fails send a 400 error
+                Response response = new Response("Registration failed");
+                String responseJson = jsonParser.toJson(response);
+                byte[] responseBytes = responseJson.getBytes();
+                exchange.getResponseHeaders().set("Content-Type", "application/json");
+                exchange.sendResponseHeaders(400, responseBytes.length);
 
+                try (OutputStream os = exchange.getResponseBody()) {
+                    os.write(responseBytes);
+                }
+            }
         } catch (Exception e) {
             e.printStackTrace();
             exchange.sendResponseHeaders(400, -1); // 400 Bad Request
