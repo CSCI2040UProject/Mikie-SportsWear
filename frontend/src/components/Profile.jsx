@@ -20,17 +20,14 @@ function Profile() {
                 body: JSON.stringify(data)
             });
 
-            // TODO: improve messaging to the user once the backend is sending more verbose error messages
             if (response.status === 401) {
                 alert("Incorrect username or password!");
                 return;
-            } else if (response.status === 409) {
-                alert("Username already exists!");
-                return;
             } else if (!response.ok) {
-                throw new Error(response.statusText);
+                const errorData = await response.json();
+                alert(errorData.errorMessage);
+                return;
             }
-
             const result = await response.json();
 
             setUser(result);
