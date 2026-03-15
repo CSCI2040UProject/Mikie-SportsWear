@@ -5,19 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="49fd6356-d128-4105-b049-553e895d04f8" name="Changes" comment="Item page">
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UMLClassMarch13.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/UMLClassMarch13.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserLoginSequenceMarch13.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/UserLoginSequenceMarch13.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/Dockerfile.dev" beforeDir="false" afterPath="$PROJECT_DIR$/backend/Dockerfile.dev" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/java/nullscape/mike/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/nullscape/mike/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/java/nullscape/mike/controller/ItemController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/nullscape/mike/controller/ItemController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/nullscape/mike/controller/LogoutHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/nullscape/mike/controller/LogoutHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/nullscape/mike/controller/RegisterHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/nullscape/mike/controller/RegisterHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/nullscape/mike/controller/UserHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/nullscape/mike/controller/UserHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/java/nullscape/mike/model/Catalog.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/nullscape/mike/model/Catalog.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/java/nullscape/mike/repository/ItemRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/nullscape/mike/repository/ItemRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/java/nullscape/mike/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/nullscape/mike/repository/UserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/nullscape/mike/service/SessionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/nullscape/mike/service/SessionManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/nullscape/mike/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/nullscape/mike/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/Item.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Item.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/routes.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/routes.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,7 +29,8 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="58" />
+    <option name="cachedIndexableFilesCount" value="56" />
+    <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -51,7 +56,7 @@
 }</component>
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/CSCI2040UProject/Mike-SportsWear.git&quot;,
+    &quot;url&quot;: &quot;https://github.com/CSCI2040UProject/Mikie-SportsWear.git&quot;,
     &quot;accountId&quot;: &quot;792faade-88e4-4ea7-ab4e-b255db6e7b98&quot;
   }
 }</component>
@@ -62,6 +67,9 @@
   <component name="McpProjectServerCommands">
     <commands />
     <urls />
+  </component>
+  <component name="PackageJsonUpdateNotifier">
+    <dismissed value="$PROJECT_DIR$/frontend/package.json" />
   </component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
@@ -75,59 +83,67 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Main.executor": "Run",
-    "Docker.Docker Frontend/Backend.executor": "Run",
-    "Docker.docker-compose.yml: Compose Deployment.executor": "Run",
-    "Maven.backend [clean].executor": "Run",
-    "Maven.backend [compile,exec:java...].executor": "Run",
-    "Maven.backend [compile].executor": "Run",
-    "Maven.backend [install].executor": "Run",
-    "Maven.backend [validate].executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.MCP Project settings loaded": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "Spring Boot.Main.executor": "Run",
-    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "main",
-    "junie.onboarding.icon.badge.shown": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/abineshjeevamohan/Mike-SportsWear/frontend/public",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "npm.dev.executor": "Run",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "editor.preferences.fonts.default",
-    "to.speed.mode.migration.done": "true",
-    "ts.external.directory.path": "/Applications/IntelliJ IDEA.app/Contents/plugins/javascript-plugin/jsLanguageServicesImpl/external",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.Docker Frontend/Backend.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.docker-compose.yml: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Maven.Backend.executor&quot;: &quot;Run&quot;,
+    &quot;Maven.backend [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.backend [compile,exec:java...].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.backend [compile].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.backend [install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.backend [validate].executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Spring Boot.Main.executor&quot;: &quot;Run&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
+    &quot;database.data.extractors.current.export.id&quot;: &quot;Comma-separated (CSV)_id&quot;,
+    &quot;database.data.extractors.current.id&quot;: &quot;Comma-separated (CSV)_id&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/abineshjeevamohan/Mike-SportsWear/frontend/public&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;npm.dev.executor&quot;: &quot;Run&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;database.data.views&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Applications/IntelliJ IDEA.app/Contents/plugins/javascript-plugin/jsLanguageServicesImpl/external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;sqlite&quot;
+    ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/frontend/public" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/documentation" />
       <recent name="$PROJECT_DIR$/frontend/src/public" />
       <recent name="C:\Users\Dave\Project\Mike-SportsWear\backend\src" />
       <recent name="$PROJECT_DIR$/frontend/src" />
       <recent name="$PROJECT_DIR$/frontend/src/components" />
-      <recent name="$PROJECT_DIR$/frontend/src/styles" />
     </key>
   </component>
   <component name="RunManager" selected="Docker.Docker Frontend/Backend">
@@ -180,6 +196,11 @@
       <workItem from="1773090746090" duration="4607000" />
       <workItem from="1773106231855" duration="10352000" />
       <workItem from="1773339831890" duration="2612000" />
+      <workItem from="1773363065179" duration="1635000" />
+      <workItem from="1773377848740" duration="335000" />
+      <workItem from="1773409077055" duration="4304000" />
+      <workItem from="1773605408621" duration="329000" />
+      <workItem from="1773605756984" duration="6550000" />
     </task>
     <task id="LOCAL-00001" summary="Working test communication between frontend and backend">
       <option name="closed" value="true" />

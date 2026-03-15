@@ -5,6 +5,7 @@ import com.google.gson.GsonBuilder;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import nullscape.mike.model.Catalog;
+import nullscape.mike.repository.ItemRepository;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -55,27 +56,32 @@ public class ItemController implements HttpHandler {
 
         try {
             Map<String, String> params = parseQueryParams(exchange.getRequestURI().getQuery()); //items?id=123
-            //TODO: Check if the frontend is requesting a specific item or all if the id is blank
-            // If the frontend is requesting a specific item send all data
-            //TODO: Check if the frontend is requesting a specific slice of the data instead of all of it
-            //TODO: Only send the necessary data to the frontend when it's displaying the catalog overview
-            // Like name, price, and id
-
-            // Currently the frontend is getting the whole catalog just for one item
-            // When this is changed the frontend will need to also change
-
 
             exchange.getResponseHeaders().set("Content-Type", "application/json");
 
-            String responseJson = jsonParser.toJson(Catalog.catalog);
-            byte[] responseBytes = responseJson.getBytes();
+            String responseJson;
 
+            // Check if requesting a specific item by ID
+            String itemId = params.get("id");
+            if (itemId != null && !itemId.isEmpty()) {
+                var item = Catalog.getItemById(itemId);
+                if (item != null) {
+                    responseJson = jsonParser.toJson(item);
+                } else {
+                    exchange.sendResponseHeaders(404, -1); // Not found
+                    return;
+                }
+            } else {
+                // Return all items
+                responseJson = jsonParser.toJson(ItemRepository.getItemsGist());
+            }
+
+            byte[] responseBytes = responseJson.getBytes();
             exchange.sendResponseHeaders(200, responseBytes.length);
 
             try (OutputStream os = exchange.getResponseBody()) {
                 os.write(responseBytes);
             }
-
 
         } catch (Exception e) {
             e.printStackTrace();

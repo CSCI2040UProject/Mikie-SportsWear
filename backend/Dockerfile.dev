@@ -5,6 +5,9 @@ RUN apt-get update && apt-get install -y npm && npm install -g nodemon
 
 WORKDIR /app
 
+# Create data directory for SQLite database
+RUN mkdir -p /app/data
+
 # Watch the src directory for .java and .xml file changes
 # We use 'mvn compile' instead of 'mvn clean compile' for faster incremental builds
 CMD ["nodemon", "--signal", "SIGTERM", "--watch", "src", "-e", "java,xml", "--exec", "mvn compile exec:java -Dexec.mainClass='nullscape.mike.Main'"]
