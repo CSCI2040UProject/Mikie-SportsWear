@@ -4,7 +4,8 @@ import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
 import nullscape.mike.controller.*;
-import nullscape.mike.repository.ItemRepository;
+import nullscape.mike.database.CSVMigration;
+import nullscape.mike.model.Catalog;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -13,6 +14,9 @@ import java.net.InetSocketAddress;
 public class Main {
     public static void main(String[] args) throws IOException {
 
+        // Run CSV migration on first startup (only migrates if tables are empty)
+        CSVMigration.runMigration();
+
         HttpServer server = HttpServer.create(new InetSocketAddress(8080), 0);
 
         server.createContext("/api/helloworld/", new HelloWorldHandler());
@@ -20,7 +24,6 @@ public class Main {
         server.createContext("/api/register", new RegisterHandler());
         server.createContext("/api/logout", new LogoutHandler());
         server.createContext("/api/user", new UserHandler());
-        ItemRepository.makeCatalog();
         server.createContext("/api/catalog", new ItemController());
 
         server.start();
