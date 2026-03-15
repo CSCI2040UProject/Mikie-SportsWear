@@ -3,6 +3,9 @@
 ### To run with docker:
 - Install [Docker](https://docs.docker.com/get-started/introduction/get-docker-desktop/)
 - Run [docker-compose.yml](./docker-compose.yml)
+- Then go to the terminal to run your code
+- use this local link to see the final application http://localhost:5173/
+- 
 
 ### To run manually:
 
