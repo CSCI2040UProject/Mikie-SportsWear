@@ -4,10 +4,9 @@ import styles from "../styles/Item.module.css";
 
 export default function Item() {
     const { id } = useParams(); // Get the item ID from the URL
-    const [data, setData] = useState(null);
+    const [item, setItem] = useState(null);
     const [error, setError] = useState(null);
     const [imageIndex, setImageIndex] = useState(0);
-    const url = "/api/catalog";
 
     useEffect(() => {
         const controller = new AbortController();
@@ -15,12 +14,12 @@ export default function Item() {
 
         async function loadData() {
             try {
-                const response = await fetch(url, {signal});
+                const response = await fetch(`/api/catalog?id=${id}`, {signal});
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
                 const result = await response.json();
-                setData(result);
+                setItem(result);
             } catch (err) {
                 if (err.name === 'AbortError') {
                     console.log('Fetch aborted due to navigation');
@@ -35,13 +34,10 @@ export default function Item() {
         return () => {
             controller.abort();
         };
-    }, [url]);
+    }, [id]);
 
     if (error) return <div>Error loading data!</div>;
-    if (!data) return <div>Loading...</div>;
-
-    // TODO: When the backend is changed to get one specific item use that instead
-    const item = data.find(i => String(i.id) === String(id)); //Downloading the full 13MB catalog just to get one object...
+    if (!item) return <div>Loading...</div>;
     return (
         <div className={styles.container}>
             <div className={styles.left}>
