@@ -4,8 +4,9 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
-import nullscape.mike.model.Catalog;
+import nullscape.mike.model.Item;
 import nullscape.mike.repository.ItemRepository;
+import nullscape.mike.service.SessionManager;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -14,6 +15,7 @@ import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 public class ItemController implements HttpHandler {
     private static final Gson jsonParser = new GsonBuilder().disableHtmlEscaping().create();
@@ -46,46 +48,90 @@ public class ItemController implements HttpHandler {
             return;
         }
 
-        // Only accept GET requests
-        if (!"GET".equalsIgnoreCase(exchange.getRequestMethod())) {
-            exchange.sendResponseHeaders(405, -1);
-            return;
-        }
+        if ("GET".equalsIgnoreCase(exchange.getRequestMethod())) {
+            try {
+                Map<String, String> params = parseQueryParams(exchange.getRequestURI().getQuery()); //items?id=123
 
-        // We could be able to tell if the user is trying to modify or add an item if they send a POST request
+                exchange.getResponseHeaders().set("Content-Type", "application/json");
 
-        try {
-            Map<String, String> params = parseQueryParams(exchange.getRequestURI().getQuery()); //items?id=123
+                String responseJson;
 
-            exchange.getResponseHeaders().set("Content-Type", "application/json");
-
-            String responseJson;
-
-            // Check if requesting a specific item by ID
-            String itemId = params.get("id");
-            if (itemId != null && !itemId.isEmpty()) {
-                var item = Catalog.getItemById(itemId);
-                if (item != null) {
-                    responseJson = jsonParser.toJson(item);
+                // Check if requesting a specific item by ID
+                String itemId = params.get("id");
+                if (itemId != null && !itemId.isEmpty()) {
+                    var item = ItemRepository.getItemById(itemId);
+                    if (item != null) {
+                        responseJson = jsonParser.toJson(item);
+                    } else {
+                        exchange.sendResponseHeaders(404, -1); // Not found
+                        return;
+                    }
                 } else {
-                    exchange.sendResponseHeaders(404, -1); // Not found
-                    return;
+                    // Return all items
+                    responseJson = jsonParser.toJson(ItemRepository.getItemsGist());
+                }
+
+                byte[] responseBytes = responseJson.getBytes();
+                exchange.sendResponseHeaders(200, responseBytes.length);
+
+                try (OutputStream os = exchange.getResponseBody()) {
+                    os.write(responseBytes);
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                exchange.sendResponseHeaders(400, -1); // 400 Bad Request
+            }
+        } else if ("POST".equalsIgnoreCase(exchange.getRequestMethod())) {
+            Map<String, String> params = parseQueryParams(exchange.getRequestURI().getQuery()); //items?id=123
+            String cookieHeader = exchange.getRequestHeaders().getFirst("Cookie");
+            String token = SessionManager.extractToken(cookieHeader);
+
+            if (SessionManager.isAdmin(token)){
+                try {
+                    InputStream is = exchange.getRequestBody();
+                    String requestBody = new String(is.readAllBytes(), StandardCharsets.UTF_8);
+                    Item requestItem = jsonParser.fromJson(requestBody, Item.class);
+                    // Handle case where body is empty object or null
+                    if (requestItem == null) {
+                        requestItem = new Item();
+                    }
+
+                    if (params.get("id") != null) { //Modifying an item
+                        requestItem.setId(params.get("id"));
+                        ItemRepository.modifyItem(requestItem);
+                        exchange.sendResponseHeaders(200, -1);
+                    } else {
+                        // Create new item
+                        String newId = UUID.randomUUID().toString();
+                        requestItem.setId(newId);
+                        requestItem.setName("New Item");
+                        
+                        // Ensure other fields are initialized if null, to avoid SQL errors if columns are NOT NULL
+                        // For now relying on repository handling, but ID is critical.
+                        
+                        ItemRepository.addItem(requestItem);
+                        
+                        // Return the new ID
+                        Item responseItem = new Item();
+                        responseItem.setId(newId);
+                        String responseJson = jsonParser.toJson(responseItem);
+                        byte[] responseBytes = responseJson.getBytes(StandardCharsets.UTF_8);
+                        
+                        exchange.getResponseHeaders().set("Content-Type", "application/json");
+                        exchange.sendResponseHeaders(200, responseBytes.length);
+
+                        try (OutputStream os = exchange.getResponseBody()) {
+                            os.write(responseBytes);
+                        }
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    exchange.sendResponseHeaders(500, -1);
                 }
             } else {
-                // Return all items
-                responseJson = jsonParser.toJson(ItemRepository.getItemsGist());
+                exchange.sendResponseHeaders(401, -1);
             }
-
-            byte[] responseBytes = responseJson.getBytes();
-            exchange.sendResponseHeaders(200, responseBytes.length);
-
-            try (OutputStream os = exchange.getResponseBody()) {
-                os.write(responseBytes);
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            exchange.sendResponseHeaders(400, -1); // 400 Bad Request
         }
     }
 }
