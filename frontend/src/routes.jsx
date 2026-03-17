@@ -4,6 +4,7 @@ import Layout from "./Layout.jsx";
 import Profile from "./components/Profile.jsx";
 import Catalog from "./components/Catalog.jsx";
 import Item from "./components/Item.jsx";
+import Editor from "./components/Editor.jsx";
 
 const routes = [
     {
@@ -22,6 +23,10 @@ const routes = [
             {
                 path: "item/:id",
                 element: <Item/>,
+            },
+            {
+                path: "/item/editor/:id",
+                element: <Editor/>,
             },
             {
                 path: "profile",

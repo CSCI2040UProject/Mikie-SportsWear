@@ -5,7 +5,6 @@ import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
 import nullscape.mike.controller.*;
 import nullscape.mike.database.CSVMigration;
-import nullscape.mike.model.Catalog;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -25,6 +24,7 @@ public class Main {
         server.createContext("/api/logout", new LogoutHandler());
         server.createContext("/api/user", new UserHandler());
         server.createContext("/api/catalog", new ItemController());
+        server.createContext("/api/catalog/thumbnail", new ThumbnailController());
 
         server.start();
         System.out.println("Server is listening on port 8080...");
