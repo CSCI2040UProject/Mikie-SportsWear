@@ -5,7 +5,7 @@ import Layout from "./Layout.jsx";
 import Profile from "./components/Profile.jsx";
 import Catalog from "./components/Catalog.jsx";
 import Item from "./components/Item.jsx";
-import AddItem from "./components/AddItem.jsx";
+import EditCatalog from "./components/EditCatalog.jsx";
 
 const routes = [
     {
@@ -30,8 +30,8 @@ const routes = [
                 element: <Profile />,
             },
             {
-                path: "add-item",
-                element: <AddItem/>
+                path: "edit-catalog",
+                element: <EditCatalog/>
             }
         ],
     }

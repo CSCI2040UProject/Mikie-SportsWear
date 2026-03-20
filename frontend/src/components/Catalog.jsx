@@ -1,4 +1,5 @@
 import { useEffect, useState, useRef } from 'react'
+import { useOutletContext } from "react-router"
 import styles from '../styles/Catalog.module.css'
 import {Link} from "react-router";
 
@@ -6,6 +7,7 @@ function Catalog({}){
     const [data, setData] = useState(null);
     const [error, setError] = useState(null);
     const [visibleCount, setVisibleCount] = useState(40); // Initial items to display
+    const {user} = useOutletContext();
     const observer = useRef();
     const url = "/api/catalog";
 
@@ -61,6 +63,9 @@ function Catalog({}){
     return (
         <>
             <div>
+                {user.isAdmin &&
+                    <button type="button" onClick={() => window.location.href = "/edit-catalog"}>Edit</button>
+                }
                 <p>Showing {Math.min(visibleCount, data.length)} of {data.length} items from the catalog.</p>
                 {/* Only render items up to the visibleCount */}
                 <div className={styles.catalog}>
