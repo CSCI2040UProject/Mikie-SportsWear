@@ -1,9 +1,11 @@
+// Each new page should be added as an import statement here
 import App from "./components/App.jsx";
 import ErrorPage from "./components/ErrorPage.jsx";
 import Layout from "./Layout.jsx";
 import Profile from "./components/Profile.jsx";
 import Catalog from "./components/Catalog.jsx";
 import Item from "./components/Item.jsx";
+import AddItem from "./components/AddItem.jsx";
 
 const routes = [
     {
@@ -27,6 +29,10 @@ const routes = [
                 path: "profile",
                 element: <Profile />,
             },
+            {
+                path: "add-item",
+                element: <AddItem/>
+            }
         ],
     }
 ];

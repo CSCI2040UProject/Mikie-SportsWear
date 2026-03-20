@@ -4,7 +4,7 @@ import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
 import nullscape.mike.controller.*;
-import nullscape.mike.repository.ItemRepository;
+import nullscape.mike.repository.CatalogRepository;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -20,8 +20,9 @@ public class Main {
         server.createContext("/api/register", new RegisterHandler());
         server.createContext("/api/logout", new LogoutHandler());
         server.createContext("/api/user", new UserHandler());
-        ItemRepository.makeCatalog();
-        server.createContext("/api/catalog", new ItemController());
+        CatalogRepository.makeCatalog();
+        server.createContext("/api/catalog", new CatalogController());
+        server.createContext("/api/newitem", new ItemController());
 
         server.start();
         System.out.println("Server is listening on port 8080...");

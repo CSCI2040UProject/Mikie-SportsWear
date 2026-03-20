@@ -1,92 +1,32 @@
 package nullscape.mike.repository;
 
-import nullscape.mike.model.Catalog;
 import nullscape.mike.model.Item;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.util.ArrayList;
-import java.util.List;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class ItemRepository {
+    // This ideally will be where the methods for adding/editing/removing items will be
+    // Not sure if we want to allow duplicate items yet, for now we keep track of
 
-    //Load each item in from the CSV then add it to the catalog
-    public static void makeCatalog() {
-        //"Product_ID","Name","Description","Categories","Price","Color","Other_Colors","Product_URL","Thumbnail_URL","Image_URLs"
-        try (BufferedReader br = new BufferedReader(new FileReader("src/resources/Nike_Dataset.csv"))) {
-            br.readLine(); // Skip the labels
-            while (true) {
-                String line = br.readLine();
-
-                Item item;
-                if (line == null) {
-                    break;
-                } else {
-                    String[] currInfo = parseCSVLine(line);
-                    item = new Item();
-                    if (currInfo.length >= 9) {
-                        item.setId(currInfo[0]);
-                        item.setName(currInfo[1]);
-                        item.setDescription(currInfo[2]);
-                        item.setCategories(cleanArrayString(currInfo[3]));
-                        item.setPrice(currInfo[4]);
-                        item.setColor(currInfo[5]);
-                        item.setOtherColors(cleanArrayString(currInfo[6]));
-                        item.setProductUrl(currInfo[7]);
-                        item.setThumbnailUrl(currInfo[8]);
-                        item.setImages(cleanArrayString(currInfo[9]));
-                    }
-                }
-                Catalog.addItem(item);
-            }
-        } catch (Exception e) {
+    public Item addItem(String itemName, String itemDescription, String itemPrice, String itemTags, File[] itemImages) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter("backend/src/resources/Nike_Dataset.csv", true))) {
+            return new Item();
+            // TODO
+            // It is 1:21 AM and I am so tired I'll probably fix this in the morning
+        } catch (IOException e) {
             e.printStackTrace();
         }
+        return null;
     }
 
-    //Nightmare code for handling more or less quotes etc. than expected in the data
-
-    private static String[] parseCSVLine(String line) {
-        List<String> result = new ArrayList<>();
-        boolean inQuotes = false;
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < line.length(); i++) {
-            char c = line.charAt(i);
-            if (c == '"') {
-                if (inQuotes && i + 1 < line.length() && line.charAt(i + 1) == '"') {
-                    sb.append('"');
-                    i++;
-                } else {
-                    inQuotes = !inQuotes;
-                }
-            } else if (c == ',' && !inQuotes) {
-                result.add(sb.toString().trim());
-                sb.setLength(0);
-            } else {
-                sb.append(c);
-            }
-        }
-        result.add(sb.toString().trim());
-        // Handle lines that have fewer columns than expected
-        while(result.size() < 9) {
-            result.add("");
-        }
-        return result.toArray(new String[0]);
+    public void editItem() {
+        // TODO
     }
 
-    private static String[] cleanArrayString(String arrString) {
-        if (arrString == null || arrString.trim().isEmpty()) return new String[0];
-        String cleaned = arrString.trim();
-        if (cleaned.startsWith("[")) cleaned = cleaned.substring(1);
-        if (cleaned.endsWith("]")) cleaned = cleaned.substring(0, cleaned.length() - 1);
-        cleaned = cleaned.trim();
-        if (cleaned.isEmpty()) return new String[0];
-        
-        if (cleaned.startsWith("\"")) cleaned = cleaned.substring(1);
-        if (cleaned.endsWith("\"")) cleaned = cleaned.substring(0, cleaned.length() - 1);
-        if (cleaned.startsWith("'")) cleaned = cleaned.substring(1);
-        if (cleaned.endsWith("'")) cleaned = cleaned.substring(0, cleaned.length() - 1);
-        
-        return cleaned.split("[\"']\\s*,\\s*[\"']");
+    public void deleteItem() {
+        // TODO
     }
 }

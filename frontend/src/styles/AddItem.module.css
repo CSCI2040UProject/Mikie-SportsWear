@@ -1,0 +1,46 @@
+.addItem {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    margin: 5vh;
+}
+
+.addItem > div {
+    display: flex;
+    gap: 5%;
+    justify-content: center;
+    flex-grow: 1;
+}
+
+.buttons{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.buttons div {
+    display: flex;
+    align-items: center;
+}
+
+.buttons div button {
+    border: none;
+    background: none;
+    color: -webkit-link;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    gap: 10px;
+}
+
+form > div {
+    display: flex;
+    gap: 5%;
+    width: 100%;
+    justify-content: center;
+}
