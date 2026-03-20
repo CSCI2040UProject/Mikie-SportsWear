@@ -10,6 +10,10 @@ public class Catalog {
         catalog.add(item);
     }
 
+    public static List<Item> getItems() {
+        return catalog;
+    }
+
     public static void printCatalog() {
         System.out.println("Catalog{catalog=" + catalog + "}");
     } //For testing
