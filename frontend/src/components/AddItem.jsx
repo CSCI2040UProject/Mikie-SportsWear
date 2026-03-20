@@ -6,14 +6,14 @@ import Icon from '@mdi/react';
 import { mdiAccountCircle } from '@mdi/js';
 
 function AddItem() {
-    const {user, setUser, loggedIn, setLoggedIn } = useOutletContext();
+    const {user} = useOutletContext();
 
     function NonAdmin() {
         // Redirect non-admin users to the catalog
         window.location.replace("/");
     }
 
-    async function sendInfo({data, signUp}) {
+    async function sendInfo({data}) {
         const endpoint = "/api/newitem";
         try {
             const response = await fetch(endpoint, {
@@ -43,7 +43,7 @@ function AddItem() {
         const formData = new FormData(e.target);
         const data = Object.fromEntries(formData.entries());
         console.log('Form Data:', data);
-        sendInfo({data, signUp});
+        sendInfo({data});
     }
 
     function ItemForm() {
