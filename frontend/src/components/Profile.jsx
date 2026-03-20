@@ -177,15 +177,15 @@ function Profile() {
                 <h4>Update your own credentials</h4>
                 <div>
                     <label htmlFor="username">Change your Username</label>
-                    <input name="username" id="username" minLength="5" maxLength="20" pattern="[a-zA-z0-9]+" type="text" placeholder="Username"/>
+                    <input name="username" id="username" minLength="4" maxLength="20" pattern="[a-zA-z0-9]+" type="text" placeholder="Username"/>
                 </div>
                 <div>
                     <label htmlFor="password">Change your Password</label>
-                    <input name="password" id="password" minLength="5" maxLength="20" type="Password" placeholder="Password"/>
+                    <input name="password" id="password" minLength="4" maxLength="20" type="Password" placeholder="Password"/>
                 </div>
                 <div>
                     <label htmlFor="password-confirm">Confirm Password</label>
-                    <input name="confirmPassword" id="password-confirm" minLength="5" maxLength="20" type="Password" placeholder="Password"/>
+                    <input name="confirmPassword" id="password-confirm" minLength="4" maxLength="20" type="Password" placeholder="Password"/>
                 </div>
                 <button type="submit">Change</button>
             </form>
@@ -201,11 +201,11 @@ function Profile() {
             <form onSubmit={handleSubmitLogin}>
                 <div>
                     <label htmlFor="username">Username</label>
-                    <input name="username" id="username" minLength="5" maxLength="20" pattern="[a-zA-z0-9]+" type="text" placeholder="Username" required/>
+                    <input name="username" id="username" minLength="4" maxLength="20" pattern="[a-zA-z0-9]+" type="text" placeholder="Username" required/>
                 </div>
                 <div>
                     <label htmlFor="password">Password</label>
-                    <input name="password" id="password" minLength="5" maxLength="20" type="Password" placeholder="Password" required/>
+                    <input name="password" id="password" minLength="4" maxLength="20" type="Password" placeholder="Password" required/>
                 </div>
                 <div className={styles.buttons}>
                     <button type="submit">login</button>
@@ -226,15 +226,15 @@ function Profile() {
             <form onSubmit={handleSubmitRegister}>
                 <div>
                     <label htmlFor="username">Username</label>
-                    <input name="username" id="username" minLength="5" maxLength="20" pattern="[a-zA-z0-9]+" type="text" placeholder="Username" required/>
+                    <input name="username" id="username" minLength="4" maxLength="20" pattern="[a-zA-z0-9]+" type="text" placeholder="Username" required/>
                 </div>
                 <div>
                     <label htmlFor="password">Password</label>
-                    <input name="password" id="password" minLength="5" maxLength="20" type="Password" placeholder="Password" required/>
+                    <input name="password" id="password" minLength="4" maxLength="20" type="Password" placeholder="Password" required/>
                 </div>
                 <div>
                     <label htmlFor="password-confirm">Confirm Password</label>
-                    <input name="confirmPassword" id="password-confirm" minLength="5" maxLength="20" type="Password" placeholder="Password" required/>
+                    <input name="confirmPassword" id="password-confirm" minLength="4" maxLength="20" type="Password" placeholder="Password" required/>
                 </div>
                 <div className={styles.buttons}>
                     <button type="submit">Sign-up</button>
