@@ -5,22 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="49fd6356-d128-4105-b049-553e895d04f8" name="Changes" comment="Item page">
-      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/project.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/nullscape/mike/controller/ThumbnailController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/Editor.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/c20749d9-2289-4e3e-beb6-42d663c8d31d.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/c20749d9-2289-4e3e-beb6-42d663c8d31d.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/nullscape/mike/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/nullscape/mike/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/java/nullscape/mike/controller/ItemController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/nullscape/mike/controller/ItemController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/nullscape/mike/model/Catalog.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/nullscape/mike/repository/ItemRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/nullscape/mike/repository/ItemRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/nullscape/mike/service/SessionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/nullscape/mike/service/SessionManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/Catalog.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Catalog.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/Editor.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Editor.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/Item.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Item.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/routes.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/routes.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/styles/Item.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/styles/Item.module.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,7 +18,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="68" />
+    <option name="cachedIndexableFilesCount" value="70" />
     <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
   </component>
   <component name="FileTemplateManagerImpl">
@@ -53,12 +43,12 @@
     &quot;assignee&quot;: &quot;Rhys-de-Swart&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/Rhys-de-Swart/Mikie-SportsWear-Mirror.git",
-    "accountId": "792faade-88e4-4ea7-ab4e-b255db6e7b98"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Rhys-de-Swart/Mikie-SportsWear-Mirror.git&quot;,
+    &quot;accountId&quot;: &quot;792faade-88e4-4ea7-ab4e-b255db6e7b98&quot;
   }
-}]]></component>
+}</component>
   <component name="KubernetesApiPersistence">{}</component>
   <component name="KubernetesApiProvider">{
   &quot;isMigrated&quot;: true
@@ -168,8 +158,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-30f59d01ecdd-2fc7cc6b9a17-intellij.indexing.shared.core-IU-253.31033.145" />
-        <option value="bundled-js-predefined-d6986cc7102b-9b0f141eb926-JavaScript-IU-253.31033.145" />
+        <option value="bundled-jdk-30f59d01ecdd-2fc7cc6b9a17-intellij.indexing.shared.core-IU-253.32098.37" />
+        <option value="bundled-js-predefined-d6986cc7102b-9b0f141eb926-JavaScript-IU-253.32098.37" />
       </set>
     </attachedChunks>
   </component>
@@ -208,6 +198,14 @@
       <workItem from="1773605408621" duration="329000" />
       <workItem from="1773605756984" duration="6550000" />
       <workItem from="1773711503560" duration="8942000" />
+      <workItem from="1773766952127" duration="9000" />
+      <workItem from="1773766989054" duration="2000" />
+      <workItem from="1773893398564" duration="5948000" />
+      <workItem from="1773945956584" duration="86000" />
+      <workItem from="1773946082418" duration="4215000" />
+      <workItem from="1774030851896" duration="231000" />
+      <workItem from="1774031103051" duration="217000" />
+      <workItem from="1774031342349" duration="630000" />
     </task>
     <task id="LOCAL-00001" summary="Working test communication between frontend and backend">
       <option name="closed" value="true" />

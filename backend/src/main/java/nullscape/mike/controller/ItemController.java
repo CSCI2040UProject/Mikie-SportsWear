@@ -100,7 +100,16 @@ public class ItemController implements HttpHandler {
                     if (params.get("id") != null) { //Modifying an item
                         requestItem.setId(params.get("id"));
                         ItemRepository.modifyItem(requestItem);
-                        exchange.sendResponseHeaders(200, -1);
+                        Item responseItem = ItemRepository.getItemById(requestItem.getId());
+                        String responseJson = jsonParser.toJson(responseItem);
+                        byte[] responseBytes = responseJson.getBytes(StandardCharsets.UTF_8);
+
+                        exchange.getResponseHeaders().set("Content-Type", "application/json");
+                        exchange.sendResponseHeaders(200, responseBytes.length);
+
+                        try (OutputStream os = exchange.getResponseBody()) {
+                            os.write(responseBytes);
+                        }
                     } else {
                         // Create new item
                         String newId = UUID.randomUUID().toString();

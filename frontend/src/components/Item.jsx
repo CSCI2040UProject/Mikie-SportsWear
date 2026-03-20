@@ -32,8 +32,8 @@ function OtherColorThumbnail({ id }) {
     );
 }
 
-function ModifyItem({user, id}){
-    if (user.isAdmin){
+function ModifyItem({user, id, hideModifyButton}){
+    if (user.isAdmin && !hideModifyButton){
         return (
             <div>
                 <Link to={`/item/editor/${id}`}>
@@ -45,14 +45,20 @@ function ModifyItem({user, id}){
 
 }
 
-export default function Item() {
+export default function Item({ hideModifyButton = false, itemProp = null }) {
     const { id } = useParams(); // Get the item ID from the URL
-    const [item, setItem] = useState(null);
+    const [fetchedItem, setFetchedItem] = useState(null);
     const [error, setError] = useState(null);
     const [imageIndex, setImageIndex] = useState(0);
     const {user} = useOutletContext();
 
+    // Use the prop if available, otherwise use local state
+    const item = itemProp || fetchedItem;
+
     useEffect(() => {
+        // If parent provided data, we don't need to fetch
+        if (itemProp) return;
+
         const controller = new AbortController();
         const signal = controller.signal;
 
@@ -63,7 +69,7 @@ export default function Item() {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
                 const result = await response.json();
-                setItem(result);
+                setFetchedItem(result);
             } catch (err) {
                 if (err.name === 'AbortError') {
                     console.log('Fetch aborted due to navigation');
@@ -78,7 +84,7 @@ export default function Item() {
         return () => {
             controller.abort();
         };
-    }, [id]);
+    }, [id, itemProp]);
 
     if (error) return <div>Error loading data!</div>;
     if (!item) return <div></div>;
@@ -112,7 +118,7 @@ export default function Item() {
                         ))}
                     </div>
                 </div>
-                <ModifyItem user={user} id={id}/>
+                <ModifyItem user={user} id={id} hideModifyButton={hideModifyButton}/>
             </div>
         </div>
         )
