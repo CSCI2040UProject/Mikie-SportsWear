@@ -1,7 +1,8 @@
-import {Link, useParams} from 'react-router';
+import {Link, useNavigate, useParams} from 'react-router';
 import {useEffect, useState} from "react";
 import styles from "../styles/Item.module.css";
 import { useOutletContext } from "react-router"
+import Editor from "./Editor.jsx";
 
 function OtherColorThumbnail({ id }) {
     const [thumbnailUrl, setThumbnailUrl] = useState(null);
@@ -32,32 +33,28 @@ function OtherColorThumbnail({ id }) {
     );
 }
 
-function ModifyItem({user, id, hideModifyButton}){
-    if (user.isAdmin && !hideModifyButton){
-        return (
-            <div>
-                <Link to={`/item/editor/${id}`}>
-                    <button>Modify this item</button>
-                </Link>
-            </div>
-        )
-    }
 
-}
 
 export default function Item({ hideModifyButton = false, itemProp = null }) {
     const { id } = useParams(); // Get the item ID from the URL
     const [fetchedItem, setFetchedItem] = useState(null);
     const [error, setError] = useState(null);
     const [imageIndex, setImageIndex] = useState(0);
+    const [isEditing, setIsEditing] = useState(false);
     const {user} = useOutletContext();
+    const navigate = useNavigate();
 
     // Use the prop if available, otherwise use local state
     const item = itemProp || fetchedItem;
 
+    const handleUpdate = (updatedItem) => {
+        setFetchedItem(updatedItem);
+        setIsEditing(false);
+    };
+
     useEffect(() => {
         // If parent provided data, we don't need to fetch
-        if (itemProp) return;
+        if (itemProp || id === "NEW") return;
 
         const controller = new AbortController();
         const signal = controller.signal;
@@ -86,13 +83,54 @@ export default function Item({ hideModifyButton = false, itemProp = null }) {
         };
     }, [id, itemProp]);
 
+    if (id === "NEW") return (
+        <>
+            <Editor itemProp={null} onUpdate={handleUpdate} />
+        </>
+    )
+
     if (error) return <div>Error loading data!</div>;
     if (!item) return <div></div>;
+
+    function ModifyItem({user, isEditing, setIsEditing}){
+        if (user && user.isAdmin){
+            return (
+                <div>
+                    <button onClick={() => setIsEditing(!isEditing)}>
+                        {isEditing ? "Close Editor" : "Modify this item"}
+                    </button>
+                    <button onClick={deleteItem}>
+                        Delete this item
+                    </button>
+                </div>
+            )
+        }
+        return null;
+    }
+
+    function deleteItem() {
+        const confirmDelete = window.confirm("Are you sure you want to delete this item?");
+        if (confirmDelete) {
+            fetch(`/api/catalog?id=${id}`, {
+                method: 'DELETE',
+            })
+                .then(response => {
+                    if (response.ok) {
+                        sessionStorage.removeItem('catalogData');
+                        navigate('/');
+                    } else {
+                        console.error('Failed to delete item');
+                    }
+                })
+        }
+    }
+
+
 
     return (
         <div className={styles.container}>
             <div className={styles.left}>
-                <img className={styles.mainImage} src={item.images[imageIndex] || item.images[0]} alt={item.name} />
+                <img className={styles.mainImage} src={(item.images[imageIndex] || item.images[0]) ?? ''} alt={item.name ?? 'Photo'} />
                 <div className={styles.thumbnailContainer}>
                     {item.images.map((imgUrl, index) => ( //Iterate over all the images and add them to this container
                         <img
@@ -106,20 +144,21 @@ export default function Item({ hideModifyButton = false, itemProp = null }) {
                 </div>
             </div>
             <div className={styles.right}>
-                <h1>{item.name}</h1>
-                <h3>${item.price}</h3>
-                <p>{item.description}</p>
-                <p>Color: {item.color}</p>
+                <h1>{item.name ?? 'Name'}</h1>
+                <h3>${item.price ?? 0.00}</h3>
+                <p>{item.description ?? 'Description'}</p>
+                <p>Color: {item.color ?? 'Colour'}</p>
 
                 <div>Other colours:
                     <div className={'${styles.thumbnailContainer} ${styles.otherColorThumbnail}'}>
                         {item.otherColors.map((colorId, index) => (
                             <OtherColorThumbnail key={index} id={colorId} />
-                        ))}
+                        )) ?? ''}
                     </div>
                 </div>
-                <ModifyItem user={user} id={id} hideModifyButton={hideModifyButton}/>
+                <ModifyItem user={user} isEditing={isEditing} setIsEditing={setIsEditing} />
             </div>
+            {isEditing && <Editor itemProp={item} onUpdate={handleUpdate} />}
         </div>
         )
 }

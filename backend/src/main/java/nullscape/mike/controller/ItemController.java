@@ -114,7 +114,6 @@ public class ItemController implements HttpHandler {
                         // Create new item
                         String newId = UUID.randomUUID().toString();
                         requestItem.setId(newId);
-                        requestItem.setName("New Item");
                         
                         // Ensure other fields are initialized if null, to avoid SQL errors if columns are NOT NULL
                         // For now relying on repository handling, but ID is critical.
@@ -122,8 +121,8 @@ public class ItemController implements HttpHandler {
                         ItemRepository.addItem(requestItem);
                         
                         // Return the new ID
-                        Item responseItem = new Item();
-                        responseItem.setId(newId);
+                        Item responseItem = ItemRepository.getItemById(newId);
+
                         String responseJson = jsonParser.toJson(responseItem);
                         byte[] responseBytes = responseJson.getBytes(StandardCharsets.UTF_8);
                         
@@ -140,6 +139,17 @@ public class ItemController implements HttpHandler {
                 }
             } else {
                 exchange.sendResponseHeaders(401, -1);
+            }
+        } else if ("DELETE".equalsIgnoreCase(exchange.getRequestMethod())) {
+            Map<String, String> params = parseQueryParams(exchange.getRequestURI().getQuery()); //items?id=123
+            String cookieHeader = exchange.getRequestHeaders().getFirst("Cookie");
+            String token = SessionManager.extractToken(cookieHeader);
+
+            if (SessionManager.isAdmin(token)){
+                if (params.get("id") != null) {
+                    ItemRepository.removeItem(params.get("id"));
+                    exchange.sendResponseHeaders(200, -1);
+                }
             }
         }
     }

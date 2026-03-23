@@ -17,28 +17,9 @@ function CreateItem({item}) {
 function NewItemButton({user}) {
     const navigate = useNavigate();
 
-    async function handleCreate() {
-        try {
-            const response = await fetch('/api/catalog', {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-            });
-            if (!response.ok) {
-                console.log("Error creating item");
-                return;
-            }
-            const result = await response.json();
-            navigate(`/item/editor/${result.id}`);
-        } catch (error) {
-            console.log(error);
-        }
-    }
-
     if (user && user.isAdmin) {
         return (
-            <button onClick={handleCreate}>Add a new item</button>
+            <button onClick={() => navigate(`/item/NEW`)}>Add a new item</button>
         )
     }
     return null;

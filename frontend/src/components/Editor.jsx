@@ -1,8 +1,9 @@
-import {Link, useParams} from 'react-router';
+import {useNavigate, Link, useParams} from 'react-router';
 import {useState, useEffect} from 'react';
 
 export default function Editor({ itemProp, onUpdate }) {
     const { id } = useParams();
+    const navigate = useNavigate();
     const [formData, setFormData] = useState({
         name: '',
         price: '',
@@ -49,8 +50,14 @@ export default function Editor({ itemProp, onUpdate }) {
     }
 
     async function sendInfo({data}) {
+        let endpoint = "";
+        if (id === "NEW") {
+            endpoint = "/api/catalog";
+        } else {
+            endpoint = `/api/catalog?id=${id}`;
+        }
         try {
-            const response = await fetch(`/api/catalog?id=${id}`, {
+            const response = await fetch(endpoint, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -68,6 +75,7 @@ export default function Editor({ itemProp, onUpdate }) {
             }
             const result = await response.json();
             console.log(result);
+            navigate(`/item/${result.id}`);
             
             if (onUpdate) {
                 onUpdate(result);
@@ -92,6 +100,8 @@ export default function Editor({ itemProp, onUpdate }) {
                 <input id="color" type="text" name="color" placeholder="Color" value={formData.color} onChange={handleChange} />
                 <label htmlFor="otherColors">Other Colors</label>
                 <input id="otherColors" type="text" name="otherColors" placeholder="Other Colors" value={formData.otherColors} onChange={handleChange} />
+                <label htmlFor="file-input">Upload Image</label>
+                <input type="file" id="file-input" name="ImageStyle"/>
                 <button type="submit">Submit</button>
             </form>
         </div>
