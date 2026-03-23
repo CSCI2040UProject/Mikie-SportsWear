@@ -100,13 +100,27 @@ public class ItemRepository {
             pstmt.setString(1, item.getId());
             pstmt.setString(2, item.getName());
             pstmt.setString(3, item.getDescription());
-            pstmt.setString(4, serializeArray(item.getCategories()));
+            pstmt.setString(4, (serializeArray(item.getCategories())));
             pstmt.setString(5, item.getPrice());
             pstmt.setString(6, item.getColor());
             pstmt.setString(7, serializeArray(item.getOtherColors()));
             pstmt.setString(8, item.getProductUrl());
             pstmt.setString(9, item.getThumbnailUrl());
             pstmt.setString(10, serializeArray(item.getImages()));
+
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void removeItem(String productId) {
+        String sql = "DELETE FROM items WHERE product_id IS ?";
+
+        try (Connection conn = DatabaseManager.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, productId);
 
             pstmt.executeUpdate();
         } catch (SQLException e) {
@@ -191,12 +205,12 @@ public class ItemRepository {
     }
 
     private static String serializeArray(String[] array) {
-        return array == null ? "[]" : gson.toJson(array);
+        return (array == null ? null : gson.toJson(array));
     }
 
     private static String[] deserializeArray(String json) {
         if (json == null || json.trim().isEmpty()) {
-            return new String[0];
+            return null;
         }
         return gson.fromJson(json, String[].class);
     }
