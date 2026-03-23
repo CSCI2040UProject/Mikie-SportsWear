@@ -127,12 +127,15 @@ export default function Item({ hideModifyButton = false, itemProp = null }) {
 
 
 
+    const images = item.images || [];
+    const otherColors = item.otherColors || [];
+
     return (
         <div className={styles.container}>
             <div className={styles.left}>
-                <img className={styles.mainImage} src={(item.images[imageIndex] || item.images[0]) ?? ''} alt={item.name ?? 'Photo'} />
+                <img className={styles.mainImage} src={(images[imageIndex] || images[0]) ?? null} alt={item.name ?? 'Photo'} />
                 <div className={styles.thumbnailContainer}>
-                    {item.images.map((imgUrl, index) => ( //Iterate over all the images and add them to this container
+                    {images.map((imgUrl, index) => ( //Iterate over all the images and add them to this container
                         <img
                             key={index}
                             src={imgUrl} 
@@ -151,9 +154,9 @@ export default function Item({ hideModifyButton = false, itemProp = null }) {
 
                 <div>Other colours:
                     <div className={'${styles.thumbnailContainer} ${styles.otherColorThumbnail}'}>
-                        {item.otherColors.map((colorId, index) => (
+                        {otherColors.map((colorId, index) => (
                             <OtherColorThumbnail key={index} id={colorId} />
-                        )) ?? ''}
+                        ))}
                     </div>
                 </div>
                 <ModifyItem user={user} isEditing={isEditing} setIsEditing={setIsEditing} />
