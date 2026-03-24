@@ -42,6 +42,10 @@
     gap: 6px;
 }
 
+.currentSort {
+    color: #707072;
+}
+
 .sortMenu {
     position: absolute;
     right: 0;

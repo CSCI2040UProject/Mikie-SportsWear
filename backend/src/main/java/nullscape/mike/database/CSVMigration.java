@@ -41,9 +41,9 @@ public class CSVMigration {
             while ((line = br.readLine()) != null) {
                 String[] parts = line.split(",");
                 if (parts.length >= 3) {
-                    String username = parts[0].trim();
-                    String password = parts[1].trim();
-                    boolean isAdmin = parts[2].trim().equals("true");
+                    String username = getValueOrNull(parts[0]);
+                    String password = getValueOrNull(parts[1]);
+                    boolean isAdmin = "true".equalsIgnoreCase(getValueOrNull(parts[2]));
 
                     UserRepository.addUser(username, password, isAdmin);
                     count++;
@@ -81,15 +81,15 @@ public class CSVMigration {
                 String[] currInfo = parseCSVLine(line);
                 if (currInfo.length >= 9) {
                     Item item = new Item();
-                    item.setId(currInfo[0]);
-                    item.setName(currInfo[1]);
-                    item.setDescription(currInfo[2]);
+                    item.setId(getValueOrNull(currInfo[0]));
+                    item.setName(getValueOrNull(currInfo[1]));
+                    item.setDescription(getValueOrNull(currInfo[2]));
                     item.setCategories(cleanArrayString(currInfo[3]));
-                    item.setPrice(currInfo[4]);
-                    item.setColor(currInfo[5]);
+                    item.setPrice(getValueOrNull(currInfo[4]));
+                    item.setColor(getValueOrNull(currInfo[5]));
                     item.setOtherColors(cleanArrayString(currInfo[6]));
-                    item.setProductUrl(currInfo[7]);
-                    item.setThumbnailUrl(currInfo[8]);
+                    item.setProductUrl(getValueOrNull(currInfo[7]));
+                    item.setThumbnailUrl(getValueOrNull(currInfo[8]));
                     item.setImages(cleanArrayString(currInfo[9]));
 
                     ItemRepository.addItem(item);
@@ -101,6 +101,13 @@ public class CSVMigration {
             System.err.println("Error migrating items: " + e.getMessage());
             e.printStackTrace();
         }
+    }
+
+    private static String getValueOrNull(String val) {
+        if (val == null || val.trim().isEmpty()) {
+            return null;
+        }
+        return val.trim();
     }
 
     private static String[] parseCSVLine(String line) {
@@ -131,7 +138,7 @@ public class CSVMigration {
     }
 
     private static String[] cleanArrayString(String arrString) {
-        if (arrString == null || arrString.trim().isEmpty()) return new String[0];
+        if (arrString == null || arrString.trim().isEmpty()) return null;
         String cleaned = arrString.trim();
         if (cleaned.startsWith("[")) cleaned = cleaned.substring(1);
         if (cleaned.endsWith("]")) cleaned = cleaned.substring(0, cleaned.length() - 1);
