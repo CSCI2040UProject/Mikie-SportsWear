@@ -27,6 +27,14 @@
     margin: 10px auto 0 auto;
 }
 
+.filterBar {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+    width: clamp(100px, 95%, 2250px);
+    margin: 10px auto;
+}
+
 .sortDropdown {
     position: relative;
 }
