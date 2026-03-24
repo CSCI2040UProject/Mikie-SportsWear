@@ -56,13 +56,6 @@ function SortDropdown({searchParams, setSearchParams}) {
             return cached ? JSON.parse(cached) : null;
         });
         const [error, setError] = useState(null);
-<<<<<<< Updated upstream
-=======
-        const [sortOption, setSortOption] = useState('name-asc');
-        const [colorFilter, setColorFilter] = useState("");
-        const [categoryFilter, setCategoryFilter] = useState("");
-        const [sortOpen, setSortOpen] = useState(false);
->>>>>>> Stashed changes
         const [visibleCount, setVisibleCount] = useState(() => {
             const cached = sessionStorage.getItem('catalogVisibleCount');
             return cached ? parseInt(cached, 10) : 40;
@@ -93,7 +86,7 @@ function SortDropdown({searchParams, setSearchParams}) {
                 try {
                     const [sortBy, direction] = searchParams.get("sort").split('-');
                     const response = await fetch(
-                        `/api/catalog?sortBy=${sortBy}&direction=${direction}&color=${colorFilter}&category=${categoryFilter}`,
+                        `/api/catalog?sortBy=${sortBy}&direction=${direction}`,
                         { signal: controller.signal }
                     );
                     if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
@@ -110,11 +103,7 @@ function SortDropdown({searchParams, setSearchParams}) {
             }
             loadData();
             return () => controller.abort();
-<<<<<<< Updated upstream
         }, [searchParams, setSearchParams]);
-=======
-        },[sortOption, colorFilter, categoryFilter]);
->>>>>>> Stashed changes
         // Save visible count to sessionStorage whenever it changes
         useEffect(() => {
             sessionStorage.setItem('catalogVisibleCount', visibleCount.toString());
@@ -162,42 +151,8 @@ function SortDropdown({searchParams, setSearchParams}) {
         if (!data) return <div></div>;
         return (
             <>
-<<<<<<< Updated upstream
                 <NewItemButton/>
                 <SortDropdown searchParams={searchParams} setSearchParams={setSearchParams}/>
-=======
-                <NewItemButton user={user}/>
-                <div className={styles.filterBar}>
-                    <input
-                        placeholder="Filter by color"
-                        value={colorFilter}
-                        onChange={(e) => setColorFilter(e.target.value)}
-                    />
-
-                    <input
-                        placeholder="Filter by category"
-                        value={categoryFilter}
-                        onChange={(e) => setCategoryFilter(e.target.value)}
-                    />
-                </div>
-
-                <div className={styles.sortBar}>
-
-                    <div className={styles.sortDropdown}>
-                        <button className={styles.sortButton} onClick={() => setSortOpen(o => !o)}>
-                            Sort By {sortOpen ? '▲' : '▼'}
-                        </button>
-                        {sortOpen && (
-                            <div className={styles.sortMenu}>
-                                <button onClick={() => { setSortOption('price-desc'); setSortOpen(false); }}>Price: High-Low</button>
-                                <button onClick={() => { setSortOption('price-asc'); setSortOpen(false); }}>Price: Low-High</button>
-                                <button onClick={() => { setSortOption('name-asc'); setSortOpen(false); }}>Name:Ascending</button>
-                                <button onClick={() => { setSortOption('name-desc'); setSortOpen(false); }}>Name:Descending</button>
-                            </div>
-                        )}
-                    </div>
-                </div>
->>>>>>> Stashed changes
                 <div>
                     <div className={styles.catalog}>
                         {data.slice(0, visibleCount).map((item, index) => (
