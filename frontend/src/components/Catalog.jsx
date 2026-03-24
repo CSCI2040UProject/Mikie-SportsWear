@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from 'react'
 import styles from '../styles/Catalog.module.css'
-import {Link, useNavigate} from "react-router";
+import {Link, useNavigate, useSearchParams} from "react-router";
 import { useOutletContext } from "react-router"
 
 function CreateItem({item}) {
@@ -14,8 +14,9 @@ function CreateItem({item}) {
     )
 }
 
-function NewItemButton({user}) {
+function NewItemButton({}) {
     const navigate = useNavigate();
+    const {user} = useOutletContext();
 
     if (user && user.isAdmin) {
         return (
@@ -25,21 +26,44 @@ function NewItemButton({user}) {
     return null;
 }
 
+function SortDropdown({searchParams, setSearchParams}) {
+    const [sortOpen, setSortOpen] = useState(false);
+    return (
+        <div className={styles.sortBar}>
+            <div className={styles.sortDropdown}>
+                <button className={styles.sortButton} onClick={() => setSortOpen(o => !o)}>
+                    Sort By
+                    <div className={styles.currentSort}>{searchParams.get("sort")}</div>
+                     {sortOpen ? '▲' : '▼'}
+
+                </button>
+                {sortOpen && (
+                    <div className={styles.sortMenu}>
+                        <button onClick={() => { setSearchParams({sort: 'price-desc'}); setSortOpen(false); }}>Price: High-Low</button>
+                        <button onClick={() => { setSearchParams({sort: 'price-asc'}); setSortOpen(false); }}>Price: Low-High</button>
+                        <button onClick={() => { setSearchParams({sort: 'name-asc'}); setSortOpen(false); }}>Name: Ascending</button>
+                        <button onClick={() => { setSearchParams({sort: 'name-desc'}); setSortOpen(false); }}>Name: Descending</button>
+                    </div>
+                )}
+            </div>
+        </div>
+    )
+}
+
     function Catalog({}) {
         const [data, setData] = useState(() => {
             const cached = sessionStorage.getItem('catalogData');
             return cached ? JSON.parse(cached) : null;
         });
         const [error, setError] = useState(null);
-        const [sortOption, setSortOption] = useState('name-asc');
-        const [sortOpen, setSortOpen] = useState(false);
         const [visibleCount, setVisibleCount] = useState(() => {
             const cached = sessionStorage.getItem('catalogVisibleCount');
             return cached ? parseInt(cached, 10) : 40;
         });
         const observer = useRef();
-        const url = "/api/catalog";
-        const {user} = useOutletContext();
+        const [searchParams, setSearchParams] = useSearchParams({ sort: 'price-desc' });
+
+        //TODO: fix page reloading and resetting to the top after going back from an item
 
         // Clear cache on manual reload
         useEffect(() => {
@@ -60,7 +84,7 @@ function NewItemButton({user}) {
 
             async function loadData() {
                 try {
-                    const [sortBy, direction] = sortOption.split('-');
+                    const [sortBy, direction] = searchParams.get("sort").split('-');
                     const response = await fetch(
                         `/api/catalog?sortBy=${sortBy}&direction=${direction}`,
                         { signal: controller.signal }
@@ -77,10 +101,9 @@ function NewItemButton({user}) {
                     }
                 }
             }
-
             loadData();
             return () => controller.abort();
-        }, [sortOption]);
+        }, [searchParams, setSearchParams]);
         // Save visible count to sessionStorage whenever it changes
         useEffect(() => {
             sessionStorage.setItem('catalogVisibleCount', visibleCount.toString());
@@ -126,25 +149,10 @@ function NewItemButton({user}) {
 
         if (error) return <div>Error loading data!</div>;
         if (!data) return <div></div>;
-
         return (
             <>
-                <NewItemButton user={user}/>
-                <div className={styles.sortBar}>
-                    <div className={styles.sortDropdown}>
-                        <button className={styles.sortButton} onClick={() => setSortOpen(o => !o)}>
-                            Sort By {sortOpen ? '▲' : '▼'}
-                        </button>
-                        {sortOpen && (
-                            <div className={styles.sortMenu}>
-                                <button onClick={() => { setSortOption('price-desc'); setSortOpen(false); }}>Price: High-Low</button>
-                                <button onClick={() => { setSortOption('price-asc'); setSortOpen(false); }}>Price: Low-High</button>
-                                <button onClick={() => { setSortOption('name-asc'); setSortOpen(false); }}>Name:Ascending</button>
-                                <button onClick={() => { setSortOption('name-desc'); setSortOpen(false); }}>Name:Descending</button>
-                            </div>
-                        )}
-                    </div>
-                </div>
+                <NewItemButton/>
+                <SortDropdown searchParams={searchParams} setSearchParams={setSearchParams}/>
                 <div>
                     <div className={styles.catalog}>
                         {data.slice(0, visibleCount).map((item, index) => (
