@@ -115,4 +115,33 @@ public class Item {
     public void setImages(String[] images) {
         this.images = images;
     }
+
+    public String getItemEntry() {
+        String[] attributes = {
+                id, name, description, Arrays.toString(categories),
+                price, color, Arrays.toString(otherColors), productUrl,
+                thumbnailUrl, Arrays.toString(images)
+        };
+        String itemEntry = "\"";
+
+        for (int i = 0; i < attributes.length; i++) {
+            attributes[i] = formatString(attributes[i]);
+            if (i == attributes.length - 1) {
+                itemEntry += attributes[i];
+            }
+            else {
+                itemEntry += attributes[i] + ",";
+            }
+        }
+
+        StringBuilder str = new StringBuilder();
+
+        return itemEntry + "\"";
+    }
+
+    private static String formatString(String s) {
+        // For some reason, Nike_Dataset has quotation marks around
+        // every entry. This just formats strings to fit that.
+        return "\"" + s + "\"";
+    }
 }

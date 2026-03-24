@@ -3,10 +3,13 @@ package nullscape.mike.controller;
 import com.google.gson.Gson;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
+import nullscape.mike.model.Item;
+import nullscape.mike.service.ItemService;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.Base64;
 
 public class ItemController implements HttpHandler {
     private static final Gson jsonParser = new Gson();
@@ -16,21 +19,18 @@ public class ItemController implements HttpHandler {
         String itemDescription;
         String itemPrice;
         String itemTags;
-        File[] itemImages;
+        String itemColour;
+        String itemOtherColours;
+        String[] itemImages;
     }
 
     static class Response {
-        String username;
-        boolean isAdmin;
-        String errorMessage;
+        String itemName;
+        String itemDescription;
 
-        Response(String username, boolean admin) {
-            this.username = username;
-            this.isAdmin = admin;
-        }
-
-        Response(String errorMessage){
-            this.errorMessage = errorMessage;
+        Response(String itemName, String itemDescription) {
+            this.itemName = itemName;
+            this.itemDescription = itemDescription;
         }
     }
 
@@ -51,6 +51,26 @@ public class ItemController implements HttpHandler {
         try {
             InputStream is = exchange.getRequestBody();
             ItemController.Request request = jsonParser.fromJson(new String(is.readAllBytes()), ItemController.Request.class);
+
+            // Decode Base64 images to bytes
+            byte[][] imageBytes = new byte[request.itemImages.length][];
+            for (int i = 0; i < request.itemImages.length; i++) {
+                imageBytes[i] = Base64.getDecoder().decode(request.itemImages[i]);
+            }
+            Item newItem = ItemService.makeItem(request.itemName, request.itemDescription, request.itemPrice, request.itemTags, request.itemColour, request.itemOtherColours, imageBytes);
+            if (newItem != null) {
+                // If item creation was successful
+                // Send back item entry
+                ItemController.Response response = new ItemController.Response(newItem.getName(), newItem.getDescription());
+                String responseJson = jsonParser.toJson(response);
+                byte[] responseBytes = responseJson.getBytes();
+
+                exchange.sendResponseHeaders(200, responseBytes.length);
+
+                try (OutputStream os = exchange.getResponseBody()) {
+                    os.write(responseBytes);
+                }
+            }
         }
         catch (Exception e) {
             e.printStackTrace();

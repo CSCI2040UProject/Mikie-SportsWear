@@ -13,8 +13,7 @@ function AddItem() {
         window.location.replace("/");
     }
 
-    async function sendInfo({data}) {
-        const endpoint = "/api/newitem";
+    async function sendInfo({data}, endpoint) {
         try {
             const response = await fetch(endpoint, {
                 method: "POST",
@@ -38,12 +37,48 @@ function AddItem() {
         }
     }
 
-    function handleSubmitItem(e) {
+    async function handleAddItem(e) {
         e.preventDefault();
+        const endpoint = "/api/newitem";
         const formData = new FormData(e.target);
-        const data = Object.fromEntries(formData.entries());
+        const data = {}
+
+        // For every field in the form,
+        // take the entry and add it to the data to be sent over
+        for (const [key, value] of formData.entries()) {
+                const converted = value instanceof File ? await imageToBase64(value) : value;
+
+                if (key in data) {
+                    if (Array.isArray(data[key])) {
+                        data[key].push(converted);
+                    } else {
+                        data[key] = [data[key], converted];
+                    }
+                } else {
+                    // Check if this input is a multi-file input
+                    const input = e.target.elements[key];
+                    if (input && input.multiple) {
+                        data[key] = [converted];
+                    } else {
+                        data[key] = converted;
+                    }
+                }
+            }
+
         console.log('Form Data:', data);
-        sendInfo({data});
+        sendInfo({data}, endpoint);
+    }
+
+    function imageToBase64(img) {
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.onload = () => {
+                const base64 = reader.result.split(',')[1];
+                resolve(base64);
+            };
+            reader.onerror = reject;
+            reader.readAsDataURL(img);
+        });
     }
 
     function ItemForm() {
@@ -70,7 +105,7 @@ function AddItem() {
 
         // Main HTML where the new item form will be filled
         return (
-            <form onSubmit={handleSubmitItem}>
+            <form onSubmit={handleAddItem}>
                 <div>
                     <label htmlFor="itemName">Item Name</label>
                     <input name="itemName" id="itemName" minLength="3" maxLength="20" type="text" placeholder="Item Name" required/>
