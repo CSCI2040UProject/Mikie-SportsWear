@@ -83,6 +83,7 @@ function FilterBar({searchParams, setSearchParams}) {
                 <option value="">All Categories</option>
                 <option value="men">Men</option>
                 <option value="women">Women</option>
+                <option value="kids">Women</option>
                 <option value="shoes">Shoes</option>
                 <option value="lifestyle">Lifestyle</option>
             </select>
