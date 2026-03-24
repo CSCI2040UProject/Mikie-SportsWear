@@ -70,9 +70,9 @@ function FilterBar({searchParams, setSearchParams}) {
                 onChange={(e) => updateFilter("color", e.target.value)}
             >
                 <option value="">All Colors</option>
-                <option value="black">Black</option>
-                <option value="white">White</option>
-                <option value="blue">Blue</option>
+                <option value="Black">Black</option>
+                <option value="Black">White</option>
+                <option value="Blue">Blue</option>
                 <option value="red">Red</option>
             </select>
 

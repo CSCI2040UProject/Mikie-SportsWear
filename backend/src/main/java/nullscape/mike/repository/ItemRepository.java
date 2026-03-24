@@ -9,6 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
@@ -216,6 +217,44 @@ public class ItemRepository {
         }
         return items;
     }
+
+    public static List<Item> getItemsFilteredSorted(
+            String sortBy,
+            String direction,
+            String category,
+            String color
+    ) {
+
+        List<Item> items = getAllItems();
+
+        return items.stream()
+                .filter(item ->
+                        color == null || color.isEmpty() ||
+                                (item.getColor() != null &&
+                                        item.getColor().toLowerCase().contains(color.toLowerCase()))
+                )
+                .filter(item ->
+                        category == null || category.isEmpty() ||
+                                (item.getCategories() != null &&
+                                        java.util.Arrays.stream(item.getCategories())
+                                                .anyMatch(c -> c.toLowerCase().contains(category.toLowerCase())))
+                )
+                .sorted((a, b) -> {
+                    if ("price".equalsIgnoreCase(sortBy)) {
+                        double priceA = Double.parseDouble(a.getPrice());
+                        double priceB = Double.parseDouble(b.getPrice());
+                        return "desc".equalsIgnoreCase(direction)
+                                ? Double.compare(priceB, priceA)
+                                : Double.compare(priceA, priceB);
+                    } else {
+                        return "desc".equalsIgnoreCase(direction)
+                                ? b.getName().compareToIgnoreCase(a.getName())
+                                : a.getName().compareToIgnoreCase(b.getName());
+                    }
+                })
+                .toList();
+    }
+
     private static Item mapResultSetToItem(ResultSet rs) throws SQLException {
         Item item = new Item();
         item.setId(rs.getString("product_id"));
