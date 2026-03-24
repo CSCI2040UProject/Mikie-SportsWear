@@ -9,10 +9,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
-import java.util.Comparator;
 
 public class ItemRepository {
 
@@ -218,56 +216,6 @@ public class ItemRepository {
         }
         return items;
     }
-
-    private static Comparator<Item> getComparator(String sortBy, String direction) {
-        Comparator<Item> comparator;
-
-        switch (sortBy) {
-            case "price":
-                comparator = Comparator.comparing(item -> Double.parseDouble(item.getPrice()));
-                break;
-            case "name":
-                comparator = Comparator.comparing(Item::getName, String.CASE_INSENSITIVE_ORDER);
-                break;
-            default:
-                comparator = Comparator.comparing(Item::getName, String.CASE_INSENSITIVE_ORDER);
-        }
-
-        if ("desc".equalsIgnoreCase(direction)) {
-            comparator = comparator.reversed();
-        }
-
-        return comparator;
-    }
-
-    public static List<Item> getItemsFilteredSorted(
-            String sortBy,
-            String direction,
-            String category,
-            String color
-    ) {
-
-        List<Item> items = getAllItems();
-
-        return items.stream()
-                .filter(item ->
-                        color == null || color.isEmpty() ||
-                                (item.getColor() != null &&
-                                        item.getColor().toLowerCase().contains(color.toLowerCase()))
-                )
-                .filter(item ->
-                        category == null || category.isEmpty() ||
-                                (item.getCategories() != null &&
-                                        Arrays.stream(item.getCategories())
-                                                .anyMatch(c -> c.toLowerCase().contains(category.toLowerCase())))
-                )
-                .sorted(getComparator(sortBy, direction))
-                .toList();
-    }
-
-
-
-
     private static Item mapResultSetToItem(ResultSet rs) throws SQLException {
         Item item = new Item();
         item.setId(rs.getString("product_id"));

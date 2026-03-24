@@ -69,11 +69,7 @@ public class ItemController implements HttpHandler {
                 }  else {
                 String sortBy = params.get("sortBy");
                 String direction = params.get("direction");
-                String color = params.get("color");
-                String category = params.get("category");
-                responseJson = jsonParser.toJson(
-                        ItemRepository.getItemsFilteredSorted(sortBy, direction, category, color)
-                );
+                responseJson = jsonParser.toJson(ItemRepository.getItemsGistSorted(sortBy, direction));
             }
 
                 byte[] responseBytes = responseJson.getBytes();
