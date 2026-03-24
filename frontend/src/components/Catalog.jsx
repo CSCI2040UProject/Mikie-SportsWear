@@ -50,6 +50,50 @@ function SortDropdown({searchParams, setSearchParams}) {
     )
 }
 
+
+
+function FilterBar({searchParams, setSearchParams}) {
+    const color = searchParams.get("color") || "";
+    const category = searchParams.get("category") || "";
+
+    const updateFilter = (key, value) => {
+        const params = Object.fromEntries(searchParams);
+        if (value) params[key] = value;
+        else delete params[key];
+        setSearchParams(params);
+    };
+
+    return (
+        <div className={styles.filterBar}>
+            <select
+                value={color}
+                onChange={(e) => updateFilter("color", e.target.value)}
+            >
+                <option value="">All Colors</option>
+                <option value="black">Black</option>
+                <option value="white">White</option>
+                <option value="blue">Blue</option>
+                <option value="red">Red</option>
+            </select>
+
+            <select
+                value={category}
+                onChange={(e) => updateFilter("category", e.target.value)}
+            >
+                <option value="">All Categories</option>
+                <option value="men">Men</option>
+                <option value="women">Women</option>
+                <option value="shoes">Shoes</option>
+                <option value="lifestyle">Lifestyle</option>
+            </select>
+
+            <button onClick={() => setSearchParams({ sort: searchParams.get("sort") })}>
+                Clear Filters
+            </button>
+        </div>
+    );
+}
+
     function Catalog({}) {
         const [data, setData] = useState(() => {
             const cached = sessionStorage.getItem('catalogData');
@@ -62,6 +106,8 @@ function SortDropdown({searchParams, setSearchParams}) {
         });
         const observer = useRef();
         const [searchParams, setSearchParams] = useSearchParams({ sort: 'price-desc' });
+        const colorFilter = searchParams.get("color") || "";
+        const categoryFilter = searchParams.get("category") || "";
 
         //TODO: fix page reloading and resetting to the top after going back from an item
 
@@ -86,7 +132,7 @@ function SortDropdown({searchParams, setSearchParams}) {
                 try {
                     const [sortBy, direction] = searchParams.get("sort").split('-');
                     const response = await fetch(
-                        `/api/catalog?sortBy=${sortBy}&direction=${direction}`,
+                        `/api/catalog?sortBy=${sortBy}&direction=${direction}&color=${colorFilter}&category=${categoryFilter}`,
                         { signal: controller.signal }
                     );
                     if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
@@ -153,6 +199,7 @@ function SortDropdown({searchParams, setSearchParams}) {
             <>
                 <NewItemButton/>
                 <SortDropdown searchParams={searchParams} setSearchParams={setSearchParams}/>
+                <FilterBar searchParams={searchParams} setSearchParams={setSearchParams}/>
                 <div>
                     <div className={styles.catalog}>
                         {data.slice(0, visibleCount).map((item, index) => (
