@@ -81,10 +81,10 @@ function FilterBar({searchParams, setSearchParams}) {
                 onChange={(e) => updateFilter("category", e.target.value)}
             >
                 <option value="">All Categories</option>
-                <option value="men">Men</option>
-                <option value="women">Women</option>
-                <option value="kids">Women</option>
-                <option value="shoes">Shoes</option>
+                <option value="Men">Men</option>
+                <option value="Women">Women</option>
+                <option value="Kids">kids</option>
+                <option value="Shoes">Shoes</option>
                 <option value="lifestyle">Lifestyle</option>
             </select>
 
