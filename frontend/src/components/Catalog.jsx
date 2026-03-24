@@ -31,6 +31,8 @@ function NewItemButton({user}) {
             return cached ? JSON.parse(cached) : null;
         });
         const [error, setError] = useState(null);
+        const [sortOption, setSortOption] = useState('name-asc');
+        const [sortOpen, setSortOpen] = useState(false);
         const [visibleCount, setVisibleCount] = useState(() => {
             const cached = sessionStorage.getItem('catalogVisibleCount');
             return cached ? parseInt(cached, 10) : 40;
@@ -55,35 +57,30 @@ function NewItemButton({user}) {
 
         useEffect(() => {
             const controller = new AbortController();
-            const signal = controller.signal;
 
             async function loadData() {
                 try {
-                    const response = await fetch(url, {signal});
-                    if (!response.ok) {
-                        throw new Error(`HTTP error! status: ${response.status}`);
-                    }
+                    const [sortBy, direction] = sortOption.split('-');
+                    const response = await fetch(
+                        `/api/catalog?sortBy=${sortBy}&direction=${direction}`,
+                        { signal: controller.signal }
+                    );
+                    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
                     const result = await response.json();
                     setData(result);
                     sessionStorage.setItem('catalogData', JSON.stringify(result));
+                    setVisibleCount(40);
                 } catch (err) {
-                    if (err.name === 'AbortError') {
-                        console.log('Fetch aborted due to navigation');
-                    } else {
+                    if (err.name !== 'AbortError') {
                         console.error('Fetch error:', err);
                         setError(err.message);
                     }
                 }
             }
 
-            if (!data) {
-                loadData();
-            }
-            return () => {
-                controller.abort();
-            };
-        }, [url, data]);
-
+            loadData();
+            return () => controller.abort();
+        }, [sortOption]);
         // Save visible count to sessionStorage whenever it changes
         useEffect(() => {
             sessionStorage.setItem('catalogVisibleCount', visibleCount.toString());
@@ -133,6 +130,21 @@ function NewItemButton({user}) {
         return (
             <>
                 <NewItemButton user={user}/>
+                <div className={styles.sortBar}>
+                    <div className={styles.sortDropdown}>
+                        <button className={styles.sortButton} onClick={() => setSortOpen(o => !o)}>
+                            Sort By {sortOpen ? '▲' : '▼'}
+                        </button>
+                        {sortOpen && (
+                            <div className={styles.sortMenu}>
+                                <button onClick={() => { setSortOption('price-desc'); setSortOpen(false); }}>Price: High-Low</button>
+                                <button onClick={() => { setSortOption('price-asc'); setSortOpen(false); }}>Price: Low-High</button>
+                                <button onClick={() => { setSortOption('name-asc'); setSortOpen(false); }}>Name:Ascending</button>
+                                <button onClick={() => { setSortOption('name-desc'); setSortOpen(false); }}>Name:Descending</button>
+                            </div>
+                        )}
+                    </div>
+                </div>
                 <div>
                     <div className={styles.catalog}>
                         {data.slice(0, visibleCount).map((item, index) => (

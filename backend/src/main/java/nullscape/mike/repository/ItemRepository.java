@@ -188,7 +188,34 @@ public class ItemRepository {
             e.printStackTrace();
         }
     }
+    public static List<Item> getItemsGistSorted(String sortBy, String direction) {
+        List<Item> items = new ArrayList<>();
 
+        String orderColumn = switch (sortBy != null ? sortBy.toLowerCase() : "") {
+            case "price" -> "CAST(REPLACE(REPLACE(price, '$', ''), ',', '') AS REAL)";
+            default      -> "name";
+        };
+        String orderDir = "desc".equalsIgnoreCase(direction) ? "DESC" : "ASC";
+
+        String sql = "SELECT product_id, name, price, thumbnail_url FROM items ORDER BY " + orderColumn + " " + orderDir;
+
+        try (Connection conn = DatabaseManager.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql);
+             ResultSet rs = pstmt.executeQuery()) {
+
+            while (rs.next()) {
+                Item item = new Item();
+                item.setId(rs.getString("product_id"));
+                item.setName(rs.getString("name"));
+                item.setPrice(rs.getString("price"));
+                item.setThumbnailUrl(rs.getString("thumbnail_url"));
+                items.add(item);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return items;
+    }
     private static Item mapResultSetToItem(ResultSet rs) throws SQLException {
         Item item = new Item();
         item.setId(rs.getString("product_id"));

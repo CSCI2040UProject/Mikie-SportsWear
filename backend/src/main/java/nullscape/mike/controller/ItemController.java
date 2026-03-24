@@ -66,10 +66,11 @@ public class ItemController implements HttpHandler {
                         exchange.sendResponseHeaders(404, -1); // Not found
                         return;
                     }
-                } else {
-                    // Return all items
-                    responseJson = jsonParser.toJson(ItemRepository.getItemsGist());
-                }
+                }  else {
+                String sortBy = params.get("sortBy");
+                String direction = params.get("direction");
+                responseJson = jsonParser.toJson(ItemRepository.getItemsGistSorted(sortBy, direction));
+            }
 
                 byte[] responseBytes = responseJson.getBytes();
                 exchange.sendResponseHeaders(200, responseBytes.length);
