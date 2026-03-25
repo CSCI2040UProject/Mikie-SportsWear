@@ -83,9 +83,10 @@ function FilterBar({searchParams, setSearchParams}) {
                 <option value="">All Categories</option>
                 <option value="Men">Men</option>
                 <option value="Women">Women</option>
-                <option value="Kids">kids</option>
+                <option value="Kids">Kids</option>
                 <option value="Shoes">Shoes</option>
-                <option value="lifestyle">Lifestyle</option>
+                <option value="Lifestyle">Lifestyle</option>
+                <option value="Accessories">Accessories</option>
             </select>
 
             <button onClick={() => setSearchParams({ sort: searchParams.get("sort") })}>
