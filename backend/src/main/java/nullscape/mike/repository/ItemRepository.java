@@ -9,9 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.UUID;
 
 public class ItemRepository {
 
@@ -189,28 +187,53 @@ public class ItemRepository {
             e.printStackTrace();
         }
     }
-    public static List<Item> getItemsGistSorted(String sortBy, String direction) {
+    public static List<Item> getItemsFilteredSorted(String sortBy, String[] category, String[] color) {
         List<Item> items = new ArrayList<>();
 
-        String orderColumn = switch (sortBy != null ? sortBy.toLowerCase() : "") {
+        // Handle null sortBy safely
+        String sortCondition = (sortBy != null) ? sortBy.split("-")[0] : "name";
+        String direction     = (sortBy != null) ? sortBy.split("-")[1] : "asc";
+
+        String orderColumn = switch (sortCondition.toLowerCase()) {
             case "price" -> "CAST(REPLACE(REPLACE(price, '$', ''), ',', '') AS REAL)";
             default      -> "name";
         };
         String orderDir = "desc".equalsIgnoreCase(direction) ? "DESC" : "ASC";
 
-        String sql = "SELECT product_id, name, price, thumbnail_url FROM items ORDER BY " + orderColumn + " " + orderDir;
+        // Build WHERE clause
+        StringBuilder whereClause = new StringBuilder();
+        List<String> params = new ArrayList<>();
+
+        if (category != null && category.length > 0) {
+            whereClause.append(buildLikeConditions("categories", category, params));
+        }
+
+        if (color != null && color.length > 0) {
+            if (!whereClause.isEmpty()) whereClause.append(" AND ");
+            whereClause.append(buildLikeConditions("color", color, params));
+        }
+
+        String sql = "SELECT product_id, name, price, thumbnail_url FROM items"
+                + (whereClause.isEmpty() ? "" : " WHERE " + whereClause)
+                + " ORDER BY " + orderColumn + " " + orderDir;
 
         try (Connection conn = DatabaseManager.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(sql);
-             ResultSet rs = pstmt.executeQuery()) {
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
-            while (rs.next()) {
-                Item item = new Item();
-                item.setId(rs.getString("product_id"));
-                item.setName(rs.getString("name"));
-                item.setPrice(rs.getString("price"));
-                item.setThumbnailUrl(rs.getString("thumbnail_url"));
-                items.add(item);
+            // Inject params into the prepared statement
+            for (int i = 0; i < params.size(); i++) {
+                pstmt.setString(i + 1, params.get(i));
+            }
+
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    Item item = new Item();
+                    item.setId(rs.getString("product_id"));
+                    item.setName(rs.getString("name"));
+                    item.setPrice(rs.getString("price"));
+                    item.setThumbnailUrl(rs.getString("thumbnail_url"));
+                    items.add(item);
+                }
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -218,41 +241,21 @@ public class ItemRepository {
         return items;
     }
 
-    public static List<Item> getItemsFilteredSorted(
-            String sortBy,
-            String direction,
-            String category,
-            String color
-    ) {
+    // Builds "col LIKE ? AND col LIKE ?" and populates params with wrapped values
+    private static String buildLikeConditions(String column, String[] values, List<String> params) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < values.length; i++) {
+            if (i > 0) sb.append(" AND ");
+            sb.append(column).append(" LIKE ?");
 
-        List<Item> items = getAllItems();
-
-        return items.stream()
-                .filter(item ->
-                        color == null || color.isEmpty() ||
-                                (item.getColor() != null &&
-                                        item.getColor().toLowerCase().contains(color.toLowerCase()))
-                )
-                .filter(item ->
-                        category == null || category.isEmpty() ||
-                                (item.getCategories() != null &&
-                                        java.util.Arrays.stream(item.getCategories())
-                                                .anyMatch(c -> c.toLowerCase().contains(category.toLowerCase())))
-                )
-                .sorted((a, b) -> {
-                    if ("price".equalsIgnoreCase(sortBy)) {
-                        double priceA = Double.parseDouble(a.getPrice());
-                        double priceB = Double.parseDouble(b.getPrice());
-                        return "desc".equalsIgnoreCase(direction)
-                                ? Double.compare(priceB, priceA)
-                                : Double.compare(priceA, priceB);
-                    } else {
-                        return "desc".equalsIgnoreCase(direction)
-                                ? b.getName().compareToIgnoreCase(a.getName())
-                                : a.getName().compareToIgnoreCase(b.getName());
-                    }
-                })
-                .toList();
+            // categories values need JSON style wrapping like '%"men"%' because '%men%' will also include woMEN
+            // color values use plain wrapping: '%black%'
+            String wrapped = column.equals("categories")
+                    ? "%\"" + values[i] + "\"%"
+                    :  "%"  + values[i] + "%";
+            params.add(wrapped); //this is pass by reference so that all the params are added later
+        }
+        return sb.toString();
     }
 
     private static Item mapResultSetToItem(ResultSet rs) throws SQLException {

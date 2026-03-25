@@ -106,9 +106,7 @@ function FilterBar({searchParams, setSearchParams}) {
             return cached ? parseInt(cached, 10) : 40;
         });
         const observer = useRef();
-        const [searchParams, setSearchParams] = useSearchParams({ sort: 'price-desc' });
-        const colorFilter = searchParams.get("color") || "";
-        const categoryFilter = searchParams.get("category") || "";
+        const [searchParams, setSearchParams] = useSearchParams({ sort: 'price-desc'});
 
         //TODO: fix page reloading and resetting to the top after going back from an item
 
@@ -130,10 +128,11 @@ function FilterBar({searchParams, setSearchParams}) {
             const controller = new AbortController();
 
             async function loadData() {
+                const category = searchParams.get("category");
+                const color = searchParams.get("color");
                 try {
-                    const [sortBy, direction] = searchParams.get("sort").split('-');
                     const response = await fetch(
-                        `/api/catalog?sortBy=${sortBy}&direction=${direction}&color=${colorFilter}&category=${categoryFilter}`,
+                        `/api/catalog?sortBy=${searchParams.get("sort")}${category ? "&category=" + category : ""}${color ? "&color=" + color : ""}`,
                         { signal: controller.signal }
                     );
                     if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
