@@ -67,13 +67,23 @@ public class ItemController implements HttpHandler {
                         return;
                     }
                 }  else {
+                    // TODO: We should return the categories that are available to sort by
+                    // Also the colors if possible
+
                     String sortBy = params.get("sortBy");
-                    String direction = params.get("direction");
-                    String color = params.get("color");
-                    String category = params.get("category");
+                    String[] color = null;
+                    String[] category = null;
+                    String colorString = params.get("color");
+                    String categoryString = params.get("category");
+                    if (colorString != null) {
+                        color = colorString.split(",");
+                    }
+                    if (categoryString != null) {
+                        category = categoryString.split(",");
+                    }
 
                     responseJson = jsonParser.toJson(
-                            ItemRepository.getItemsFilteredSorted(sortBy, direction, category, color)
+                            ItemRepository.getItemsFilteredSorted(sortBy, category, color)
                     );
             }
 
