@@ -120,14 +120,14 @@ function FilterBar({searchParams, setSearchParams}) {
 
             <ChecklistSection
                 title="Color"
-                options={["Black", "White", "Blue", "Red"]}
+                options={["Black", "White", "Red", "Orange", "Yellow", "Green", "Blue", "Purple"]}
                 selectedValues={selectedColors}
                 onChange={(val) => toggleParam("color", val)}
             />
 
             <ChecklistSection
                 title="Category"
-                options={["Men", "Women", "Kids", "Shoes", "Lifestyle", "Accessories"]}
+                options={["Men", "Women", "Basketball", "Football", "Lifestyle", "Running", "Training and Gym"]}
                 selectedValues={selectedCategories}
                 onChange={(val) => toggleParam("category", val)}
             />
