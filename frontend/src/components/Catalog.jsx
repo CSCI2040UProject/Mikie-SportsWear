@@ -127,7 +127,7 @@ function FilterBar({searchParams, setSearchParams}) {
 
             <ChecklistSection
                 title="Category"
-                options={["Men", "Women", "Basketball", "Football", "Lifestyle", "Running", "Training and Gym"]}
+                options={["Men", "Women", "Basketball", "Football", "Lifestyle", "Running", "Training and Gym", "Accessories"]}
                 selectedValues={selectedCategories}
                 onChange={(val) => toggleParam("category", val)}
             />
