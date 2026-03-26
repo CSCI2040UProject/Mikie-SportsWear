@@ -5,10 +5,11 @@ import { useOutletContext } from "react-router"
 
 function CreateItem({item}) {
     return (
-        <Link to={'/item/' + item.id}>
+        <Link to={'item/' + item.id}>
             <div className={styles.item}>
                 <img src={item.thumbnailUrl} alt="Item" />
                 <h4>{item.name}</h4>
+                <p className={styles.price}>${item.price}</p>
             </div>
         </Link>
     )
@@ -20,7 +21,7 @@ function NewItemButton({}) {
 
     if (user && user.isAdmin) {
         return (
-            <button onClick={() => navigate(`/item/NEW`)}>Add a new item</button>
+            <button onClick={() => navigate(`item/NEW`)}>Add a new item</button>
         )
     }
     return null;

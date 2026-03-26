@@ -23,7 +23,7 @@ function OtherColorThumbnail({ id }) {
     if (!thumbnailUrl) return null;
 
     return (
-        <Link to={`/item/${id}`}>
+        <Link to={`/catalog/item/${id}`}>
             <img
                 src={thumbnailUrl}
                 alt={`Other colour`}
@@ -35,7 +35,7 @@ function OtherColorThumbnail({ id }) {
 
 
 
-export default function Item({ hideModifyButton = false, itemProp = null }) {
+export default function Item({itemProp = null }) {
     const { id } = useParams(); // Get the item ID from the URL
     const [fetchedItem, setFetchedItem] = useState(null);
     const [error, setError] = useState(null);
@@ -132,7 +132,7 @@ export default function Item({ hideModifyButton = false, itemProp = null }) {
 
     return (
         <div className={styles.container}>
-            <div className={styles.left}>
+            <div className={styles.images}>
                 <img className={styles.mainImage} src={(images[imageIndex] || images[0]) ?? null} alt={item.name ?? 'Photo'} />
                 <div className={styles.thumbnailContainer}>
                     {images.map((imgUrl, index) => ( //Iterate over all the images and add them to this container
@@ -146,11 +146,12 @@ export default function Item({ hideModifyButton = false, itemProp = null }) {
                     ))}
                 </div>
             </div>
-            <div className={styles.right}>
+            <div className={styles.details}>
                 <h1>{item.name ?? 'Name'}</h1>
                 <h3>${item.price ?? 0.00}</h3>
                 <p>{item.description ?? 'Description'}</p>
                 <p>Color: {item.color ?? 'Colour'}</p>
+                {otherColors.length > 0 &&
 
                 <div>Other colours:
                     <div className={'${styles.thumbnailContainer} ${styles.otherColorThumbnail}'}>
@@ -159,6 +160,7 @@ export default function Item({ hideModifyButton = false, itemProp = null }) {
                         ))}
                     </div>
                 </div>
+                }
                 <ModifyItem user={user} isEditing={isEditing} setIsEditing={setIsEditing} />
             </div>
             {isEditing && <Editor itemProp={item} onUpdate={handleUpdate} />}

@@ -9,6 +9,7 @@ import ErrorPage from "./components/ErrorPage.jsx";
 import Profile from "./components/Profile.jsx";
 import Catalog from "./components/Catalog.jsx";
 import Item from "./components/Item.jsx";
+import {FrontPage} from "./components/FrontPage.jsx";
 
 // Imports from Layout.jsx
 import Header from "./components/Header.jsx";
@@ -38,11 +39,15 @@ const router = createBrowserRouter([
                 element: <App />,
             },
             {
-                index: true, // setting index makes this child the front page
+              index: true,
+              element: <FrontPage />
+            },
+            {
+                path: "catalog/",
                 element: <Catalog />,
             },
             {
-                path: "item/:id",
+                path: "catalog/item/:id",
                 element: <Item />,
             },
             {

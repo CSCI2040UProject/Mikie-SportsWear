@@ -13,3 +13,4 @@
 /frontend/dist/
 /backend/target/
 /backend/data/mikie_sportswear.db
+/backend/uploads/
