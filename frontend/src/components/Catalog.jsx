@@ -50,9 +50,9 @@ function SortDropdown({searchParams, setSearchParams}) {
     )
 }
 //  get all values for the key as an array
-function getParamArray(searchParams, key) {
-    return searchParams.getAll(key);
-}
+const getParamArray = (searchParams, key) =>
+    searchParams.getAll(key).flatMap(v => v.split(",")).filter(Boolean);
+
 function ChecklistSection({ title, options, selectedValues, onChange }) {
     const [open, setOpen] = useState(true);
 
@@ -85,13 +85,16 @@ function FilterBar({searchParams, setSearchParams}) {
 
     const toggleParam = (key, value) => {
         const params = new URLSearchParams(searchParams);
-        const current = params.getAll(key);
+        const current = params.getAll(key).flatMap(v => v.split(","));
         params.delete(key);
-        if (current.includes(value)) {
-            current.filter(v => v !== value).forEach(v => params.append(key, v));
-        } else {
-            [...current, value].forEach(v => params.append(key, v));
+
+        const updated = current.includes(value)
+            ? current.filter(v => v !== value) : [...current, value];
+
+        if (updated.length > 0) {
+            params.set(key, updated.join(","));
         }
+
         setSearchParams(params);
     };
 
