@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="49fd6356-d128-4105-b049-553e895d04f8" name="Changes" comment="Switch to react and build frontend with vite">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+    <list default="true" id="49fd6356-d128-4105-b049-553e895d04f8" name="Changes" comment="changed minor bug for the white filter selection">
+      <changelist_data name="2ndImpact" email="69866513+2ndimpact@users.noreply.github.com" automatic="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/Catalog.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Catalog.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/styles/Catalog.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/styles/Catalog.module.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,7 +17,6 @@
   </component>
   <component name="EmbeddingIndexingInfo">
     <option name="cachedIndexableFilesCount" value="63" />
-    <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -39,12 +40,12 @@
     &quot;assignee&quot;: &quot;Rhys-de-Swart&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/CSCI2040UProject/Mike-SportsWear.git",
-    "accountId": "f8fe1496-e705-407f-9bb4-d699fc304211"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/CSCI2040UProject/Mike-SportsWear.git&quot;,
+    &quot;accountId&quot;: &quot;f8fe1496-e705-407f-9bb4-d699fc304211&quot;
   }
-}]]></component>
+}</component>
   <component name="KubernetesApiPersistence">{}</component>
   <component name="KubernetesApiProvider">{
   &quot;isMigrated&quot;: true
@@ -193,6 +194,7 @@
       <workItem from="1774288860383" duration="71000" />
       <workItem from="1774368154782" duration="6189000" />
       <workItem from="1774380166993" duration="1969000" />
+      <workItem from="1774457006704" duration="3881000" />
     </task>
     <task id="LOCAL-00001" summary="Working test communication between frontend and backend">
       <option name="closed" value="true" />
@@ -314,7 +316,15 @@
       <option name="project" value="LOCAL" />
       <updated>1774032240860</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="changed minor bug for the white filter selection">
+      <option name="closed" value="true" />
+      <created>1774400882585</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1774400882585</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -388,7 +398,9 @@
     <MESSAGE value="Added thumbnail urls to the dataset for performance" />
     <MESSAGE value="Revert &quot;implementing and adding our logo&quot;&#10;&#10;This reverts commit ce104b8a&#10;This deleted all of the additions for changing credentials most likely because of a force push" />
     <MESSAGE value="Editor page" />
-    <option name="LAST_COMMIT_MESSAGE" value="Editor page" />
+    <MESSAGE value="changed minor bug for the white filter selection" />
+    <MESSAGE value="small category update" />
+    <option name="LAST_COMMIT_MESSAGE" value="small category update" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

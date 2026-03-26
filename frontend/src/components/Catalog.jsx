@@ -49,54 +49,90 @@ function SortDropdown({searchParams, setSearchParams}) {
         </div>
     )
 }
-
-
-
-function FilterBar({searchParams, setSearchParams}) {
-    const color = searchParams.get("color") || "";
-    const category = searchParams.get("category") || "";
-
-    const updateFilter = (key, value) => {
-        const params = Object.fromEntries(searchParams);
-        if (value) params[key] = value;
-        else delete params[key];
-        setSearchParams(params);
-    };
+//  get all values for the key as an array
+function getParamArray(searchParams, key) {
+    return searchParams.getAll(key);
+}
+function ChecklistSection({ title, options, selectedValues, onChange }) {
+    const [open, setOpen] = useState(true);
 
     return (
-        <div className={styles.filterBar}>
-            <select
-                value={color}
-                onChange={(e) => updateFilter("color", e.target.value)}
-            >
-                <option value="">All Colors</option>
-                <option value="Black">Black</option>
-                <option value="White">White</option>
-                <option value="Blue">Blue</option>
-                <option value="Red">Red</option>
-            </select>
-
-            <select
-                value={category}
-                onChange={(e) => updateFilter("category", e.target.value)}
-            >
-                <option value="">All Categories</option>
-                <option value="Men">Men</option>
-                <option value="Women">Women</option>
-                <option value="Kids">Kids</option>
-                <option value="Shoes">Shoes</option>
-                <option value="Lifestyle">Lifestyle</option>
-                <option value="Accessories">Accessories</option>
-            </select>
-
-            <button onClick={() => setSearchParams({ sort: searchParams.get("sort") })}>
-                Clear Filters
+        <div className={styles.checklistSection}>
+            <button className={styles.checklistHeader} onClick={() => setOpen(o => !o)}>
+                <span>{title}</span>
+                <span>{open ? '▲' : '▼'}</span>
             </button>
+            {open && (
+                <div className={styles.checklistOptions}>
+                    {options.map(opt => (
+                        <label key={opt} className={styles.checklistItem}>
+                            <input
+                                type="checkbox"
+                                checked={selectedValues.includes(opt)}
+                                onChange={() => onChange(opt)}
+                            />
+                            <span>{opt}</span>
+                        </label>
+                    ))}
+                </div>
+            )}
         </div>
     );
 }
+function FilterBar({searchParams, setSearchParams}) {
+    const selectedColors     = getParamArray(searchParams, "color");
+    const selectedCategories = getParamArray(searchParams, "category");
 
+    const toggleParam = (key, value) => {
+        const params = new URLSearchParams(searchParams);
+        const current = params.getAll(key);
+        params.delete(key);
+        if (current.includes(value)) {
+            current.filter(v => v !== value).forEach(v => params.append(key, v));
+        } else {
+            [...current, value].forEach(v => params.append(key, v));
+        }
+        setSearchParams(params);
+    };
+
+    const clearFilters = () => {
+        const params = new URLSearchParams();
+        const sort = searchParams.get("sort");
+        if (sort) params.set("sort", sort);
+        setSearchParams(params);
+    };
+
+    const hasActiveFilters = selectedColors.length > 0 || selectedCategories.length > 0;
+
+    return (
+        <div className={styles.filterBar}>
+            <div className={styles.filterHeader}>
+                <span className={styles.filterTitle}>Filters</span>
+                {hasActiveFilters && (
+                    <button className={styles.clearFilters} onClick={clearFilters}>
+                        Clear all
+                    </button>
+                )}
+            </div>
+
+            <ChecklistSection
+                title="Color"
+                options={["Black", "White", "Blue", "Red"]}
+                selectedValues={selectedColors}
+                onChange={(val) => toggleParam("color", val)}
+            />
+
+            <ChecklistSection
+                title="Category"
+                options={["Men", "Women", "Kids", "Shoes", "Lifestyle", "Accessories"]}
+                selectedValues={selectedCategories}
+                onChange={(val) => toggleParam("category", val)}
+            />
+        </div>
+    );
+}
     function Catalog({}) {
+        const [showFilters, setShowFilters] = useState(true);
         const [data, setData] = useState(() => {
             const cached = sessionStorage.getItem('catalogData');
             return cached ? JSON.parse(cached) : null;
@@ -127,15 +163,17 @@ function FilterBar({searchParams, setSearchParams}) {
 
         useEffect(() => {
             const controller = new AbortController();
-
             async function loadData() {
-                const category = searchParams.get("category");
-                const color = searchParams.get("color");
+                const categories = searchParams.getAll("category");
+                const colors     = searchParams.getAll("color");
+
+                const query = new URLSearchParams();
+                query.set("sortBy", searchParams.get("sort") || "price-desc");
+                categories.forEach(c => query.append("category", c));
+                colors.forEach(c => query.append("color", c));
+
                 try {
-                    const response = await fetch(
-                        `/api/catalog?sortBy=${searchParams.get("sort")}${category ? "&category=" + category : ""}${color ? "&color=" + color : ""}`,
-                        { signal: controller.signal }
-                    );
+                    const response = await fetch(`/api/catalog?${query.toString()}`, { signal: controller.signal });
                     if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
                     const result = await response.json();
                     setData(result);
@@ -200,8 +238,12 @@ function FilterBar({searchParams, setSearchParams}) {
             <>
                 <NewItemButton/>
                 <SortDropdown searchParams={searchParams} setSearchParams={setSearchParams}/>
-                <FilterBar searchParams={searchParams} setSearchParams={setSearchParams}/>
-                <div>
+                <button className={styles.toggleFilters} onClick={() => setShowFilters(o => !o)}>
+                    {showFilters ? 'Hide Filters' : 'Show Filters'}
+                </button>
+                <div className={styles.catalogLayout}>
+                    {showFilters && <FilterBar searchParams={searchParams} setSearchParams={setSearchParams}/>}
+                    <div className={styles.catalogContent}>
                     <div className={styles.catalog}>
                         {data.slice(0, visibleCount).map((item, index) => (
                             <CreateItem key={item.id || index} item={item}/>
@@ -214,6 +256,7 @@ function FilterBar({searchParams, setSearchParams}) {
                             Loading more items...
                         </div>
                     )}
+                    </div>
                 </div>
             </>
         )
