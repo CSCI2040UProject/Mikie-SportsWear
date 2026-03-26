@@ -110,7 +110,7 @@ export default function Editor({ itemProp, onUpdate }) {
             }
             const result = await response.json();
             console.log(result);
-            navigate(`/item/${result.id}`);
+            navigate(`/catalog/item/${result.id}`);
             
             if (onUpdate) {
                 onUpdate(result);

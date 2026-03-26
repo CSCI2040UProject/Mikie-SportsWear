@@ -1,9 +1,18 @@
 .catalog {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 10px;
+    gap: 15px;
     margin: 0;
     width: 100%;
+}
+
+h4{
+    margin: 5px;
+}
+
+.price{
+    color: #707072;
+    margin: 0 5px 20px;
 }
 
 .item img{

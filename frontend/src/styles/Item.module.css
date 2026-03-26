@@ -1,8 +1,15 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
 .container {
     display: grid;
-    grid-template-columns: minmax(auto, 700px) 1fr; 
+    grid-template-columns: minmax(0, 800px) minmax(0, 800px);
     gap: 5%;
-    margin: 20px;
+    margin: 20px auto;
+    padding: 0 25px;
+    max-width: 1600px;
+    width: 100%;
 }
 
 @media (max-width: 1000px) {
@@ -11,9 +18,15 @@
     }
 }
 
+.details {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
 .mainImage {
     display: block;
-    width: min(700px, 100%);
+    width: 100%;
     height: auto;
     margin: 20px auto;
 }

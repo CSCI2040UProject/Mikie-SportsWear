@@ -8,6 +8,15 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+@font-face {
+  font-family: 'Nike';
+  src: url('https://www.nike.com/static/ncss/5.0/dotcom/fonts/Nike-Futura.woff2')
+}
+
+.nike {
+  font-family: 'Nike', sans-serif;
+}
+
 a {
   font-weight: 500;
   color: black;
