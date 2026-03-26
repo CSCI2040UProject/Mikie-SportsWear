@@ -11,6 +11,7 @@ export default function Editor({ itemProp, onUpdate }) {
         color: '',
         otherColors: ''
     });
+    const [selectedFile, setSelectedFile] = useState(null);
 
     useEffect(() => {
         if (itemProp) {
@@ -30,23 +31,57 @@ export default function Editor({ itemProp, onUpdate }) {
             [e.target.name]: e.target.value
         });
     }
+    function handleFileChange(e) {
+        setSelectedFile(e.target.files[0]);
+    }
 
-    function handleSubmit(e) {
+    async function uploadImage(file) {
+        if (!file) return null;
+
+        const res = await fetch("http://localhost:8080/upload", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/octet-stream"
+            },
+            body: file
+        });
+
+        const imageUrl = await res.text();
+        console.log("Uploaded image URL:", imageUrl);
+
+        return imageUrl;
+    }
+
+    async function handleSubmit(e) {
         e.preventDefault();
+
         const data = { ...formData };
 
+        // remove empty fields
         Object.keys(data).forEach((key) => {
             if (typeof data[key] === 'string' && data[key].trim() === "") {
                 delete data[key];
             }
         });
-        
+
         if (data.otherColors) {
-            data.otherColors = data.otherColors.split(',').map(color => color.trim()).filter(color => color !== "");
+            data.otherColors = data.otherColors
+                .split(',')
+                .map(color => color.trim())
+                .filter(color => color !== "");
+        }
+
+        if (selectedFile) {
+            const imageUrl = await uploadImage(selectedFile);
+
+            const fullUrl = `http://localhost:8080${imageUrl}`;
+
+            data.images = [fullUrl];
+            data.thumbnailUrl = fullUrl;
         }
 
         console.log('Form Data:', data);
-        sendInfo({data});
+        sendInfo({ data });
     }
 
     async function sendInfo({data}) {
@@ -101,7 +136,7 @@ export default function Editor({ itemProp, onUpdate }) {
                 <label htmlFor="otherColors">Other Colors</label>
                 <input id="otherColors" type="text" name="otherColors" placeholder="Other Colors" value={formData.otherColors} onChange={handleChange} />
                 <label htmlFor="file-input">Upload Image</label>
-                <input type="file" id="file-input" name="ImageStyle"/>
+                <input type="file" id="file-input" name="ImageStyle" onChange={handleFileChange}/>
                 <button type="submit">Submit</button>
             </form>
         </div>

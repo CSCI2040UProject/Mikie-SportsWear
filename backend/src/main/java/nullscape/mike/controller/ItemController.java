@@ -108,6 +108,9 @@ public class ItemController implements HttpHandler {
                     InputStream is = exchange.getRequestBody();
                     String requestBody = new String(is.readAllBytes(), StandardCharsets.UTF_8);
                     Item requestItem = jsonParser.fromJson(requestBody, Item.class);
+                    if (requestItem.getImages() == null && requestItem.getThumbnailUrl() != null) {
+                        requestItem.setImages(new String[]{requestItem.getThumbnailUrl()});
+                    }
                     // Handle case where body is empty object or null
                     if (requestItem == null) {
                         requestItem = new Item();
@@ -130,6 +133,10 @@ public class ItemController implements HttpHandler {
                         // Create new item
                         String newId = UUID.randomUUID().toString();
                         requestItem.setId(newId);
+
+                        if (requestItem.getImages() == null) {
+                            requestItem.setImages(new String[]{});
+                        }
                         
                         // Ensure other fields are initialized if null, to avoid SQL errors if columns are NOT NULL
                         // For now relying on repository handling, but ID is critical.

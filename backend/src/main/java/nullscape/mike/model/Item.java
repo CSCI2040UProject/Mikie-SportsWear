@@ -14,6 +14,7 @@ public class Item {
     private String productUrl;
     private String thumbnailUrl;
     private String[] images;
+    private String image;
 
     @Override
     public String toString() {
@@ -114,5 +115,13 @@ public class Item {
     }
     public void setImages(String[] images) {
         this.images = images;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }
