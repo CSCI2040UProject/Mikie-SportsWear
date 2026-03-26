@@ -6,9 +6,11 @@ import com.sun.net.httpserver.HttpServer;
 import nullscape.mike.controller.*;
 import nullscape.mike.database.CSVMigration;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.InetSocketAddress;
+import java.nio.file.Files;
 
 public class Main {
     public static void main(String[] args) throws IOException {
@@ -25,6 +27,28 @@ public class Main {
         server.createContext("/api/user", new UserHandler());
         server.createContext("/api/catalog", new ItemController());
         server.createContext("/api/catalog/thumbnail", new ThumbnailController());
+        server.createContext("/upload", new ImageController());
+
+        server.createContext("/uploads", exchange -> {
+            String filePath = "uploads" + exchange.getRequestURI().getPath().replace("/uploads", "");
+            File file = new File(filePath);
+
+            if (!file.exists()) {
+                exchange.sendResponseHeaders(404, -1);
+                return;
+            }
+
+            byte[] bytes = Files.readAllBytes(file.toPath());
+
+            // optional: basic content type
+            exchange.getResponseHeaders().add("Content-Type", "image/jpeg");
+
+            exchange.sendResponseHeaders(200, bytes.length);
+
+            OutputStream os = exchange.getResponseBody();
+            os.write(bytes);
+            os.close();
+        });
 
         server.start();
         System.out.println("Server is listening on port 8080...");
@@ -34,6 +58,7 @@ public class Main {
 class HelloWorldHandler implements HttpHandler {
     @Override
     public void handle(HttpExchange exchange) throws IOException {
+
         String response = "Hello from the java backend server!";
 
         exchange.getResponseHeaders().set("Content-Type", "text/plain"); //tell the browser that the content type is plain text as opposed to JSON

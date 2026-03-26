@@ -105,7 +105,8 @@ public class ItemRepository {
             pstmt.setString(7, serializeArray(item.getOtherColors()));
             pstmt.setString(8, item.getProductUrl());
             pstmt.setString(9, item.getThumbnailUrl());
-            pstmt.setString(10, serializeArray(item.getImages()));
+            String[] images = item.getImages() != null ? item.getImages() : new String[]{};
+            pstmt.setString(10, serializeArray(images));
 
             pstmt.executeUpdate();
         } catch (SQLException e) {
@@ -165,7 +166,9 @@ public class ItemRepository {
         }
         if (item.getImages() != null) {
             updates.add("image_urls = ?");
-            params.add(serializeArray(item.getImages()));
+            params.add(serializeArray(
+                    item.getImages().length == 0 ? new String[]{} : item.getImages()
+            ));
         }
 
         if (updates.isEmpty()) {
