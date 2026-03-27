@@ -12,6 +12,11 @@
     width: 100%;
 }
 
+.container:has(> :global(.editor)) {
+    grid-template-columns: minmax(0, 800px) minmax(0, 800px) minmax(0, 800px);
+    max-width: 2400px;
+}
+
 @media (max-width: 1000px) {
     .container {
         grid-template-columns: 1fr;

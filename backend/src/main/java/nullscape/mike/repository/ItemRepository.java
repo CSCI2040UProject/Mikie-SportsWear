@@ -15,7 +15,7 @@ public class ItemRepository {
 
     private static final Gson gson = new Gson();
 
-    public static List<Item> getAllItems() {
+    public static List<Item> getAllItems() { // I might delete this because it should almost never be used...
         List<Item> items = new ArrayList<>();
         String sql = "SELECT product_id, name, description, categories, price, color, other_colors, product_url, thumbnail_url, image_urls FROM items";
 
@@ -114,8 +114,36 @@ public class ItemRepository {
         }
     }
 
+    public static void addImage(String productId, String imageUrl) {
+        Item item = getItemById(productId);
+        if (item == null) return;
+
+        // Append new URL to existing images array
+        String[] existingImages = item.getImages() != null ? item.getImages() : new String[]{};
+        String[] updatedImages = new String[existingImages.length + 1];
+        System.arraycopy(existingImages, 0, updatedImages, 0, existingImages.length);
+        updatedImages[existingImages.length] = imageUrl;
+
+        // Set thumbnail if one doesn't exist yet
+        String thumbnail = item.getThumbnailUrl() != null ? item.getThumbnailUrl() : imageUrl;
+
+        String sql = "UPDATE items SET image_urls = ?, thumbnail_url = ? WHERE product_id = ?";
+
+        try (Connection conn = DatabaseManager.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, serializeArray(updatedImages));
+            pstmt.setString(2, thumbnail);
+            pstmt.setString(3, productId);
+
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     public static void removeItem(String productId) {
-        String sql = "DELETE FROM items WHERE product_id IS ?";
+        String sql = "DELETE FROM items WHERE product_id = ?";
 
         try (Connection conn = DatabaseManager.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
