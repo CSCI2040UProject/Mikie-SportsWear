@@ -2,7 +2,7 @@ import { Link } from "react-router";
 import styles from "../styles/Header.module.css";
 import Icon from '@mdi/react';
 import { mdiAccount } from '@mdi/js';
-const NAV_LINKS = ['Men', 'Women', 'Kids', 'Shoes', 'Accessories'];
+const NAV_LINKS = ['Men', 'Women', 'Kids',];
 
 const Header = ({username}) => {
     const newUsername = username.username;
