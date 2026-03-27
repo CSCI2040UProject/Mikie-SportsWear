@@ -154,7 +154,7 @@ export default function Item({itemProp = null }) {
                 {otherColors.length > 0 &&
 
                 <div>Other colours:
-                    <div className={'${styles.thumbnailContainer} ${styles.otherColorThumbnail}'}>
+                    <div className={`${styles.thumbnailContainer} ${styles.otherColorThumbnail}`}>
                         {otherColors.map((colorId, index) => (
                             <OtherColorThumbnail key={index} id={colorId} />
                         ))}

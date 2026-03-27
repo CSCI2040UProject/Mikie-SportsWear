@@ -39,6 +39,25 @@ public class ItemController implements HttpHandler {
         return queryPairs;
     }
 
+    private Map<String, String> parsePathParams(String path, String pattern) {
+        Map<String, String> pathParams = new HashMap<>();
+
+        String[] patternParts = pattern.split("/");
+        String[] pathParts = path.split("/");
+
+        if (patternParts.length != pathParts.length) {
+            return pathParams;
+        }
+
+        for (int i = 0; i < patternParts.length; i++) {
+            if (patternParts[i].startsWith("{") && patternParts[i].endsWith("}")) {
+                String key = patternParts[i].substring(1, patternParts[i].length() - 1);
+                pathParams.put(key, pathParts[i]);
+            }
+        }
+        return pathParams;
+    }
+
     @Override
     public void handle(HttpExchange exchange) throws IOException {
 
@@ -67,8 +86,6 @@ public class ItemController implements HttpHandler {
                         return;
                     }
                 }  else {
-                    // TODO: We should return the categories that are available to sort by
-                    // Also the colors if possible
 
                     String sortBy = params.get("sortBy");
                     String[] color = null;

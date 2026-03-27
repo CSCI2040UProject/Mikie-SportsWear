@@ -27,28 +27,7 @@ public class Main {
         server.createContext("/api/user", new UserHandler());
         server.createContext("/api/catalog", new ItemController());
         server.createContext("/api/catalog/thumbnail", new ThumbnailController());
-        server.createContext("/upload", new ImageController());
-
-        server.createContext("/uploads", exchange -> {
-            String filePath = "uploads" + exchange.getRequestURI().getPath().replace("/uploads", "");
-            File file = new File(filePath);
-
-            if (!file.exists()) {
-                exchange.sendResponseHeaders(404, -1);
-                return;
-            }
-
-            byte[] bytes = Files.readAllBytes(file.toPath());
-
-            // optional: basic content type
-            exchange.getResponseHeaders().add("Content-Type", "image/jpeg");
-
-            exchange.sendResponseHeaders(200, bytes.length);
-
-            OutputStream os = exchange.getResponseBody();
-            os.write(bytes);
-            os.close();
-        });
+        server.createContext("/api/images", new ImageController());
 
         server.start();
         System.out.println("Server is listening on port 8080...");
