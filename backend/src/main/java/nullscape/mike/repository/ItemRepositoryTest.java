@@ -2,6 +2,7 @@ package nullscape.mike.repository;
 
 import nullscape.mike.model.Item;
 import org.junit.jupiter.api.Test;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -35,5 +36,131 @@ public class ItemRepositoryTest {
         Item deleted = ItemRepository.getItemById("delete123");
 
         assertNull(deleted);
+    }
+
+    @Test
+    public void testFilterByCategory() {
+
+        Item item1 = new Item();
+        item1.setId("cat1-test");
+        item1.setName("Shirt");
+        item1.setPrice("$10");
+        item1.setCategories(new String[]{"test-men"});
+        item1.setColor("black");
+
+        Item item2 = new Item();
+        item2.setId("cat2-test");
+        item2.setName("Dress");
+        item2.setPrice("$20");
+        item2.setCategories(new String[]{"test-women"});
+        item2.setColor("red");
+
+        ItemRepository.removeItem("cat1-test");
+        ItemRepository.removeItem("cat2-test");
+
+        ItemRepository.addItem(item1);
+        ItemRepository.addItem(item2);
+
+        List<Item> results = ItemRepository.getItemsFilteredSorted(
+                null,
+                new String[]{"test-men"},
+                new String[]{"black"}
+        );
+
+        assertEquals(1, results.size());
+        assertEquals("Shirt", results.get(0).getName());
+
+        ItemRepository.removeItem("cat1-test");
+        ItemRepository.removeItem("cat2-test");
+    }
+
+    @Test
+    public void testSortByPrice() {
+
+        Item item1 = new Item();
+        item1.setId("price1-test");
+        item1.setName("Cheap Item");
+        item1.setPrice("$10");
+        item1.setCategories(new String[]{"test-price-sort"});
+        item1.setColor("black");
+
+        Item item2 = new Item();
+        item2.setId("price2-test");
+        item2.setName("Expensive Item");
+        item2.setPrice("$20");
+        item2.setCategories(new String[]{"test-price-sort"});
+        item2.setColor("red");
+
+        ItemRepository.removeItem("price1-test");
+        ItemRepository.removeItem("price2-test");
+
+        ItemRepository.addItem(item1);
+        ItemRepository.addItem(item2);
+
+        List<Item> ascResults = ItemRepository.getItemsFilteredSorted(
+                "price-asc",
+                new String[]{"test-price-sort"},
+                null
+        );
+
+        assertEquals(2, ascResults.size());
+        assertEquals("Cheap Item", ascResults.get(0).getName());
+
+        List<Item> descResults = ItemRepository.getItemsFilteredSorted(
+                "price-desc",
+                new String[]{"test-price-sort"},
+                null
+        );
+
+        assertEquals(2, descResults.size());
+        assertEquals("Expensive Item", descResults.get(0).getName());
+
+        ItemRepository.removeItem("price1-test");
+        ItemRepository.removeItem("price2-test");
+    }
+
+    @Test
+    public void testSortByName() {
+
+        Item item1 = new Item();
+        item1.setId("name1-test");
+        item1.setName("A Item");
+        item1.setPrice("$10");
+        item1.setCategories(new String[]{"test-name-sort"});
+        item1.setColor("black");
+
+        Item item2 = new Item();
+        item2.setId("name2-test");
+        item2.setName("Z Item");
+        item2.setPrice("$20");
+        item2.setCategories(new String[]{"test-name-sort"});
+        item2.setColor("red");
+
+        ItemRepository.removeItem("name1-test");
+        ItemRepository.removeItem("name2-test");
+
+        ItemRepository.addItem(item2);
+        ItemRepository.addItem(item1);
+
+        List<Item> ascResults = ItemRepository.getItemsFilteredSorted(
+                "name-asc",
+                new String[]{"test-name-sort"},
+                null
+        );
+
+        assertEquals(2, ascResults.size());
+        assertEquals("A Item", ascResults.get(0).getName());
+
+        List<Item> descResults = ItemRepository.getItemsFilteredSorted(
+                "name-desc",
+                new String[]{"test-name-sort"},
+                null
+        );
+
+        assertEquals(2, descResults.size());
+        assertEquals("Z Item", descResults.get(0).getName());
+
+        ItemRepository.removeItem("name1-test");
+        ItemRepository.removeItem("name2-test");
     }
 }
