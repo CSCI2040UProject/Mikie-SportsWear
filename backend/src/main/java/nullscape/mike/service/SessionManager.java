@@ -34,6 +34,12 @@ public class SessionManager {
         return activeSessions.get(token);
     }
 
+    public static boolean isAdmin(String token) {
+        if (token == null) return false;
+        User user = activeSessions.get(token);
+        return user != null && user.isAdmin();
+    }
+
     // Called when a user logs out
     public static void removeSession(String token) {
         if (token != null) {

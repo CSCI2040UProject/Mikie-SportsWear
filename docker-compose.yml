@@ -15,9 +15,12 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile.dev
+    environment:
+      - DB_PATH=/app/data/mikie_sportswear.db
     volumes:
       - ./backend:/app
       - maven-repo:/root/.m2 # Caches maven dependencies
+      - ./backend/data:/app/data # Persistent storage for SQLite database
     ports:
       - "8080:8080"
 

@@ -6,7 +6,7 @@
     height: 50px;
     display: flex;
     color: black;
-    background-color: white;
+    background-color: whitesmoke;
     align-items: center;
     justify-content: space-between;
     margin-bottom: 15px;
@@ -23,4 +23,22 @@
     height: 50px;
     margin-left: 10px;
     margin-top: 10px;
+}
+.nav {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+}
+
+.navLink {
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #111;
+    text-decoration: none;
+}
+
+.navLink:hover {
+    color: #707072;
 }
