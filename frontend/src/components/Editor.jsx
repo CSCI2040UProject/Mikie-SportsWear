@@ -1,5 +1,6 @@
 import {useNavigate, Link, useParams} from 'react-router';
 import {useState, useEffect} from 'react';
+import styles from "../styles/Editor.module.css";
 
 export default function Editor({ itemProp, onUpdate }) {
     const { id } = useParams();
@@ -11,7 +12,7 @@ export default function Editor({ itemProp, onUpdate }) {
         color: '',
         otherColors: ''
     });
-    const [selectedFile, setSelectedFile] = useState(null);
+    const [selectedFiles, setSelectedFiles] = useState(null);
 
     useEffect(() => {
         if (itemProp) {
@@ -32,24 +33,19 @@ export default function Editor({ itemProp, onUpdate }) {
         });
     }
     function handleFileChange(e) {
-        setSelectedFile(e.target.files[0]);
+        setSelectedFiles(Array.from(e.target.files));
     }
 
-    async function uploadImage(file) {
-        if (!file) return null;
+    async function uploadImage(file, productId) {
+        if (!file) return;
 
-        const res = await fetch("http://localhost:8080/upload", {
+        const res = await fetch(`http://localhost:8080/api/images?id=${productId}`, {
             method: "POST",
-            headers: {
-                "Content-Type": "application/octet-stream"
-            },
+            headers: { "Content-Type": "application/octet-stream" },
             body: file
         });
 
-        const imageUrl = await res.text();
-        console.log("Uploaded image URL:", imageUrl);
-
-        return imageUrl;
+        return await res.text();
     }
 
     async function handleSubmit(e) {
@@ -57,7 +53,6 @@ export default function Editor({ itemProp, onUpdate }) {
 
         const data = { ...formData };
 
-        // remove empty fields
         Object.keys(data).forEach((key) => {
             if (typeof data[key] === 'string' && data[key].trim() === "") {
                 delete data[key];
@@ -71,58 +66,51 @@ export default function Editor({ itemProp, onUpdate }) {
                 .filter(color => color !== "");
         }
 
-        if (selectedFile) {
-            const imageUrl = await uploadImage(selectedFile);
+        const productId = await sendInfo({ data });
+        if (!productId) return;
 
-            const fullUrl = `http://localhost:8080${imageUrl}`;
-
-            data.images = [fullUrl];
-            data.thumbnailUrl = fullUrl;
+        if (selectedFiles && selectedFiles.length > 0) {
+            for (const file of selectedFiles) {
+                await uploadImage(file, productId);
+            }
         }
 
-        console.log('Form Data:', data);
-        sendInfo({ data });
+        const updatedItem = await fetch(`/api/catalog?id=${productId}`).then(r => r.json());
+
+        navigate(`/catalog/item/${productId}`);
+        if (onUpdate) onUpdate(updatedItem);
     }
 
-    async function sendInfo({data}) {
-        let endpoint = "";
-        if (id === "NEW") {
-            endpoint = "/api/catalog";
-        } else {
-            endpoint = `/api/catalog?id=${id}`;
-        }
+    async function sendInfo({ data }) {
+        let endpoint = id === "NEW" ? "/api/catalog" : `/api/catalog?id=${id}`;
+
         try {
             const response = await fetch(endpoint, {
                 method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
+                headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(data)
             });
 
             if (response.status === 401) {
                 alert("You do not have the correct permissions to edit this item!");
-                return;
+                return null;
             } else if (!response.ok) {
                 const errorData = await response.json();
                 alert(errorData.errorMessage);
-                return;
+                return null;
             }
+
             const result = await response.json();
-            console.log(result);
-            navigate(`/catalog/item/${result.id}`);
-            
-            if (onUpdate) {
-                onUpdate(result);
-            }
+            return result.id;
 
         } catch (error) {
             console.log(error);
+            return null;
         }
     }
 
     return (
-        <div>
+        <div className={`${styles.editor} editor`}>
             <h1>Editor</h1>
             <form onSubmit={handleSubmit}>
                 <label htmlFor="name">Name</label>
@@ -136,7 +124,7 @@ export default function Editor({ itemProp, onUpdate }) {
                 <label htmlFor="otherColors">Other Colors</label>
                 <input id="otherColors" type="text" name="otherColors" placeholder="Other Colors" value={formData.otherColors} onChange={handleChange} />
                 <label htmlFor="file-input">Upload Image</label>
-                <input type="file" id="file-input" name="ImageStyle" onChange={handleFileChange}/>
+                <input type="file" id="file-input" multiple name="ImageStyle" onChange={handleFileChange}/>
                 <button type="submit">Submit</button>
             </form>
         </div>
