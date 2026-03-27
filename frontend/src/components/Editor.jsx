@@ -114,7 +114,7 @@ export default function Editor({ itemProp, onUpdate }) {
             <h1>Editor</h1>
             <form onSubmit={handleSubmit}>
                 <label htmlFor="name">Name</label>
-                <input id="name" type="text" name="name" placeholder="Name" value={formData.name} onChange={handleChange} />
+                <input id="name" type="text" name="name" placeholder="Name" value={formData.name} required onChange={handleChange} />
                 <label htmlFor="price">Price</label>
                 <input id="price" type="number" name="price" placeholder="Price" value={formData.price} onChange={handleChange} />
                 <label htmlFor="description">Description</label>
