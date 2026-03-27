@@ -6,10 +6,12 @@
 - Run [docker-compose.yml](./docker-compose.yml) with Intellij
 - Go to [localhost:5173](http://localhost:5173/)
 
-### To run manually:
+### To run in terminal:
 
-- Install [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
-- Run backend main<br>
-- Open the frontend folder in terminal
-- Run `npm install`
-- Run `npm run dev`
+- Starting in the root folder, perform one-time installation of npm (Node Package Manager) using  the following commands:
+`npm install`
+`cd frontend`
+`npm install`
+- ‘npm start’ to build the program, access website with localhost:5173
+- Control + C in the terminal to terminate the local server
+
