@@ -5,18 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="49fd6356-d128-4105-b049-553e895d04f8" name="Changes" comment="filters sidebar dynamic resizing">
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/FrontPage.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/styles/FrontPage.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/Catalog.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Catalog.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/Editor.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Editor.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/Item.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Item.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/main.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/main.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/styles/Catalog.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/styles/Catalog.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/styles/Item.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/styles/Item.module.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,6 +82,7 @@
     "Application.Main.executor": "Run",
     "Docker.Docker Frontend/Backend.executor": "Run",
     "Docker.docker-compose.yml: Compose Deployment.executor": "Run",
+    "JUnit.ItemRepositoryTest.executor": "Run",
     "Maven.Backend.executor": "Run",
     "Maven.backend [clean].executor": "Run",
     "Maven.backend [compile].executor": "Run",
@@ -123,7 +113,7 @@
     "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.intentionPowerPack",
+    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices",
     "to.speed.mode.migration.done": "true",
     "ts.external.directory.path": "/Users/rhysdeswart/Library/Application Support/JetBrains/IntelliJIdea2026.1/plugins/javascript-plugin/jsLanguageServicesImpl/external",
     "vue.rearranger.settings.migration": "true"
@@ -141,7 +131,22 @@
       <recent name="$PROJECT_DIR$/frontend/src/components" />
     </key>
   </component>
-  <component name="RunManager" selected="Docker.Docker Frontend/Backend">
+  <component name="RunManager" selected="JUnit.ItemRepositoryTest">
+    <configuration name="ItemRepositoryTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="backend" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="nullscape.mike.repository.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="nullscape.mike.repository" />
+      <option name="MAIN_CLASS_NAME" value="nullscape.mike.repository.ItemRepositoryTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
       <deployment type="docker-compose.yml">
         <settings />
@@ -150,9 +155,15 @@
     </configuration>
     <list>
       <item itemvalue="Docker.Docker Frontend/Backend" />
+      <item itemvalue="JUnit.ItemRepositoryTest" />
       <item itemvalue="Maven.Backend" />
       <item itemvalue="npm.Frontend" />
     </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.ItemRepositoryTest" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
