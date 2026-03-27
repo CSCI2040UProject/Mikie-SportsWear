@@ -12,6 +12,11 @@
     width: 100%;
 }
 
+.newEditor {
+    display: flex;
+    justify-content: center;
+}
+
 .container:has(> :global(.editor)) {
     grid-template-columns: minmax(0, 800px) minmax(0, 800px) minmax(0, 800px);
     max-width: 2400px;

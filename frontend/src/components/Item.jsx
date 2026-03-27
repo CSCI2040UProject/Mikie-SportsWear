@@ -84,9 +84,9 @@ export default function Item({itemProp = null }) {
     }, [id, itemProp]);
 
     if (id === "NEW") return (
-        <>
+        <div className={styles.newEditor}>
             <Editor itemProp={null} onUpdate={handleUpdate} />
-        </>
+        </div>
     )
 
     if (error) return <div>Error loading data!</div>;
