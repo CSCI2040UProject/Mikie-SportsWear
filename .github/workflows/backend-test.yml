@@ -1,0 +1,36 @@
+name: Backend Test
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        java-version: [21]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Java ${{ matrix.java-version }}
+        uses: actions/setup-java@v3
+        with:
+          java-version: ${{ matrix.java-version }}
+          distribution: 'temurin' # or adoptium
+
+      - name: Install Maven
+        run: sudo apt-get install -y maven
+
+      - name: Install project dependencies
+        working-directory: backend
+        run: mvn clean install
+
+      - name: Run backend tests
+        working-directory: backend
+        run: mvn test
