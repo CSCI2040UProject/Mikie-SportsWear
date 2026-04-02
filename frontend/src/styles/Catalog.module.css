@@ -30,9 +30,9 @@ h4{
 }
 .sortBar {
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     width: clamp(100px, 95%, 2250px);
-    margin: 10px auto 0 auto;
+    margin: 0 auto 0 auto;
 }
 
 .sortDropdown {
@@ -219,4 +219,25 @@ h4{
 
 .toggleFilters:hover {
     color: #707072;
+}
+
+.searchBar {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+    gap: 20px;
+    align-items: center;
+}
+
+.searchBar input{
+    width: 300px;
+    height: 30px;
+}
+
+.subHeader{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
 }

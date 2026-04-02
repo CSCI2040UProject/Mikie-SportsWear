@@ -90,8 +90,10 @@ public class ItemController implements HttpHandler {
                     String sortBy = params.get("sortBy");
                     String[] color = null;
                     String[] category = null;
+                    String name = null;
                     String colorString = params.get("color");
                     String categoryString = params.get("category");
+                    name = params.get("search");
                     if (colorString != null) {
                         color = colorString.split(",");
                     }
@@ -100,7 +102,7 @@ public class ItemController implements HttpHandler {
                     }
 
                     responseJson = jsonParser.toJson(
-                            ItemRepository.getItemsFilteredSorted(sortBy, category, color)
+                            ItemRepository.getItemsParams(name, sortBy, category, color)
                     );
             }
 

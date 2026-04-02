@@ -61,7 +61,8 @@ public class ItemRepositoryTest {
         ItemRepository.addItem(item1);
         ItemRepository.addItem(item2);
 
-        List<Item> results = ItemRepository.getItemsFilteredSorted(
+        List<Item> results = ItemRepository.getItemsParams(
+                null,
                 null,
                 new String[]{"test-men"},
                 new String[]{"black"}
@@ -97,7 +98,8 @@ public class ItemRepositoryTest {
         ItemRepository.addItem(item1);
         ItemRepository.addItem(item2);
 
-        List<Item> ascResults = ItemRepository.getItemsFilteredSorted(
+        List<Item> ascResults = ItemRepository.getItemsParams(
+                null,
                 "price-asc",
                 new String[]{"test-price-sort"},
                 null
@@ -106,7 +108,8 @@ public class ItemRepositoryTest {
         assertEquals(2, ascResults.size());
         assertEquals("Cheap Item", ascResults.get(0).getName());
 
-        List<Item> descResults = ItemRepository.getItemsFilteredSorted(
+        List<Item> descResults = ItemRepository.getItemsParams(
+                null,
                 "price-desc",
                 new String[]{"test-price-sort"},
                 null
@@ -142,7 +145,8 @@ public class ItemRepositoryTest {
         ItemRepository.addItem(item2);
         ItemRepository.addItem(item1);
 
-        List<Item> ascResults = ItemRepository.getItemsFilteredSorted(
+        List<Item> ascResults = ItemRepository.getItemsParams(
+                null,
                 "name-asc",
                 new String[]{"test-name-sort"},
                 null
@@ -151,7 +155,8 @@ public class ItemRepositoryTest {
         assertEquals(2, ascResults.size());
         assertEquals("A Item", ascResults.get(0).getName());
 
-        List<Item> descResults = ItemRepository.getItemsFilteredSorted(
+        List<Item> descResults = ItemRepository.getItemsParams(
+                null,
                 "name-desc",
                 new String[]{"test-name-sort"},
                 null

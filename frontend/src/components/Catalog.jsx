@@ -27,6 +27,40 @@ function NewItemButton({}) {
     return null;
 }
 
+function Searchbar({ searchParams, setSearchParams }) {
+    const search = searchParams.get("search");
+    const [inputValue, setInputValue] = useState(search || "");
+    const debounceRef = useRef(null);
+
+    const handleChange = (e) => {
+        const value = e.target.value;
+        setInputValue(value);
+
+        clearTimeout(debounceRef.current);
+        debounceRef.current = setTimeout(() => {
+            const params = new URLSearchParams(searchParams);
+            if (value) {
+                params.set("search", value);
+            } else {
+                params.delete("search");
+            }
+            setSearchParams(params);
+        }, 400);
+    };
+
+    return (
+        <form onSubmit={(e) => e.preventDefault()} className={styles.searchBar}>
+            <h3> Search </h3>
+            <input
+                type="text"
+                placeholder="Search items..."
+                value={inputValue}
+                onChange={handleChange}
+            />
+        </form>
+    );
+}
+
 function SortDropdown({searchParams, setSearchParams}) {
     const [sortOpen, setSortOpen] = useState(false);
     return (
@@ -170,11 +204,13 @@ function FilterBar({searchParams, setSearchParams}) {
             async function loadData() {
                 const categories = searchParams.getAll("category");
                 const colors     = searchParams.getAll("color");
+                const search = searchParams.get("search");
 
                 const query = new URLSearchParams();
                 query.set("sortBy", searchParams.get("sort") || "price-desc");
                 categories.forEach(c => query.append("category", c));
                 colors.forEach(c => query.append("color", c));
+                if (search) query.set("search", search);
 
                 try {
                     const response = await fetch(`/api/catalog?${query.toString()}`, { signal: controller.signal });
@@ -240,8 +276,11 @@ function FilterBar({searchParams, setSearchParams}) {
         if (!data) return <div></div>;
         return (
             <>
-                <NewItemButton/>
-                <SortDropdown searchParams={searchParams} setSearchParams={setSearchParams}/>
+                <div className={styles.subHeader}>
+                    <NewItemButton/>
+                    <Searchbar searchParams={searchParams} setSearchParams={setSearchParams}/>
+                    <SortDropdown searchParams={searchParams} setSearchParams={setSearchParams}/>
+                </div>
                 <button className={styles.toggleFilters} onClick={() => setShowFilters(o => !o)}>
                     {showFilters ? 'Hide Filters' : 'Show Filters'}
                 </button>

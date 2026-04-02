@@ -218,7 +218,7 @@ public class ItemRepository {
             e.printStackTrace();
         }
     }
-    public static List<Item> getItemsFilteredSorted(String sortBy, String[] category, String[] color) {
+    public static List<Item> getItemsParams(String search, String sortBy, String[] category, String[] color) {
         List<Item> items = new ArrayList<>();
 
         // Handle null sortBy safely
@@ -235,7 +235,13 @@ public class ItemRepository {
         StringBuilder whereClause = new StringBuilder();
         List<String> params = new ArrayList<>();
 
+        if (search != null && !search.trim().isEmpty()) {
+            whereClause.append("name LIKE ?");
+            params.add("%" + search.trim() + "%");
+        }
+
         if (category != null && category.length > 0) {
+            if (!whereClause.isEmpty()) whereClause.append(" AND ");
             whereClause.append(buildLikeConditions("categories", category, params));
         }
 
