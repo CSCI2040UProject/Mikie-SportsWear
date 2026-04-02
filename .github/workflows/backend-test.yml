@@ -9,6 +9,8 @@ on:
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
+    env:
+      DB_PATH: /tmp/mikie_sportswear.db
 
     strategy:
       matrix:
