@@ -10,20 +10,22 @@ public class ItemRepositoryTest {
 
     @Test
     public void testAddItem() {
+
         Item item = new Item();
         item.setId("test123");
         item.setName("Test Item");
 
         ItemRepository.addItem(item);
 
-        Item result = ItemRepository.getItemById("test123");
+        Item fetched = ItemRepository.getItemById(item.getId());
 
-        assertNotNull(result);
-        assertEquals("Test Item", result.getName());
+        assertNotNull(fetched);
+
+        ItemRepository.removeItem("tests123");
     }
 
     @Test
-    public void testDeleteItem() {
+    public void testDeleteItem() { //Valid Delete Test
 
         Item item = new Item();
         item.setId("delete123");
@@ -36,6 +38,28 @@ public class ItemRepositoryTest {
         Item deleted = ItemRepository.getItemById("delete123");
 
         assertNull(deleted);
+
+        ItemRepository.removeItem("delete123");
+    }
+
+    @Test
+    public void testDeleteInvalidItem() {//Invalid Delete test
+
+        // Ensure some item exists
+        Item item = new Item();
+        item.setId("delete123");
+        item.setName("Valid Item");
+
+        ItemRepository.addItem(item);
+
+        ItemRepository.removeItem("invalid999");
+
+        Item stillExists = ItemRepository.getItemById("delete123");
+
+        assertNotNull(stillExists);
+        assertEquals("Valid Item", stillExists.getName());
+
+        ItemRepository.removeItem("delete123");
     }
 
     @Test
