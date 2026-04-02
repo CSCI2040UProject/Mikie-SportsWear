@@ -45,7 +45,6 @@ public class ItemRepositoryTest {
     @Test
     public void testDeleteInvalidItem() {//Invalid Delete test
 
-        // Ensure some item exists
         Item item = new Item();
         item.setId("delete123");
         item.setName("Valid Item");

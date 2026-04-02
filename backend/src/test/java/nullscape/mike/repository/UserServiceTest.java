@@ -13,7 +13,7 @@ public class UserServiceTest {
     @Test
     public void testLogin_validCredentials() {
 
-        String username = "validUser_" + System.currentTimeMillis();//Super unique username
+        String username = "validUser_" + System.currentTimeMillis();//This is for unique usernames
         String password = "correctPass";
 
         UserRepository.addUser(username, password, false);
@@ -39,18 +39,14 @@ public class UserServiceTest {
     @Test
     public void testSignup_newUser() {
 
-        // Use unique username
         String username = "newUser_" + System.currentTimeMillis();
         String password = "newPass123";
 
-        // Act: create new user
         User newUser = UserRepository.addUser(username, password, false);
 
-        // Assert: user is created
         assertNotNull(newUser);
         assertEquals(username, newUser.getUsername());
 
-        // Verify user can log in
         User loginUser = UserService.validateUser(username, password);
         assertNotNull(loginUser);
     }
