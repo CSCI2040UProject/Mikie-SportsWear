@@ -17,6 +17,7 @@ public class LogoutHandler implements HttpHandler {
             return;
         }
 
+        // Only accept post requests
         if (!"POST".equalsIgnoreCase(exchange.getRequestMethod())) {
             exchange.sendResponseHeaders(405, -1);
             return;

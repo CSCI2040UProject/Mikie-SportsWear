@@ -6,57 +6,18 @@ import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import nullscape.mike.model.Item;
 import nullscape.mike.repository.ItemRepository;
+import nullscape.mike.service.ParsingService;
 import nullscape.mike.service.SessionManager;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
 public class ItemController implements HttpHandler {
     private static final Gson jsonParser = new GsonBuilder().disableHtmlEscaping().create();
-
-    // this should get the parameters passed in through the url e.g. items?id=123
-    private Map<String, String> parseQueryParams(String query) {
-        Map<String, String> queryPairs = new HashMap<>();
-        if (query == null || query.isEmpty()) {
-            return queryPairs;
-        }
-
-        String[] pairs = query.split("&");
-        for (String pair : pairs) {
-            int idx = pair.indexOf("=");
-            if (idx > 0) {
-                String key = URLDecoder.decode(pair.substring(0, idx), StandardCharsets.UTF_8);
-                String value = URLDecoder.decode(pair.substring(idx + 1), StandardCharsets.UTF_8);
-                queryPairs.put(key, value);
-            }
-        }
-        return queryPairs;
-    }
-
-    private Map<String, String> parsePathParams(String path, String pattern) {
-        Map<String, String> pathParams = new HashMap<>();
-
-        String[] patternParts = pattern.split("/");
-        String[] pathParts = path.split("/");
-
-        if (patternParts.length != pathParts.length) {
-            return pathParams;
-        }
-
-        for (int i = 0; i < patternParts.length; i++) {
-            if (patternParts[i].startsWith("{") && patternParts[i].endsWith("}")) {
-                String key = patternParts[i].substring(1, patternParts[i].length() - 1);
-                pathParams.put(key, pathParts[i]);
-            }
-        }
-        return pathParams;
-    }
 
     @Override
     public void handle(HttpExchange exchange) throws IOException {
@@ -67,9 +28,9 @@ public class ItemController implements HttpHandler {
             return;
         }
 
-        if ("GET".equalsIgnoreCase(exchange.getRequestMethod())) {
+        if ("GET".equalsIgnoreCase(exchange.getRequestMethod())) { // Getting one or more items
             try {
-                Map<String, String> params = parseQueryParams(exchange.getRequestURI().getQuery()); //items?id=123
+                Map<String, String> params = ParsingService.parseQueryParams(exchange.getRequestURI().getQuery()); //items?id=123
 
                 exchange.getResponseHeaders().set("Content-Type", "application/json");
 
@@ -85,15 +46,19 @@ public class ItemController implements HttpHandler {
                         exchange.sendResponseHeaders(404, -1); // Not found
                         return;
                     }
-                }  else {
+                }  else { // Since the frontend hasn't asked for a specific item we know it's asking for the catalog view
 
-                    String sortBy = params.get("sortBy");
+                    // Make sure that if the color or category isn't requested null gets passed to the get items method
                     String[] color = null;
                     String[] category = null;
-                    String name = null;
+
+
+                    String name = params.get("search");
+                    String sortBy = params.get("sortBy");
                     String colorString = params.get("color");
                     String categoryString = params.get("category");
-                    name = params.get("search");
+
+
                     if (colorString != null) {
                         color = colorString.split(",");
                     }
@@ -117,28 +82,29 @@ public class ItemController implements HttpHandler {
                 e.printStackTrace();
                 exchange.sendResponseHeaders(400, -1); // 400 Bad Request
             }
-        } else if ("POST".equalsIgnoreCase(exchange.getRequestMethod())) {
-            Map<String, String> params = parseQueryParams(exchange.getRequestURI().getQuery()); //items?id=123
-            String cookieHeader = exchange.getRequestHeaders().getFirst("Cookie");
-            String token = SessionManager.extractToken(cookieHeader);
 
-            if (SessionManager.isAdmin(token)){
+        } else if ("POST".equalsIgnoreCase(exchange.getRequestMethod())) { // Adding or modifying an item
+            Map<String, String> params = ParsingService.parseQueryParams(exchange.getRequestURI().getQuery()); //items?id=123
+
+            String cookieHeader = exchange.getRequestHeaders().getFirst("Cookie"); // Get the cookie header
+            String token = SessionManager.extractToken(cookieHeader); // Strip the header for the token
+
+            if (SessionManager.isAdmin(token)){ // Check the in memory list of logged in admins for the token
                 try {
                     InputStream is = exchange.getRequestBody();
                     String requestBody = new String(is.readAllBytes(), StandardCharsets.UTF_8);
-                    Item requestItem = jsonParser.fromJson(requestBody, Item.class);
+                    Item requestItem = jsonParser.fromJson(requestBody, Item.class); // Turn the JSON request into a Java object
+
+                    // If the item doesn't have full res images add the thumbnail
                     if (requestItem.getImages() == null && requestItem.getThumbnailUrl() != null) {
                         requestItem.setImages(new String[]{requestItem.getThumbnailUrl()});
-                    }
-                    // Handle case where body is empty object or null
-                    if (requestItem == null) {
-                        requestItem = new Item();
                     }
 
                     if (params.get("id") != null) { //Modifying an item
                         requestItem.setId(params.get("id"));
                         ItemRepository.modifyItem(requestItem);
                         Item responseItem = ItemRepository.getItemById(requestItem.getId());
+
                         String responseJson = jsonParser.toJson(responseItem);
                         byte[] responseBytes = responseJson.getBytes(StandardCharsets.UTF_8);
 
@@ -148,17 +114,16 @@ public class ItemController implements HttpHandler {
                         try (OutputStream os = exchange.getResponseBody()) {
                             os.write(responseBytes);
                         }
-                    } else {
-                        // Create new item
+
+                    } else { // Create new item
+
+                        // Create a new random UUID for the product id
                         String newId = UUID.randomUUID().toString();
                         requestItem.setId(newId);
 
                         if (requestItem.getImages() == null) {
                             requestItem.setImages(new String[]{});
                         }
-                        
-                        // Ensure other fields are initialized if null, to avoid SQL errors if columns are NOT NULL
-                        // For now relying on repository handling, but ID is critical.
                         
                         ItemRepository.addItem(requestItem);
                         
@@ -175,15 +140,18 @@ public class ItemController implements HttpHandler {
                             os.write(responseBytes);
                         }
                     }
+
                 } catch (Exception e) {
                     e.printStackTrace();
                     exchange.sendResponseHeaders(500, -1);
                 }
-            } else {
+
+            } else { // The user requesting isn't an admin
                 exchange.sendResponseHeaders(401, -1);
             }
-        } else if ("DELETE".equalsIgnoreCase(exchange.getRequestMethod())) {
-            Map<String, String> params = parseQueryParams(exchange.getRequestURI().getQuery()); //items?id=123
+
+        } else if ("DELETE".equalsIgnoreCase(exchange.getRequestMethod())) { // Delete an item
+            Map<String, String> params = ParsingService.parseQueryParams(exchange.getRequestURI().getQuery()); //items?id=123
             String cookieHeader = exchange.getRequestHeaders().getFirst("Cookie");
             String token = SessionManager.extractToken(cookieHeader);
 
@@ -191,7 +159,11 @@ public class ItemController implements HttpHandler {
                 if (params.get("id") != null) {
                     ItemRepository.removeItem(params.get("id"));
                     exchange.sendResponseHeaders(200, -1);
+                } else {
+                    exchange.sendResponseHeaders(400, -1);
                 }
+            } else {
+                exchange.sendResponseHeaders(401, -1);
             }
         }
     }

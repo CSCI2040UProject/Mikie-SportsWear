@@ -25,8 +25,6 @@ public class UserHandler implements HttpHandler {
 
     private static class Response {
         String username;
-        String password;
-        String token;
         boolean isAdmin;
 
         Response(String username, boolean admin) {
@@ -54,9 +52,9 @@ public class UserHandler implements HttpHandler {
                     return;
                 }
 
+                // Get the user from the cookie received
                 String cookieHeader = exchange.getRequestHeaders().getFirst("Cookie");
                 request.token = SessionManager.extractToken(cookieHeader);
-
                 User requestingUser = SessionManager.getUserFromToken(request.token);
 
                 if (requestingUser == null) { //If the requesting user isn't logged in
@@ -66,19 +64,22 @@ public class UserHandler implements HttpHandler {
 
                 User newUser;
                 if (request.password != null) { //Modifying yourself
-                    SessionManager.removeSession(request.token);
+                    SessionManager.removeSession(request.token); // Remove the token that would match to the old credentials
 
                     String updatedUsername = (request.username == null || request.username.trim().isEmpty()) ? requestingUser.getUsername() : request.username;
                     String updatedPassword = (request.password.trim().isEmpty()) ? requestingUser.getPassword() : request.password;
 
+                    // Add the user after modified to the session manager and return the new cookie
                     newUser = UserRepository.modifyUser(requestingUser, new User(updatedUsername, updatedPassword, requestingUser.isAdmin()));
                     String newCookieHeader = SessionManager.CreateCookieHeader(SessionManager.createSession(newUser));
                     exchange.getResponseHeaders().add("Set-Cookie", newCookieHeader);
                 }
+
                 else if (requestingUser.isAdmin()) { //Modifying someone else to be an admin
                     User userToModify = Objects.requireNonNull(UserRepository.findByUsername(request.username));
-                    SessionManager.removeByUsername(request.username);
+                    SessionManager.removeByUsername(request.username); // Logout that user
                     newUser = UserRepository.modifyUser(userToModify, new User(userToModify.getUsername(), userToModify.getPassword(), request.isAdmin));
+
                 } else {
                     exchange.sendResponseHeaders(400, -1);
                     return;
@@ -103,7 +104,6 @@ public class UserHandler implements HttpHandler {
                 exchange.sendResponseHeaders(400, -1); // 400 Bad Request
             }
 
-        } else if ("GET".equalsIgnoreCase(exchange.getRequestMethod())) {
         }
     }
 }

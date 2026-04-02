@@ -70,6 +70,7 @@ public class RegisterHandler implements HttpHandler {
                 }
                 return;
             }
+
             // Check if the username already exists
             // Check the database first to see if the username is already taken
             User existUser = UserRepository.findByUsername(request.username);
@@ -79,15 +80,16 @@ public class RegisterHandler implements HttpHandler {
                 byte[] responseBytes = responseJson.getBytes();
 
                 exchange.getResponseHeaders().set("Content-Type", "application/json");
-                exchange.sendResponseHeaders(409, responseBytes.length);
+                exchange.sendResponseHeaders(409, responseBytes.length); // Conflict code
 
                 try (OutputStream os = exchange.getResponseBody()) {
                     os.write(responseBytes);
                 }
                 return;
             }
-            User authUser = UserService.registerUser(request.username, request.password, false);
 
+
+            User authUser = UserService.registerUser(request.username, request.password, false);
             if (authUser != null) { // Registration successful
 
                 // Create a new token
@@ -110,6 +112,7 @@ public class RegisterHandler implements HttpHandler {
                 try (OutputStream os = exchange.getResponseBody()) {
                     os.write(responseBytes);
                 }
+
             } else {
                 // if it is not an existing user but registration fails send a 400 error
                 Response response = new Response("Registration failed");

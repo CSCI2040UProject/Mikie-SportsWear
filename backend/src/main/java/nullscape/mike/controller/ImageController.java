@@ -4,54 +4,15 @@ import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import nullscape.mike.repository.ImageRepository;
 import nullscape.mike.repository.ItemRepository;
+import nullscape.mike.service.ParsingService;
 
-import java.io.*;
-import java.net.URLDecoder;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.*;
-import java.util.HashMap;
+import java.io.File;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.nio.file.Files;
 import java.util.Map;
-import java.util.UUID;
 
 public class ImageController implements HttpHandler {
-
-    private Map<String, String> parsePathParams(String path, String pattern) {
-        Map<String, String> pathParams = new HashMap<>();
-
-        String[] patternParts = pattern.split("/");
-        String[] pathParts = path.split("/");
-
-        if (patternParts.length != pathParts.length) {
-            return pathParams;
-        }
-
-        for (int i = 0; i < patternParts.length; i++) {
-            if (patternParts[i].startsWith("{") && patternParts[i].endsWith("}")) {
-                String key = patternParts[i].substring(1, patternParts[i].length() - 1);
-                pathParams.put(key, pathParts[i]);
-            }
-        }
-        return pathParams;
-    }
-
-    // this should get the parameters passed in through the url e.g. items?id=123
-    private Map<String, String> parseQueryParams(String query) {
-        Map<String, String> queryPairs = new HashMap<>();
-        if (query == null || query.isEmpty()) {
-            return queryPairs;
-        }
-
-        String[] pairs = query.split("&");
-        for (String pair : pairs) {
-            int idx = pair.indexOf("=");
-            if (idx > 0) {
-                String key = URLDecoder.decode(pair.substring(0, idx), StandardCharsets.UTF_8);
-                String value = URLDecoder.decode(pair.substring(idx + 1), StandardCharsets.UTF_8);
-                queryPairs.put(key, value);
-            }
-        }
-        return queryPairs;
-    }
 
     private static final String UPLOAD_DIR = "uploads/";
 
@@ -62,25 +23,27 @@ public class ImageController implements HttpHandler {
         exchange.getResponseHeaders().add("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
         exchange.getResponseHeaders().add("Access-Control-Allow-Headers", "Content-Type");
 
-        if ("OPTIONS".equalsIgnoreCase(exchange.getRequestMethod())) {
+        if ("OPTIONS".equalsIgnoreCase(exchange.getRequestMethod())) { // For the browser
             exchange.sendResponseHeaders(204, -1);
             return;
         }
 
-        if ("GET".equalsIgnoreCase(exchange.getRequestMethod())) {
-            Map<String, String> params = parsePathParams(exchange.getRequestURI().getPath(), "/api/images/{filename}");
-            String filename = params.get("filename");
+        if ("GET".equalsIgnoreCase(exchange.getRequestMethod())) { // The client is asking for an image
+            Map<String, String> params = ParsingService.parsePathParams(exchange.getRequestURI().getPath(), "/api/images/{filename}");
+            String filename = params.get("filename"); // UUID for the specific image
             String filePath = "uploads/" + filename;
             File file = new File(filePath);
 
-            if (!file.exists()) {
+            if (!file.exists()) { // No image with that UUID found
                 exchange.sendResponseHeaders(404, -1);
                 return;
             }
 
+            // Convert the image into raw bytes
+            // As long as we tell the frontend that this data is a jpeg this works
             byte[] bytes = Files.readAllBytes(file.toPath());
 
-            // optional: basic content type
+            // Tell the frontend that the content is an image
             exchange.getResponseHeaders().add("Content-Type", "image/jpeg");
 
             exchange.sendResponseHeaders(200, bytes.length);
@@ -90,8 +53,10 @@ public class ImageController implements HttpHandler {
             os.close();
         }
 
-        else if ("POST".equalsIgnoreCase(exchange.getRequestMethod())) {
-            Map<String, String> params = parseQueryParams(exchange.getRequestURI().getQuery()); //items?id=123
+        else if ("POST".equalsIgnoreCase(exchange.getRequestMethod())) { // The client is uploading an image
+            Map<String, String> params = ParsingService.parseQueryParams(exchange.getRequestURI().getQuery()); //items?id=123
+
+            // Add the image UUID returned from ImageRepository to the item database
             ItemRepository.addImage(params.get("id"), ImageRepository.addImage(exchange.getRequestBody()));
 
             exchange.sendResponseHeaders(200, -1);

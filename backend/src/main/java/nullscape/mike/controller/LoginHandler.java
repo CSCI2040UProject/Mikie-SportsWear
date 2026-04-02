@@ -49,6 +49,7 @@ public class LoginHandler implements HttpHandler {
             LoginRequest loginReq = jsonParser.fromJson(new String(is.readAllBytes()), LoginRequest.class);
             // As long as the names of the variables in the java class line up with the names in the JSON gson sorta just figures it out
 
+            // Get the user if it exists in the DB
             User authUser = UserService.validateUser(loginReq.username, loginReq.password);
 
             if (authUser != null) { // Login successful
