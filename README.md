@@ -1,9 +1,11 @@
 # Mikie Sportswear
 
-### Overview
-Mikie Sportswear is an online sportswear catalog that allows users to view products and their pricing. Users can sort, search and filter by colour, product ID, gender, price, and many more categories. 
+## Overview
+Mikie Sportswear is an online sportswear catalog that allows users to view products and their pricing. Users can search products, sort them by price and filter by colour, product ID, gender, price, and many more categories. 
 
 There are two access levels: user and admin. The data is pulled from an SQL database, which can be changed by admins only; they have permissions to add, delete, and edit products. Admins also have the permission to grant admin access to user accounts.
+
+## Build Instructions
 
 ### Run with docker:
 
@@ -12,11 +14,11 @@ There are two access levels: user and admin. The data is pulled from an SQL data
 - Go to [localhost:5173](http://localhost:5173/)
 
 ### Run in Terminal:
-
+- Install [Maven](https://maven.apache.org/download.cgi)
 - Starting in the root folder, perform one-time installation of npm (Node Package Manager) using  the following commands:
 `npm install`
 `cd frontend`
 `npm install`
-- ‘npm start’ to build the program, access website with localhost:5173
+- ‘npm start’ to run the program, access website with localhost:5173
 - Control + C in the terminal to terminate the local server
 
