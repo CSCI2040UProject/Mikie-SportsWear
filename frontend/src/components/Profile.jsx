@@ -7,8 +7,7 @@ import { mdiAccountCircle } from '@mdi/js';
 
 function Profile() {
     const [signUp, setSignUp] = useState(false);
-    const {user, setUser, loggedIn, setLoggedIn } = useOutletContext();
-
+    const {user, setUser, loggedIn, setLoggedIn,setWishlist,fetchWishlist } = useOutletContext();
     async function sendInfo({data, signUp}) {
         const endpoint = signUp ? '/api/register/' : '/api/login/';
         try {
@@ -29,7 +28,7 @@ function Profile() {
                 return;
             }
             const result = await response.json();
-
+            await fetchWishlist();
             setUser(result);
             setLoggedIn(true);
             localStorage.setItem("Login", JSON.stringify(result));
@@ -46,6 +45,7 @@ function Profile() {
         const data = Object.fromEntries(formData.entries());
         console.log('Form Data:', data);
         sendInfo({data, signUp});
+        setWishlist([]);
     }
 
     function handleSubmitRegister(e) {
@@ -77,6 +77,7 @@ function Profile() {
             console.log(response);
             setUser("");
             setLoggedIn(false);
+            setWishlist([]);
             localStorage.removeItem("Login");
             localStorage.removeItem("loggedIn");
         } catch (error){

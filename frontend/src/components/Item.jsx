@@ -41,11 +41,52 @@ export default function Item({itemProp = null }) {
     const [error, setError] = useState(null);
     const [imageIndex, setImageIndex] = useState(0);
     const [isEditing, setIsEditing] = useState(false);
-    const {user} = useOutletContext();
+    const { user, loggedIn, wishlist, setWishlist } = useOutletContext();
     const navigate = useNavigate();
-
-    // Use the prop if available, otherwise use local state
     const item = itemProp || fetchedItem;
+
+    const isWishlisted = wishlist && item
+        ? wishlist.some(w => w.id === item.id)
+        : false;
+        //adding item to the wishlist
+    async function addToWishlist() {
+        if (!loggedIn) {
+            alert("Please log in to save items to your wishlist!");
+            navigate('/profile/');
+            return;
+        }
+        try {
+            const res = await fetch('/api/wishlist/', {
+                method: 'POST',
+                credentials: 'include',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    productId: item.id,
+                    productName: item.name,
+                    price: item.price,
+                    image: item.images?.[0] ?? null
+                })
+            });
+            if (res.ok) setWishlist(prev => [...prev, item]);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+        //removing products from the wishlist
+    async function removeFromWishlist() {
+        try {
+            const res = await fetch('/api/wishlist/', {
+                method: 'DELETE',
+                credentials: 'include',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ productId: item.id })
+            });
+            if (res.ok) setWishlist(prev => prev.filter(w => w.id !== item.id));
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    // Use the prop if available, otherwise use local state
 
     const handleUpdate = (updatedItem) => {
         setFetchedItem(updatedItem);
@@ -151,6 +192,9 @@ export default function Item({itemProp = null }) {
                 <h3>${item.price ?? 0.00}</h3>
                 <p>{item.description ?? 'Description'}</p>
                 <p>Color: {item.color ?? 'Colour'}</p>
+                <button onClick={isWishlisted ? removeFromWishlist : addToWishlist}>
+                    {isWishlisted ? '♥ Remove from Wishlist' : '♡ Add to Wishlist'}
+                </button>
                 {otherColors.length > 0 &&
 
                 <div>Other colours:

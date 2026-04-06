@@ -53,6 +53,20 @@ public class DatabaseManager {
                     image_urls TEXT
                 )
             """);
+
+            // Create wishlist table
+            stmt.execute("""
+            CREATE TABLE IF NOT EXISTS wishlist (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                username TEXT NOT NULL,
+                product_id TEXT NOT NULL,
+                product_name TEXT NOT NULL,
+                price REAL NOT NULL,
+                image TEXT,
+                UNIQUE(username, product_id),
+                FOREIGN KEY (username) REFERENCES users(username)
+            )
+        """);
         } catch (SQLException e) {
             e.printStackTrace();
             throw new RuntimeException("Failed to initialize database schema", e);

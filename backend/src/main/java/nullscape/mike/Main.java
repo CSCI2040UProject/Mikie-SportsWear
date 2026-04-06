@@ -26,7 +26,7 @@ public class Main {
         server.createContext("/api/catalog", new ItemController());
         server.createContext("/api/catalog/thumbnail", new ThumbnailController());
         server.createContext("/api/images", new ImageController());
-
+        server.createContext("/api/wishlist", new WishlistHandler());
         server.start();
         System.out.println("Server is listening on port 8080...");
     }
