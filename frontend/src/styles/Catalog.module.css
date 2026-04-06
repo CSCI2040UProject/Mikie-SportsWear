@@ -30,7 +30,7 @@ h4{
 }
 .sortBar {
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     width: clamp(100px, 95%, 2250px);
     margin: 0 auto 0 auto;
 }
@@ -223,21 +223,71 @@ h4{
 
 .searchBar {
     display: flex;
-    flex-direction: row;
-    width: 100%;
-    justify-content: center;
     gap: 20px;
     align-items: center;
+}
+.inputWrapper {
+    position: relative;
+}
+
+.searchIcon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 16px;
+}
+
+.inputWrapper input {
+    padding-left: 35px; /* makes space for icon */
 }
 
 .searchBar input{
     width: 300px;
-    height: 30px;
+    height: 40px;
+    padding: 0 15px;
+    font-size: 16px;
+    border: none;
+    border-radius: 25px;
+    background-color: #f5f5f5;
+    outline: none;
+    transition: all 0.2s ease;
 }
+.searchBar input:focus {
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+    background-color: #ffffff;
+    transform: scale(1.03);
+}
+.searchBar button {
+    height: 40px;
+    padding: 0 15px;
+    border: none;
+    border-radius: 20px;
+    background-color: #333;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.searchBar button:hover {
+    background-color: #555;
+}
+
 
 .subHeader{
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: space-between;
+    padding: 10px 0;
+    width: clamp(100px, 95%, 2250px);
+    margin: 0 auto;
+}
+.inputWrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.inputWrapper input {
+    padding-left: 2.2rem;
 }

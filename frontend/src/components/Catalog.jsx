@@ -50,14 +50,17 @@ function Searchbar({ searchParams, setSearchParams }) {
 
     return (
         <form onSubmit={(e) => e.preventDefault()} className={styles.searchBar}>
-            <h3> Search </h3>
-            <input
-                type="text"
-                placeholder="Search items..."
-                value={inputValue}
-                onChange={handleChange}
-            />
+            <div className={styles.inputWrapper}>
+                <span className={styles.searchIcon}>🔍</span>
+                <input
+                    type="text"
+                    placeholder="Search items..."
+                    value={inputValue}
+                    onChange={handleChange}
+                />
+            </div>
         </form>
+
     );
 }
 
