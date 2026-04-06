@@ -18,7 +18,7 @@ import Header from "./components/Header.jsx";
 const Root = () => {
     const [user, setUser] = useState(JSON.parse(localStorage.getItem("Login")) || "");
     const [loggedIn, setLoggedIn] = useState(JSON.parse(localStorage.getItem("loggedIn")) || false);
-    const [wishlist, setWishlist] = useState([]);
+    const [wishlist, setWishlist] = useState(null);
 
     async function fetchWishlist() {
         try {
@@ -30,9 +30,9 @@ const Root = () => {
         } catch (error) {
             console.log(error);
         }
-
-
     }
+    if (!wishlist) fetchWishlist();
+
     return (
         <>
             <Header username={user} wishlist={wishlist} />

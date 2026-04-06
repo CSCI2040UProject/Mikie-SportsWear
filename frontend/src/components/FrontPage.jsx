@@ -31,7 +31,7 @@ export function FrontPage() {
                 <img src="/Mikie.svg" alt="Mikie"  width={500} height={500} />
             </Link>
                 <div style={{ textAlign: 'center', paddingTop: '2vh' }}>
-                <p2> Best Sellers </p2>
+                <p> Best Sellers </p>
                 </div>
 
                 <div style={{ display: 'flex', gap: '20px', justifyContent: 'center', marginTop: '40px' }}>

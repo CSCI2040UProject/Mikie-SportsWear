@@ -5,17 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="49fd6356-d128-4105-b049-553e895d04f8" name="Changes" comment="fix for env of github actions testing">
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/nullscape/mike/service/ParsingService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/nullscape/mike/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/nullscape/mike/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/nullscape/mike/controller/ImageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/nullscape/mike/controller/ImageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/nullscape/mike/controller/ItemController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/nullscape/mike/controller/ItemController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/nullscape/mike/controller/LoginHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/nullscape/mike/controller/LoginHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/nullscape/mike/controller/LogoutHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/nullscape/mike/controller/LogoutHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/nullscape/mike/controller/RegisterHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/nullscape/mike/controller/RegisterHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/nullscape/mike/controller/ThumbnailController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/nullscape/mike/controller/ThumbnailController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/nullscape/mike/controller/UserHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/nullscape/mike/controller/UserHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/nullscape/mike/repository/ImageRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/nullscape/mike/repository/ImageRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/FrontPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/FrontPage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/main.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,6 +39,7 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="HARD" />
     <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
@@ -459,7 +452,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="origin/Rhys-sqlite-fork" />
+                        <option value="origin/main" />
                       </list>
                     </value>
                   </entry>
