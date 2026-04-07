@@ -4,10 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="49fd6356-d128-4105-b049-553e895d04f8" name="Changes" comment="fix for env of github actions testing">
+    <list default="true" id="49fd6356-d128-4105-b049-553e895d04f8" name="Changes" comment="First load empty wishlist bug fixed">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/c704c12c-ae27-4085-9996-240615667695.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/c704c12c-ae27-4085-9996-240615667695.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/FrontPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/FrontPage.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/main.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/main.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/nullscape/mike/controller/ItemController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/nullscape/mike/controller/ItemController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/nullscape/mike/repository/ItemRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/nullscape/mike/repository/ItemRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/Item.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Item.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/styles/Catalog.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/styles/Catalog.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/styles/Item.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/styles/Item.module.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,7 +19,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="97" />
+    <option name="cachedIndexableFilesCount" value="95" />
     <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
   </component>
   <component name="FileTemplateManagerImpl">
@@ -253,6 +257,7 @@
       <workItem from="1774926715511" duration="465000" />
       <workItem from="1774981663133" duration="7000" />
       <workItem from="1775100313354" duration="6072000" />
+      <workItem from="1775520948714" duration="5917000" />
     </task>
     <task id="LOCAL-00001" summary="Working test communication between frontend and backend">
       <option name="closed" value="true" />
@@ -430,7 +435,15 @@
       <option name="project" value="LOCAL" />
       <updated>1775104500344</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="First load empty wishlist bug fixed">
+      <option name="closed" value="true" />
+      <created>1775502596706</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1775502596707</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -512,7 +525,8 @@
     <MESSAGE value="Automate tests" />
     <MESSAGE value="Search implemented" />
     <MESSAGE value="fix for env of github actions testing" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix for env of github actions testing" />
+    <MESSAGE value="First load empty wishlist bug fixed" />
+    <option name="LAST_COMMIT_MESSAGE" value="First load empty wishlist bug fixed" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -14,6 +14,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.Map;
+import java.util.Objects;
 import java.util.UUID;
 
 public class ItemController implements HttpHandler {
@@ -38,7 +39,8 @@ public class ItemController implements HttpHandler {
 
                 // Check if requesting a specific item by ID
                 String itemId = params.get("id");
-                if (itemId != null && !itemId.isEmpty()) {
+                boolean similar = Objects.equals(params.get("similar"), "true");
+                if (itemId != null && !itemId.isEmpty() && !similar) {
                     var item = ItemRepository.getItemById(itemId);
                     if (item != null) {
                         responseJson = jsonParser.toJson(item);
@@ -46,7 +48,18 @@ public class ItemController implements HttpHandler {
                         exchange.sendResponseHeaders(404, -1); // Not found
                         return;
                     }
-                }  else { // Since the frontend hasn't asked for a specific item we know it's asking for the catalog view
+                }
+                else if (similar) { // The frontend is asking for similar items
+                    var items = ItemRepository.getSimilarItems(itemId);
+                    if (items != null) {
+                        responseJson = jsonParser.toJson(items);
+                    } else {
+                        exchange.sendResponseHeaders(404, -1); // Not found
+                        return;
+                    }
+                }
+
+                else { // Since the frontend hasn't asked for a specific item we know it's asking for the catalog view
 
                     // Make sure that if the color or category isn't requested null gets passed to the get items method
                     String[] color = null;

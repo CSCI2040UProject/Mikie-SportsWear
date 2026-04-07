@@ -568,7 +568,7 @@
     </routine>
     <schema id="214" parent="1" name="main">
       <Current>1</Current>
-      <LastIntrospectionLocalTimestamp>2026-03-26.09:57:33</LastIntrospectionLocalTimestamp>
+      <LastIntrospectionLocalTimestamp>2026-04-06.20:04:43</LastIntrospectionLocalTimestamp>
     </schema>
     <argument id="215" parent="14">
       <ArgumentDirection>R</ArgumentDirection>
@@ -1810,102 +1810,161 @@
     <table id="628" parent="214" name="sqlite_master">
       <System>1</System>
     </table>
-    <table id="629" parent="214" name="users"/>
-    <column id="630" parent="627" name="product_id">
+    <table id="629" parent="214" name="sqlite_sequence">
+      <System>1</System>
+    </table>
+    <table id="630" parent="214" name="users"/>
+    <table id="631" parent="214" name="wishlist"/>
+    <column id="632" parent="627" name="product_id">
       <Position>1</Position>
       <StoredType>TEXT|0s</StoredType>
     </column>
-    <column id="631" parent="627" name="name">
+    <column id="633" parent="627" name="name">
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StoredType>TEXT|0s</StoredType>
     </column>
-    <column id="632" parent="627" name="description">
+    <column id="634" parent="627" name="description">
       <Position>3</Position>
       <StoredType>TEXT|0s</StoredType>
     </column>
-    <column id="633" parent="627" name="categories">
+    <column id="635" parent="627" name="categories">
       <Position>4</Position>
       <StoredType>TEXT|0s</StoredType>
     </column>
-    <column id="634" parent="627" name="price">
+    <column id="636" parent="627" name="price">
       <Position>5</Position>
       <StoredType>TEXT|0s</StoredType>
     </column>
-    <column id="635" parent="627" name="color">
+    <column id="637" parent="627" name="color">
       <Position>6</Position>
       <StoredType>TEXT|0s</StoredType>
     </column>
-    <column id="636" parent="627" name="other_colors">
+    <column id="638" parent="627" name="other_colors">
       <Position>7</Position>
       <StoredType>TEXT|0s</StoredType>
     </column>
-    <column id="637" parent="627" name="product_url">
+    <column id="639" parent="627" name="product_url">
       <Position>8</Position>
       <StoredType>TEXT|0s</StoredType>
     </column>
-    <column id="638" parent="627" name="thumbnail_url">
+    <column id="640" parent="627" name="thumbnail_url">
       <Position>9</Position>
       <StoredType>TEXT|0s</StoredType>
     </column>
-    <column id="639" parent="627" name="image_urls">
+    <column id="641" parent="627" name="image_urls">
       <Position>10</Position>
       <StoredType>TEXT|0s</StoredType>
     </column>
-    <index id="640" parent="627" name="sqlite_autoindex_items_1">
+    <index id="642" parent="627" name="sqlite_autoindex_items_1">
       <ColNames>product_id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Unique>1</Unique>
     </index>
-    <key id="641" parent="627">
+    <key id="643" parent="627">
       <ColNames>product_id</ColNames>
       <Primary>1</Primary>
       <UnderlyingIndexName>sqlite_autoindex_items_1</UnderlyingIndexName>
     </key>
-    <column id="642" parent="628" name="type">
+    <column id="644" parent="628" name="type">
       <Position>1</Position>
       <StoredType>TEXT|0s</StoredType>
     </column>
-    <column id="643" parent="628" name="name">
+    <column id="645" parent="628" name="name">
       <Position>2</Position>
       <StoredType>TEXT|0s</StoredType>
     </column>
-    <column id="644" parent="628" name="tbl_name">
+    <column id="646" parent="628" name="tbl_name">
       <Position>3</Position>
       <StoredType>TEXT|0s</StoredType>
     </column>
-    <column id="645" parent="628" name="rootpage">
+    <column id="647" parent="628" name="rootpage">
       <Position>4</Position>
       <StoredType>INT|0s</StoredType>
     </column>
-    <column id="646" parent="628" name="sql">
+    <column id="648" parent="628" name="sql">
       <Position>5</Position>
       <StoredType>TEXT|0s</StoredType>
     </column>
-    <column id="647" parent="629" name="username">
+    <column id="649" parent="629" name="name">
+      <Position>1</Position>
+    </column>
+    <column id="650" parent="629" name="seq">
+      <Position>2</Position>
+    </column>
+    <column id="651" parent="630" name="username">
       <Position>1</Position>
       <StoredType>TEXT|0s</StoredType>
     </column>
-    <column id="648" parent="629" name="password">
+    <column id="652" parent="630" name="password">
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StoredType>TEXT|0s</StoredType>
     </column>
-    <column id="649" parent="629" name="is_admin">
+    <column id="653" parent="630" name="is_admin">
       <DefaultExpression>0</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>3</Position>
       <StoredType>INTEGER|0s</StoredType>
     </column>
-    <index id="650" parent="629" name="sqlite_autoindex_users_1">
+    <index id="654" parent="630" name="sqlite_autoindex_users_1">
       <ColNames>username</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Unique>1</Unique>
     </index>
-    <key id="651" parent="629">
+    <key id="655" parent="630">
       <ColNames>username</ColNames>
       <Primary>1</Primary>
       <UnderlyingIndexName>sqlite_autoindex_users_1</UnderlyingIndexName>
+    </key>
+    <column id="656" parent="631" name="id">
+      <AutoIncrement>1</AutoIncrement>
+      <Position>1</Position>
+      <StoredType>INTEGER|0s</StoredType>
+    </column>
+    <column id="657" parent="631" name="username">
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+      <StoredType>TEXT|0s</StoredType>
+    </column>
+    <column id="658" parent="631" name="product_id">
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+      <StoredType>TEXT|0s</StoredType>
+    </column>
+    <column id="659" parent="631" name="product_name">
+      <NotNull>1</NotNull>
+      <Position>4</Position>
+      <StoredType>TEXT|0s</StoredType>
+    </column>
+    <column id="660" parent="631" name="price">
+      <NotNull>1</NotNull>
+      <Position>5</Position>
+      <StoredType>REAL|0s</StoredType>
+    </column>
+    <column id="661" parent="631" name="image">
+      <Position>6</Position>
+      <StoredType>TEXT|0s</StoredType>
+    </column>
+    <foreign-key id="662" parent="631">
+      <ColNames>username</ColNames>
+      <RefColNames>username</RefColNames>
+      <RefTableName>users</RefTableName>
+    </foreign-key>
+    <index id="663" parent="631" name="sqlite_autoindex_wishlist_1">
+      <ColNames>username
+product_id</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <Unique>1</Unique>
+    </index>
+    <key id="664" parent="631">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <key id="665" parent="631">
+      <ColNames>username
+product_id</ColNames>
+      <UnderlyingIndexName>sqlite_autoindex_wishlist_1</UnderlyingIndexName>
     </key>
   </database-model>
 </dataSource>

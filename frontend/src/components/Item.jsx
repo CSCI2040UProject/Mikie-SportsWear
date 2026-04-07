@@ -33,11 +33,34 @@ function OtherColorThumbnail({ id }) {
     );
 }
 
+function CreateItem({item}) {
+    return (
+        <Link to={'/catalog/item/' + item.id}>
+            <div className={styles.item}>
+                <img src={item.thumbnailUrl} alt="Item" />
+                <h4>{item.name}</h4>
+                <p className={styles.price}>${item.price}</p>
+            </div>
+        </Link>
+    )
+}
+
+function SimilarItems({similarItems}){
+    return (
+        <div className={styles.similarItems}>
+            {similarItems.map ((item, index) => (
+                <CreateItem key={item.id || index} item={item}/>
+                ))}
+        </div>
+    )
+}
+
 
 
 export default function Item({itemProp = null }) {
     const { id } = useParams(); // Get the item ID from the URL
     const [fetchedItem, setFetchedItem] = useState(null);
+    const [similarItems, setSimilarItems] = useState([]);
     const [error, setError] = useState(null);
     const [imageIndex, setImageIndex] = useState(0);
     const [isEditing, setIsEditing] = useState(false);
@@ -124,6 +147,26 @@ export default function Item({itemProp = null }) {
         };
     }, [id, itemProp]);
 
+    useEffect(() => {
+        const controller = new AbortController();
+        async function loadData() {
+
+            try {
+                const response = await fetch(`/api/catalog?id=${id}&similar=true`, { signal: controller.signal });
+                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                const result = await response.json();
+                setSimilarItems(result);
+            } catch (err) {
+                if (err.name !== 'AbortError') {
+                    console.error('Fetch error:', err);
+                    setError(err.message);
+                }
+            }
+        }
+        loadData();
+        return () => controller.abort();
+    }, [fetchedItem]);
+
     if (id === "NEW") return (
         <div className={styles.newEditor}>
             <Editor itemProp={null} onUpdate={handleUpdate} />
@@ -136,7 +179,7 @@ export default function Item({itemProp = null }) {
     function ModifyItem({user, isEditing, setIsEditing}){
         if (user && user.isAdmin){
             return (
-                <div>
+                <div className={styles.modifyButtons}>
                     <button onClick={() => setIsEditing(!isEditing)}>
                         {isEditing ? "Close Editor" : "Modify this item"}
                     </button>
@@ -208,6 +251,9 @@ export default function Item({itemProp = null }) {
                 <ModifyItem user={user} isEditing={isEditing} setIsEditing={setIsEditing} />
             </div>
             {isEditing && <Editor itemProp={item} onUpdate={handleUpdate} />}
+            <h1 className={styles.similarHeader}>Similar Items</h1>
+            <SimilarItems similarItems={similarItems}/>
+            <div style={{ gridColumn: '1 / -1', height: '30px' }} /> {/*I HATE THIS STUPID DUMMY SPACER THAT I HAVE TO USE BECAUSE SAFARI ISN'T ACTING RIGHT WITH THE HEIGHT OF THE CONTAINER*/}
         </div>
         )
 }
