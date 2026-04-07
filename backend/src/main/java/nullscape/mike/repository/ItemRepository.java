@@ -73,6 +73,24 @@ public class ItemRepository {
         return null;
     }
 
+    public static Item getItemByName(String productId) {
+        String sql = "SELECT product_id, name, description, categories, price, color, other_colors, product_url, thumbnail_url, image_urls FROM items WHERE name = ?";
+
+        try (Connection conn = DatabaseManager.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, productId);
+            ResultSet rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                return mapResultSetToItem(rs);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public static String getThumbnail(String productId) {
         String sql = "SELECT thumbnail_url FROM items WHERE product_id = ?";
 

@@ -21,7 +21,45 @@ public class ItemRepositoryTest {
 
         assertNotNull(fetched);
 
-        ItemRepository.removeItem("tests123");
+        ItemRepository.removeItem("test123");
+    }
+
+    @Test
+    public void testAddNullItem() {
+
+        Item item = new Item();
+        item.setId("test123");
+        item.setName(null);
+
+        ItemRepository.addItem(item);
+
+        Item fetched = ItemRepository.getItemById(item.getId());
+
+        assertNull(fetched);
+
+        ItemRepository.removeItem("test123");
+    }
+
+    @Test
+    public void testAddDupeItem() {
+
+        Item item = new Item();
+        item.setId("test123");
+        item.setName("dupe");
+
+        Item item2 = new Item();
+        item2.setId("test123");
+        item2.setName("dupe2");
+
+        ItemRepository.addItem(item);
+        ItemRepository.addItem(item2);
+
+        Item fetched = ItemRepository.getItemById("test123");
+
+        assertNotNull(fetched);
+        assertEquals("dupe", fetched.getName()); // second item should NOT overwrite
+
+        ItemRepository.removeItem("test123");
     }
 
     @Test
