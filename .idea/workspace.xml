@@ -136,7 +136,7 @@
       <recent name="$PROJECT_DIR$/frontend/src" />
     </key>
   </component>
-  <component name="RunManager" selected="Docker.Docker Frontend/Backend">
+  <component name="RunManager" selected="JUnit.ItemRepositoryTest">
     <configuration name="ItemRepositoryTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="backend" />
       <extension name="coverage">

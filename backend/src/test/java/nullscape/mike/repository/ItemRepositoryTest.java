@@ -100,6 +100,13 @@ public class ItemRepositoryTest {
     }
 
     @Test
+    public void testDeleteItemNullId() { //delete null item
+        assertDoesNotThrow(() -> {
+            ItemRepository.removeItem(null);
+        });
+    }
+
+    @Test
     public void testFilterByCategory() {
 
         Item item1 = new Item();
