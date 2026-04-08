@@ -16,7 +16,8 @@ public class Main {
         // Run CSV migration on first startup (only migrates if tables are empty)
         CSVMigration.runMigration();
 
-        HttpServer server = HttpServer.create(new InetSocketAddress(8080), 0);
+        int port = Integer.parseInt(System.getenv().getOrDefault("PORT", "8080"));
+        HttpServer server = HttpServer.create(new InetSocketAddress(port), 0);
 
         server.createContext("/api/helloworld/", new HelloWorldHandler());
         server.createContext("/api/login/", new LoginHandler());
@@ -28,7 +29,7 @@ public class Main {
         server.createContext("/api/images", new ImageController());
         server.createContext("/api/wishlist", new WishlistHandler());
         server.start();
-        System.out.println("Server is listening on port 8080...");
+        System.out.println("Server is listening on port " + port + "...");
     }
 }       
 

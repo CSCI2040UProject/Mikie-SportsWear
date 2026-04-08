@@ -17,6 +17,7 @@ services:
       dockerfile: Dockerfile.dev
     environment:
       - DB_PATH=/app/data/mikie_sportswear.db
+      - PORT=8080
     volumes:
       - ./backend:/app
       - maven-repo:/root/.m2 # Caches maven dependencies
