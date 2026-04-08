@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="49fd6356-d128-4105-b049-553e895d04f8" name="Changes" comment="Dynamic port selection for production Dockerfile" />
+    <list default="true" id="49fd6356-d128-4105-b049-553e895d04f8" name="Changes" comment="_redirects file added for cloudflare pages">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/public/_redirects" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/public/_redirects" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -467,7 +470,15 @@
       <option name="project" value="LOCAL" />
       <updated>1775671899883</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="_redirects file added for cloudflare pages">
+      <option name="closed" value="true" />
+      <created>1775672442859</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1775672442859</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -527,7 +538,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="login and sign-up form added" />
     <MESSAGE value="Solved the browser security issue" />
     <MESSAGE value="file path stuff" />
     <MESSAGE value="Changes to filepaths and working directory to make code work in and out of docker plus better run configs. return code 401 for invalid credentials." />
@@ -552,7 +562,8 @@
     <MESSAGE value="Trigger build" />
     <MESSAGE value="Add production Dockerfile and cloudbuild config" />
     <MESSAGE value="Dynamic port selection for production Dockerfile" />
-    <option name="LAST_COMMIT_MESSAGE" value="Dynamic port selection for production Dockerfile" />
+    <MESSAGE value="_redirects file added for cloudflare pages" />
+    <option name="LAST_COMMIT_MESSAGE" value="_redirects file added for cloudflare pages" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
