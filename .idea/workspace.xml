@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="49fd6356-d128-4105-b049-553e895d04f8" name="Changes" comment="cloudflare redirect changed">
+    <list default="true" id="49fd6356-d128-4105-b049-553e895d04f8" name="Changes" comment="_redirects file replaced with cloudflare redirect worker">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/Editor.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Editor.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/backend/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/nullscape/mike/repository/ImageRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/nullscape/mike/repository/ImageRepository.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -486,7 +487,15 @@
       <option name="project" value="LOCAL" />
       <updated>1775673193970</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="_redirects file replaced with cloudflare redirect worker">
+      <option name="closed" value="true" />
+      <created>1775674070439</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1775674070439</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -546,7 +555,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="file path stuff" />
     <MESSAGE value="Changes to filepaths and working directory to make code work in and out of docker plus better run configs. return code 401 for invalid credentials." />
     <MESSAGE value="loading the catalog into memory and sending the JSON to the frontend" />
     <MESSAGE value="Restructuring and cookies" />
@@ -571,7 +579,8 @@
     <MESSAGE value="Dynamic port selection for production Dockerfile" />
     <MESSAGE value="_redirects file added for cloudflare pages" />
     <MESSAGE value="cloudflare redirect changed" />
-    <option name="LAST_COMMIT_MESSAGE" value="cloudflare redirect changed" />
+    <MESSAGE value="_redirects file replaced with cloudflare redirect worker" />
+    <option name="LAST_COMMIT_MESSAGE" value="_redirects file replaced with cloudflare redirect worker" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

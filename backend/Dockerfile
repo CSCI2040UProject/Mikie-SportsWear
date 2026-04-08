@@ -8,7 +8,7 @@ COPY pom.xml .
 RUN mvn dependency:go-offline
 
 COPY src ./src
-RUN mvn compile
+RUN mvn compile -DskipTests
 
 EXPOSE 8080
 CMD ["mvn", "exec:java", "-Dexec.mainClass=nullscape.mike.Main"]
