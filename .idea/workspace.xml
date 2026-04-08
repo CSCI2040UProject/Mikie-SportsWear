@@ -4,11 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="49fd6356-d128-4105-b049-553e895d04f8" name="Changes" comment="First load empty wishlist bug fixed">
+    <list default="true" id="49fd6356-d128-4105-b049-553e895d04f8" name="Changes" comment="Updated npm to resolve vulnerabilities">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/Item.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Item.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/styles/Item.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/styles/Item.module.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -440,7 +437,15 @@
       <option name="project" value="LOCAL" />
       <updated>1775502596707</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="Updated npm to resolve vulnerabilities">
+      <option name="closed" value="true" />
+      <created>1775667758974</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1775667758974</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -523,7 +528,8 @@
     <MESSAGE value="Search implemented" />
     <MESSAGE value="fix for env of github actions testing" />
     <MESSAGE value="First load empty wishlist bug fixed" />
-    <option name="LAST_COMMIT_MESSAGE" value="First load empty wishlist bug fixed" />
+    <MESSAGE value="Updated npm to resolve vulnerabilities" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated npm to resolve vulnerabilities" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
