@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 public class ItemRepository {
 
@@ -302,31 +303,34 @@ public class ItemRepository {
         List<Item> items = new ArrayList<>();
         List<String> params = new ArrayList<>();
 
-        String likeConditions = buildLikeConditions("categories", item.getCategories(), params);
-        String sql = "SELECT product_id, name, price, thumbnail_url FROM items"
-                + " WHERE " + likeConditions
-                + " AND product_id != ?";
-        params.add(productId); // exclude the current item
+        String[] categories = Objects.requireNonNull(item).getCategories();
+        if (categories != null) {
+            String likeConditions = buildLikeConditions("categories", item.getCategories(), params);
+            String sql = "SELECT product_id, name, price, thumbnail_url FROM items"
+                    + " WHERE " + likeConditions
+                    + " AND product_id != ?";
+            params.add(productId); // exclude the current item
 
-        try (Connection conn = DatabaseManager.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            try (Connection conn = DatabaseManager.getConnection();
+                 PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
-            for (int i = 0; i < params.size(); i++) {
-                pstmt.setString(i + 1, params.get(i));
-            }
-
-            try (ResultSet rs = pstmt.executeQuery()) {
-                while (rs.next()) {
-                    Item similarItem = new Item();
-                    similarItem.setId(rs.getString("product_id"));
-                    similarItem.setName(rs.getString("name"));
-                    similarItem.setPrice(rs.getString("price"));
-                    similarItem.setThumbnailUrl(rs.getString("thumbnail_url"));
-                    items.add(similarItem);
+                for (int i = 0; i < params.size(); i++) {
+                    pstmt.setString(i + 1, params.get(i));
                 }
+
+                try (ResultSet rs = pstmt.executeQuery()) {
+                    while (rs.next()) {
+                        Item similarItem = new Item();
+                        similarItem.setId(rs.getString("product_id"));
+                        similarItem.setName(rs.getString("name"));
+                        similarItem.setPrice(rs.getString("price"));
+                        similarItem.setThumbnailUrl(rs.getString("thumbnail_url"));
+                        items.add(similarItem);
+                    }
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
         return items;
     }

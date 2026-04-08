@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="49fd6356-d128-4105-b049-553e895d04f8" name="Changes" comment="_redirects file replaced with cloudflare redirect worker">
+    <list default="true" id="49fd6356-d128-4105-b049-553e895d04f8" name="Changes" comment="Optimizations for running in the cloud">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/backend/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/nullscape/mike/repository/ImageRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/nullscape/mike/repository/ImageRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/nullscape/mike/repository/ItemRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/nullscape/mike/repository/ItemRepository.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -495,7 +494,15 @@
       <option name="project" value="LOCAL" />
       <updated>1775674070439</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="Optimizations for running in the cloud">
+      <option name="closed" value="true" />
+      <created>1775682720731</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1775682720731</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -555,7 +562,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Changes to filepaths and working directory to make code work in and out of docker plus better run configs. return code 401 for invalid credentials." />
     <MESSAGE value="loading the catalog into memory and sending the JSON to the frontend" />
     <MESSAGE value="Restructuring and cookies" />
     <MESSAGE value="changing profile colour" />
@@ -580,7 +586,8 @@
     <MESSAGE value="_redirects file added for cloudflare pages" />
     <MESSAGE value="cloudflare redirect changed" />
     <MESSAGE value="_redirects file replaced with cloudflare redirect worker" />
-    <option name="LAST_COMMIT_MESSAGE" value="_redirects file replaced with cloudflare redirect worker" />
+    <MESSAGE value="Optimizations for running in the cloud" />
+    <option name="LAST_COMMIT_MESSAGE" value="Optimizations for running in the cloud" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
