@@ -239,10 +239,6 @@ export default function Item({itemProp = null }) {
                 <h3>${item.price ?? 0.00}</h3>
                 <p>{item.description ?? 'Description'}</p>
                 <p>Color: {item.color ?? 'Colour'}</p>
-                <button onClick={isWishlisted ? removeFromWishlist : addToWishlist}>
-                    {isWishlisted ? '♥ Remove from Wishlist' : '♡ Add to Wishlist'}
-                </button>
-                <button onClick={handleCompare}> Compare</button>
                 {otherColors.length > 0 &&
 
                 <div>Other colours:
@@ -253,6 +249,10 @@ export default function Item({itemProp = null }) {
                     </div>
                 </div>
                 }
+                <button onClick={isWishlisted ? removeFromWishlist : addToWishlist}>
+                    {isWishlisted ? '♥ Remove from Wishlist' : '♡ Add to Wishlist'}
+                </button>
+                <button onClick={handleCompare}> Compare</button>
                 <ModifyItem user={user} isEditing={isEditing} setIsEditing={setIsEditing} />
             </div>
             {isEditing && <Editor itemProp={item} onUpdate={handleUpdate} />}

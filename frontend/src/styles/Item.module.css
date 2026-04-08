@@ -36,6 +36,10 @@
     padding-bottom: 30px;
 }
 
+.details button {
+    margin: 5px 0;
+}
+
 .mainImage {
     display: block;
     width: 100%;
@@ -74,10 +78,9 @@
 }
 
 .modifyButtons{
-    margin-top: 20px;
     display: flex;
     justify-content: space-around;
-    gap: 20px;
+    gap: 10px;
 }
 
 .modifyButtons button{
