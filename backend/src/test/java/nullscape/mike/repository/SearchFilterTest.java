@@ -22,6 +22,51 @@ public class SearchFilterTest {
     }
 
     @Test
+    void testNullSearch(){
+        List<Item> allItems = ItemRepository.getAllItems();
+        List<Item> results = ItemRepository.getItemsParams(
+                null,
+                null,
+                null,
+                null
+        );
+        assertNotNull(results);
+        assertEquals(allItems.size(), results.size());
+
+        for (Item item : results) {
+            assertNotNull(item.getId());
+        }
+    }
+
+    @Test
+    void testNothingSearch(){
+        List<Item> results = ItemRepository.getItemsParams(
+                "nothing",
+                null,
+                null,
+                null
+        );
+        assertTrue(results.isEmpty());
+    }
+
+    @Test
+    void testSearch() {
+        List<Item> results = ItemRepository.getItemsParams(
+                "Jordan",
+                null,
+                null,
+                null
+        );
+        assertFalse(results.isEmpty());
+
+        for (Item item : results) {
+            String name = item.getName() == null ? "" : item.getName().toLowerCase();
+            String description = item.getDescription() == null ? "" : item.getDescription().toLowerCase();
+            assertTrue(name.contains("jordan") || description.contains("jordan"));
+        }
+    }
+
+    @Test
     void testSearchSpecialCharactersMixed() {
         List<Item> results = ItemRepository.getItemsParams(
                 "Jordan@123!",
@@ -49,6 +94,7 @@ public class SearchFilterTest {
 
     @Test
     void testEmptySearchReturnsAll() {
+        List<Item> allItems = ItemRepository.getAllItems();
         List<Item> results = ItemRepository.getItemsParams(
                 "",
                 null,
@@ -57,6 +103,14 @@ public class SearchFilterTest {
         );
 
         assertNotNull(results);
+        assertEquals(allItems.size(), results.size());
+
+        for (Item item : results) {
+            assertNotNull(item.getId());
+        }
+
+
+
     }
 
     @Test
