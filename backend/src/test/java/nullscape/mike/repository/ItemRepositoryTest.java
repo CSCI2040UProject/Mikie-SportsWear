@@ -174,7 +174,7 @@ public class ItemRepositoryTest {
         );
 
         assertEquals(2, ascResults.size());
-        assertEquals("Cheap Item", ascResults.get(0).getName());
+        assertEquals("Cheap Item", ascResults.getFirst().getName());
 
         List<Item> descResults = ItemRepository.getItemsParams(
                 null,
@@ -184,7 +184,7 @@ public class ItemRepositoryTest {
         );
 
         assertEquals(2, descResults.size());
-        assertEquals("Expensive Item", descResults.get(0).getName());
+        assertEquals("Expensive Item", descResults.getFirst().getName());
 
         ItemRepository.removeItem("price1-test");
         ItemRepository.removeItem("price2-test");
@@ -221,7 +221,7 @@ public class ItemRepositoryTest {
         );
 
         assertEquals(2, ascResults.size());
-        assertEquals("A Item", ascResults.get(0).getName());
+        assertEquals("A Item", ascResults.getFirst().getName());
 
         List<Item> descResults = ItemRepository.getItemsParams(
                 null,
@@ -231,7 +231,7 @@ public class ItemRepositoryTest {
         );
 
         assertEquals(2, descResults.size());
-        assertEquals("Z Item", descResults.get(0).getName());
+        assertEquals("Z Item", descResults.getFirst().getName());
 
         ItemRepository.removeItem("name1-test");
         ItemRepository.removeItem("name2-test");
@@ -276,100 +276,6 @@ public class ItemRepositoryTest {
         );
 
         assertTrue(result.isEmpty());
-    }
-
-    @Test
-    public void testGetItemsParamsPriceAscending() {
-
-        List<Item> result = ItemRepository.getItemsParams(
-                null,
-                "price-asc",
-                null,
-                null
-        );
-
-        assertFalse(result.isEmpty());
-
-        for (int i = 0; i < result.size() - 1; i++) {
-
-            String p1 = result.get(i).getPrice();
-            String p2 = result.get(i + 1).getPrice();
-
-            if (p1 == null || p2 == null) continue;
-
-            double price1 = Double.parseDouble(p1.replace("$","").replace(",",""));
-            double price2 = Double.parseDouble(p2.replace("$","").replace(",",""));
-
-            assertTrue(price1 <= price2);
-        }
-    }
-
-    @Test
-    public void testGetItemsParamsPriceDescending() {
-
-        List<Item> result = ItemRepository.getItemsParams(
-                null,
-                "price-desc",
-                null,
-                null
-        );
-
-        assertFalse(result.isEmpty());
-
-        for (int i = 0; i < result.size() - 1; i++) {
-
-            String p1 = result.get(i).getPrice();
-            String p2 = result.get(i + 1).getPrice();
-
-            if (p1 == null || p2 == null) continue;
-
-            double price1 = Double.parseDouble(result.get(i).getPrice().replace("$",""));
-            double price2 = Double.parseDouble(result.get(i + 1).getPrice().replace("$",""));
-
-            assertTrue(price1 >= price2);
-        }
-    }
-
-    @Test
-    public void testGetItemsParamsNameAscending() {
-
-        List<Item> result = ItemRepository.getItemsParams(
-                null,
-                "name-asc",
-                null,
-                null
-        );
-
-        List<Item> filtered = result.stream()
-                .filter(i -> i.getName() != null)
-                .toList();
-
-        for (int i = 0; i < filtered.size() - 1; i++) {
-            String name1 = filtered.get(i).getName();
-            String name2 = filtered.get(i + 1).getName();
-
-            assertTrue(name1.compareToIgnoreCase(name2) <= 0);
-        }
-    }
-
-    @Test
-    public void testGetItemsParamsNameDescending() {
-
-        List<Item> result = ItemRepository.getItemsParams(
-                null,
-                "name-desc",
-                null,
-                null
-        );
-
-        assertFalse(result.isEmpty());
-
-        for (int i = 0; i < result.size() - 1; i++) {
-            String name1 = result.get(i).getName();
-            String name2 = result.get(i + 1).getName();
-
-            assertTrue(name1.compareToIgnoreCase(name2) >= 0);
-        }
     }
 
 
