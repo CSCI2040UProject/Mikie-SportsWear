@@ -12,9 +12,8 @@ public class WishlistRepositoryTest {
 
     private static final String TEST_USER = "user";
 
-    private static Item makeItem(String id, String name, String price) {
+    private static Item makeItem( String name, String price) {
         Item item = new Item();
-        item.setId(id);
         item.setName(name);
         item.setPrice(price);
         return item;
@@ -22,14 +21,14 @@ public class WishlistRepositoryTest {
 
     @BeforeEach
     void cleanup() {
-        WishlistRepository.removeItem(TEST_USER, "1");
+        WishlistRepository.removeItem( TEST_USER,"1") ;
         WishlistRepository.removeItem(TEST_USER, "2");
     }
 
     @Test
     @Order(1)
     void testAddItemSuccess() {
-        Item item = makeItem("1", "Air Max 95", "170.00");
+        Item item = makeItem( "Air Max 95", "170.00");
         boolean result = WishlistRepository.addItem(TEST_USER, item);
         assertTrue(result);
     }
@@ -46,7 +45,7 @@ public class WishlistRepositoryTest {
     @Test
     @Order(3)
     void testRemoveItemSuccess() {
-        Item item = makeItem("1", "Air Max 95", "170.00");
+        Item item = makeItem( "Air Max 95", "170.00");
         WishlistRepository.addItem(TEST_USER, item);
 
         boolean result = WishlistRepository.removeItem(TEST_USER, "1");
@@ -67,8 +66,8 @@ public class WishlistRepositoryTest {
     @Test
     @Order(5)
     void testGetWishlistMultipleItems() {
-        Item item1 = makeItem("1", "Air Max 95", "170.00");
-        Item item2 = makeItem("2", "Air Force 1", "150.00");
+        Item item1 = makeItem("Air Max 95", "170.00");
+        Item item2 = makeItem( "Air Force 1", "150.00");
         WishlistRepository.addItem(TEST_USER, item1);
         WishlistRepository.addItem(TEST_USER, item2);
 
