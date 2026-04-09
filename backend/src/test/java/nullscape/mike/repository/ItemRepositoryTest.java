@@ -236,4 +236,46 @@ public class ItemRepositoryTest {
         ItemRepository.removeItem("name1-test");
         ItemRepository.removeItem("name2-test");
     }
+
+    @Test
+    public void testGetItemsParamsCategoryMen() {
+
+        // Act
+        List<Item> result = ItemRepository.getItemsParams(
+                null,
+                null,
+                new String[]{"Men"},
+                null
+        );
+
+        // Assert
+        assertFalse(result.isEmpty());
+    }
+
+    @Test
+    public void testGetItemsParamsCategoryNull() {
+
+        List<Item> result = ItemRepository.getItemsParams(
+                null,
+                null,
+                null,
+                null
+        );
+
+        assertFalse(result.isEmpty());
+    }
+
+    @Test
+    public void testGetItemsParamsInvalidCategory() {
+
+        List<Item> result = ItemRepository.getItemsParams(
+                null,
+                null,
+                new String[]{"obama"},
+                null
+        );
+
+        assertTrue(result.isEmpty());
+    }
+
 }
