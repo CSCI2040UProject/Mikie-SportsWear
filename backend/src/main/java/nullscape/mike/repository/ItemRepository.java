@@ -247,7 +247,7 @@ public class ItemRepository {
 
         String orderColumn = switch (sortCondition.toLowerCase()) {
             case "price" -> "CAST(REPLACE(REPLACE(price, '$', ''), ',', '') AS REAL)";
-            default      -> "name";
+            default      -> "LOWER(name)";
         };
         String orderDir = "desc".equalsIgnoreCase(direction) ? "DESC" : "ASC";
 
