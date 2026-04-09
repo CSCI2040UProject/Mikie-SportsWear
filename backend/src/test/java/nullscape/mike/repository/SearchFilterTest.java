@@ -51,20 +51,28 @@ public class SearchFilterTest {
 
     @Test
     void testSearch() {
-        List<Item> results = ItemRepository.getItemsParams(
-                "Jordan",
-                null,
-                null,
-                null
-        );
-        assertFalse(results.isEmpty());
+        String testId = "jordan-search-test";
+        Item testItem = new Item();
+        testItem.setId(testId);
+        testItem.setName("Jordan Search Test Item");
+        testItem.setDescription("Jordan description");
 
+        ItemRepository.removeItem(testId);
+        ItemRepository.addItem(testItem);
+
+        List<Item> results = ItemRepository.getItemsParams("Jordan", null, null, null);
+
+        assertFalse(results.isEmpty());
         for (Item item : results) {
             String name = item.getName() == null ? "" : item.getName().toLowerCase();
             String description = item.getDescription() == null ? "" : item.getDescription().toLowerCase();
             assertTrue(name.contains("jordan") || description.contains("jordan"));
         }
+
+
+        ItemRepository.removeItem(testId);
     }
+
 
     @Test
     void testSearchSpecialCharactersMixed() {
