@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class WishlistRepositoryTest {
 
-    private static final String TEST_USER = "testuser";
+    private static final String TEST_USER = "user";
 
     private static Item makeItem(String id, String name, String price) {
         Item item = new Item();
