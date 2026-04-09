@@ -27,7 +27,7 @@ public class WishlistRepositoryTest {
 
     @Test
     @Order(1)
-    void testAddItemSuccess() {
+    void testAddItem() {
         Item item = makeItem( "Air Max 95", "170.00");
         boolean result = WishlistRepository.addItem(TEST_USER, item);
         assertTrue(result);
@@ -36,7 +36,7 @@ public class WishlistRepositoryTest {
 
     @Test
     @Order(2)
-    void testGetWishlistEmptyForNewUser() {
+    void testGetWishlistEmpty() {
         List<Item> wishlist = WishlistRepository.getWishlist("EMPTY");
         assertNotNull(wishlist);
         assertTrue(wishlist.isEmpty());
@@ -44,7 +44,7 @@ public class WishlistRepositoryTest {
 
     @Test
     @Order(3)
-    void testRemoveItemSuccess() {
+    void testRemoveItem() {
         Item item = makeItem( "Air Max 95", "170.00");
         WishlistRepository.addItem(TEST_USER, item);
 
@@ -58,14 +58,14 @@ public class WishlistRepositoryTest {
 
     @Test
     @Order(4)
-    void testRemoveItemNonExistentDoesNotThrow() {
+    void testRemoveItemtDoesNotThrow() {
         boolean result = WishlistRepository.removeItem(TEST_USER, "NULL");
         assertTrue(result);
     }
 
     @Test
     @Order(5)
-    void testGetWishlistMultipleItems() {
+    void testGetMultipleItems() {
         Item item1 = makeItem("Air Max 95", "170.00");
         Item item2 = makeItem( "Air Force 1", "150.00");
         WishlistRepository.addItem(TEST_USER, item1);
