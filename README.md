@@ -43,6 +43,8 @@ The classes of the backend are contained in packages in `main/`, and their conte
 
 **Frontend:** JSX + CSS
 
+**Testing:** JUnit 5
+
 ### Backend Breakdown
 
 The backend follows an MVC (Model-View-Controller) architecture with additional components:
@@ -74,5 +76,5 @@ This is the "View" part of our model, and it's what the user interacts with. It'
 - `npm start`, access website with localhost:5173
 - Control + C in the terminal to terminate the local server
 
-### Standalone Website
-The catalog can also be accessed using this link: [https://mikie.rhysdeswart.ca/](url) 
+### Standalone Website (for Users)
+The website can be accessed from a user's perspective using this link: [https://mikie.rhysdeswart.ca/](url) 
