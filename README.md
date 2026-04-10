@@ -30,7 +30,7 @@ Mikie-SportsWear/
 ├── package-lock.json
 └── README.md
 ```
-The classes of the backend are contained in packages in `main/`, and their contents are visualized with class diagrams in `documentation`. Example interactions with the frontend are visualized using state diagrams.
+The classes of the backend are located in packages in `main/`, and their contents are visualized with class diagrams in `documentation`. The state diagrams describe example interactions between the frontend and backend.
 <img width="971" height="788" alt="UMLController" src="https://github.com/user-attachments/assets/e1d3ebe8-f1a9-47cc-8a9e-22d0756ac555" />
 
 ## Development Guide
