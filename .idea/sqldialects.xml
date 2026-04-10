@@ -2,5 +2,6 @@
 <project version="4">
   <component name="SqlDialectMappings">
     <file url="file://$PROJECT_DIR$/backend/src/main/java/nullscape/mike/database/CSVMigration.java" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/backend/src/main/java/nullscape/mike/repository/ItemRepository.java" dialect="MariaDB" />
   </component>
 </project>

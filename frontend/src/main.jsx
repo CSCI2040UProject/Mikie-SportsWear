@@ -13,6 +13,8 @@ import {FrontPage} from "./components/FrontPage.jsx";
 import Wishlist from "./components/Wishlist.jsx";
 import UserGuide from "./components/UserGuide.jsx";
 
+{/*imports from Compare.jsx*/}
+import Compare from "./components/Compare.jsx";
 // Imports from Layout.jsx
 import Header from "./components/Header.jsx";
 
@@ -21,6 +23,7 @@ const Root = () => {
     const [user, setUser] = useState(JSON.parse(localStorage.getItem("Login")) || "");
     const [loggedIn, setLoggedIn] = useState(JSON.parse(localStorage.getItem("loggedIn")) || false);
     const [wishlist, setWishlist] = useState(null);
+    const [compareItem, setCompareItem] = useState(null);
 
     async function fetchWishlist() {
         try {
@@ -39,7 +42,7 @@ const Root = () => {
         <>
             <Header username={user} wishlist={wishlist} />
             <main>
-                <Outlet context={{ user, setUser, loggedIn, setLoggedIn, wishlist, setWishlist, fetchWishlist }} />
+                <Outlet context={{ user, setUser, loggedIn, setLoggedIn, wishlist, setWishlist, fetchWishlist, compareItem, setCompareItem }} />
             </main>
         </>
     );
@@ -78,6 +81,10 @@ const router = createBrowserRouter([
             {
                 path: "guide",
                 element: <UserGuide />,
+            },
+            {
+                path: "compare",
+                element: <Compare />,
             },
         ],
     }

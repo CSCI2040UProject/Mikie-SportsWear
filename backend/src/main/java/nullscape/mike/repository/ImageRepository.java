@@ -13,7 +13,8 @@ import java.util.UUID;
 public class ImageRepository {
 
     public static String generateImagePath(String fileName) {
-        return "http://localhost:8080/api/images/" + fileName;
+        String baseUrl = System.getenv().getOrDefault("BASE_URL", "http://localhost:8080");
+        return baseUrl + "/api/images/" + fileName;
     }
 
     // This takes a raw input stream and decodes it into an image then saves it with a new UUID
@@ -32,4 +33,3 @@ public class ImageRepository {
         return generateImagePath(fileName); // Return the full path of the image
     }
 }
-

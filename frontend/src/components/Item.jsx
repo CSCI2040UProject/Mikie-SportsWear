@@ -64,7 +64,7 @@ export default function Item({itemProp = null }) {
     const [error, setError] = useState(null);
     const [imageIndex, setImageIndex] = useState(0);
     const [isEditing, setIsEditing] = useState(false);
-    const { user, loggedIn, wishlist, setWishlist } = useOutletContext();
+    const { user, loggedIn, wishlist, setWishlist, compareItem, setCompareItem } = useOutletContext();
     const navigate = useNavigate();
     const item = itemProp || fetchedItem;
 
@@ -108,6 +108,10 @@ export default function Item({itemProp = null }) {
         } catch (error) {
             console.log(error);
         }
+    }
+    function handleCompare() {
+        setCompareItem(item);
+        navigate('/compare');
     }
     // Use the prop if available, otherwise use local state
 
@@ -235,9 +239,6 @@ export default function Item({itemProp = null }) {
                 <h3>${item.price ?? 0.00}</h3>
                 <p>{item.description ?? 'Description'}</p>
                 <p>Color: {item.color ?? 'Colour'}</p>
-                <button onClick={isWishlisted ? removeFromWishlist : addToWishlist}>
-                    {isWishlisted ? '♥ Remove from Wishlist' : '♡ Add to Wishlist'}
-                </button>
                 {otherColors.length > 0 &&
 
                 <div>Other colours:
@@ -248,6 +249,10 @@ export default function Item({itemProp = null }) {
                     </div>
                 </div>
                 }
+                <button onClick={isWishlisted ? removeFromWishlist : addToWishlist}>
+                    {isWishlisted ? '♥ Remove from Wishlist' : '♡ Add to Wishlist'}
+                </button>
+                <button onClick={handleCompare}> Compare</button>
                 <ModifyItem user={user} isEditing={isEditing} setIsEditing={setIsEditing} />
             </div>
             {isEditing && <Editor itemProp={item} onUpdate={handleUpdate} />}

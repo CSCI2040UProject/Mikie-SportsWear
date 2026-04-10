@@ -2,6 +2,8 @@ package nullscape.mike.repository;
 
 import nullscape.mike.model.Item;
 import org.junit.jupiter.api.Test;
+
+import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -21,12 +23,49 @@ public class ItemRepositoryTest {
 
         assertNotNull(fetched);
 
-        ItemRepository.removeItem("tests123");
+        ItemRepository.removeItem("test123");
     }
 
     @Test
-    public void testDeleteItem() { //Valid Delete Test
+    public void testAddNullItem() {
 
+        Item item = new Item();
+        item.setId("test123");
+        item.setName(null);
+
+        ItemRepository.addItem(item);
+
+        Item fetched = ItemRepository.getItemById(item.getId());
+
+        assertNull(fetched);
+
+        ItemRepository.removeItem("test123");
+    }
+
+    @Test
+    public void testAddDupeItem() {
+
+        Item item = new Item();
+        item.setId("test123");
+        item.setName("dupe");
+
+        Item item2 = new Item();
+        item2.setId("test123");
+        item2.setName("dupe2");
+
+        ItemRepository.addItem(item);
+        ItemRepository.addItem(item2);
+
+        Item fetched = ItemRepository.getItemById("test123");
+
+        assertNotNull(fetched);
+        assertEquals("dupe", fetched.getName()); // second item should NOT overwrite
+
+        ItemRepository.removeItem("test123");
+    }
+
+    @Test
+    public void testDeleteItem() {
         Item item = new Item();
         item.setId("delete123");
         item.setName("Delete Item");
@@ -43,8 +82,7 @@ public class ItemRepositoryTest {
     }
 
     @Test
-    public void testDeleteInvalidItem() {//Invalid Delete test
-
+    public void testDeleteInvalidItem() {
         Item item = new Item();
         item.setId("delete123");
         item.setName("Valid Item");
@@ -62,8 +100,14 @@ public class ItemRepositoryTest {
     }
 
     @Test
-    public void testFilterByCategory() {
+    public void testDeleteItemNullId() { //delete null item
+        assertDoesNotThrow(() -> {
+            ItemRepository.removeItem(null);
+        });
+    }
 
+    @Test
+    public void testFilterByCategory() {
         Item item1 = new Item();
         item1.setId("cat1-test");
         item1.setName("Shirt");
@@ -129,7 +173,7 @@ public class ItemRepositoryTest {
         );
 
         assertEquals(2, ascResults.size());
-        assertEquals("Cheap Item", ascResults.get(0).getName());
+        assertEquals("Cheap Item", ascResults.getFirst().getName());
 
         List<Item> descResults = ItemRepository.getItemsParams(
                 null,
@@ -139,7 +183,7 @@ public class ItemRepositoryTest {
         );
 
         assertEquals(2, descResults.size());
-        assertEquals("Expensive Item", descResults.get(0).getName());
+        assertEquals("Expensive Item", descResults.getFirst().getName());
 
         ItemRepository.removeItem("price1-test");
         ItemRepository.removeItem("price2-test");
@@ -147,7 +191,6 @@ public class ItemRepositoryTest {
 
     @Test
     public void testSortByName() {
-
         Item item1 = new Item();
         item1.setId("name1-test");
         item1.setName("A Item");
@@ -176,7 +219,7 @@ public class ItemRepositoryTest {
         );
 
         assertEquals(2, ascResults.size());
-        assertEquals("A Item", ascResults.get(0).getName());
+        assertEquals("A Item", ascResults.getFirst().getName());
 
         List<Item> descResults = ItemRepository.getItemsParams(
                 null,
@@ -186,9 +229,226 @@ public class ItemRepositoryTest {
         );
 
         assertEquals(2, descResults.size());
-        assertEquals("Z Item", descResults.get(0).getName());
+        assertEquals("Z Item", descResults.getFirst().getName());
 
         ItemRepository.removeItem("name1-test");
         ItemRepository.removeItem("name2-test");
+    }
+
+    @Test
+    public void testGetItemsParamsCategoryMen() {
+
+        // Act
+        List<Item> result = ItemRepository.getItemsParams(
+                null,
+                null,
+                new String[]{"Men"},
+                null
+        );
+
+        // Assert
+        assertFalse(result.isEmpty());
+    }
+
+    @Test
+    public void testGetItemsParamsCategoryNull() {
+
+        List<Item> result = ItemRepository.getItemsParams(
+                null,
+                null,
+                null,
+                null
+        );
+
+        assertFalse(result.isEmpty());
+    }
+
+    @Test
+    public void testGetItemsParamsInvalidCategory() {
+
+        List<Item> result = ItemRepository.getItemsParams(
+                null,
+                null,
+                new String[]{"obama"},
+                null
+        );
+
+        assertTrue(result.isEmpty());
+    }
+
+    @Test
+    void testCombinedFilters() {
+        Item item = new Item();
+        item.setId("combo1");
+        item.setName("Combo Test");
+        item.setCategories(new String[]{"Men"});
+        item.setColor("Blue");
+
+        ItemRepository.addItem(item);
+
+        List<Item> results = ItemRepository.getItemsParams(
+                null,
+                null,
+                new String[]{"Men"},
+                new String[]{"Blue"}
+        );
+
+        assertFalse(results.isEmpty());
+    }
+
+    @Test
+    void testFilterAndSortTogether() {
+        List<Item> results = ItemRepository.getItemsParams(
+                null,
+                "name-asc",
+                new String[]{"Women"},
+                null
+        );
+
+        assertNotNull(results);
+
+        for (Item item : results) {
+            String[] categories = item.getCategories();
+            if (categories == null) continue;
+            assertTrue(Arrays.asList(categories).contains("Women"));
+        }
+    }
+
+    @Test
+    void testAddAndRetrieveItem() {
+        Item item = new Item();
+        item.setId("test123");
+        item.setName("Test Shoe");
+        item.setPrice("$99");
+        item.setCategories(new String[]{"Men"});
+        item.setColor("Black");
+
+        ItemRepository.addItem(item);
+
+        Item retrieved = ItemRepository.getItemById("test123");
+
+        assertNotNull(retrieved);
+        assertEquals("Test Shoe", retrieved.getName());
+    }
+
+    @Test
+    void testModifyItem() {
+        Item item = new Item();
+        item.setId("mod123");
+        item.setName("Old Name");
+
+        ItemRepository.addItem(item);
+
+        Item updated = new Item();
+        updated.setId("mod123");
+        updated.setName("New Name");
+
+        ItemRepository.modifyItem(updated);
+
+        Item result = ItemRepository.getItemById("mod123");
+
+        assertEquals("New Name", result.getName());
+    }
+
+    @Test
+    void testModifyNonExistentItem() {
+        Item item = new Item();
+        item.setId("does_not_exist");
+        item.setName("Ghost Item");
+
+        ItemRepository.modifyItem(item);
+
+        Item result = ItemRepository.getItemById("does_not_exist");
+
+        assertNull(result);
+    }
+
+    @Test
+    void testRemoveNullId() {
+        assertDoesNotThrow(() -> {
+            ItemRepository.removeItem(null);
+        });
+    }
+
+    @Test
+    void testAddDeleteThenSearch() {
+        Item item = new Item();
+        item.setId("cycle1");
+        item.setName("Cycle Item");
+
+        ItemRepository.addItem(item);
+        ItemRepository.removeItem("cycle1");
+
+        List<Item> results = ItemRepository.getItemsParams(
+                "Cycle Item",
+                null,
+                null,
+                null
+        );
+
+        assertTrue(results.isEmpty());
+    }
+
+    @Test
+    void testRepeatedSearchConsistency() {
+        List<Item> results1 = ItemRepository.getItemsParams(
+                "Jordan", null, null, null
+        );
+
+        List<Item> results2 = ItemRepository.getItemsParams(
+                "Jordan", null, null, null
+        );
+
+        assertEquals(results1.size(), results2.size());
+    }
+
+    @Test
+    void testCategoryCaseInsensitive() {
+        List<Item> lower = ItemRepository.getItemsParams(
+                null,
+                null,
+                new String[]{"men"},
+                null
+        );
+
+        List<Item> upper = ItemRepository.getItemsParams(
+                null,
+                null,
+                new String[]{"Men"},
+                null
+        );
+
+        assertEquals(upper.size(), lower.size());
+    }
+
+    @Test
+    void testColorCaseInsensitive() {
+        List<Item> lower = ItemRepository.getItemsParams(
+                null,
+                null,
+                null,
+                new String[]{"black"}
+        );
+
+        List<Item> upper = ItemRepository.getItemsParams(
+                null,
+                null,
+                null,
+                new String[]{"Black"}
+        );
+
+        assertEquals(upper.size(), lower.size());
+    }
+
+    @Test
+    void testInvalidFilterCombination() {
+        List<Item> results = ItemRepository.getItemsParams(
+                null,
+                null,
+                new String[]{"Men"},
+                new String[]{"InvisibleColor"}
+        );
+
+        assertTrue(results.isEmpty());
     }
 }

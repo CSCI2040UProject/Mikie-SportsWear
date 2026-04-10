@@ -39,7 +39,7 @@ export default function Editor({ itemProp, onUpdate }) {
     async function uploadImage(file, productId) {
         if (!file) return;
 
-        const res = await fetch(`http://localhost:8080/api/images?id=${productId}`, {
+        const res = await fetch(`/api/images?id=${productId}`, {
             method: "POST",
             headers: { "Content-Type": "application/octet-stream" },
             body: file

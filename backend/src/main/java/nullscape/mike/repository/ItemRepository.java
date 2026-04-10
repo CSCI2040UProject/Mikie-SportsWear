@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 public class ItemRepository {
 
@@ -57,6 +58,24 @@ public class ItemRepository {
 
     public static Item getItemById(String productId) {
         String sql = "SELECT product_id, name, description, categories, price, color, other_colors, product_url, thumbnail_url, image_urls FROM items WHERE product_id = ?";
+
+        try (Connection conn = DatabaseManager.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, productId);
+            ResultSet rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                return mapResultSetToItem(rs);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static Item getItemByName(String productId) {
+        String sql = "SELECT product_id, name, description, categories, price, color, other_colors, product_url, thumbnail_url, image_urls FROM items WHERE name = ?";
 
         try (Connection conn = DatabaseManager.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -228,7 +247,7 @@ public class ItemRepository {
 
         String orderColumn = switch (sortCondition.toLowerCase()) {
             case "price" -> "CAST(REPLACE(REPLACE(price, '$', ''), ',', '') AS REAL)";
-            default      -> "name";
+            default      -> "LOWER(name)";
         };
         String orderDir = "desc".equalsIgnoreCase(direction) ? "DESC" : "ASC";
 
@@ -284,31 +303,34 @@ public class ItemRepository {
         List<Item> items = new ArrayList<>();
         List<String> params = new ArrayList<>();
 
-        String likeConditions = buildLikeConditions("categories", item.getCategories(), params);
-        String sql = "SELECT product_id, name, price, thumbnail_url FROM items"
-                + " WHERE " + likeConditions
-                + " AND product_id != ?";
-        params.add(productId); // exclude the current item
+        String[] categories = Objects.requireNonNull(item).getCategories();
+        if (categories != null) {
+            String likeConditions = buildLikeConditions("categories", item.getCategories(), params);
+            String sql = "SELECT product_id, name, price, thumbnail_url FROM items"
+                    + " WHERE " + likeConditions
+                    + " AND product_id != ?";
+            params.add(productId); // exclude the current item
 
-        try (Connection conn = DatabaseManager.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            try (Connection conn = DatabaseManager.getConnection();
+                 PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
-            for (int i = 0; i < params.size(); i++) {
-                pstmt.setString(i + 1, params.get(i));
-            }
-
-            try (ResultSet rs = pstmt.executeQuery()) {
-                while (rs.next()) {
-                    Item similarItem = new Item();
-                    similarItem.setId(rs.getString("product_id"));
-                    similarItem.setName(rs.getString("name"));
-                    similarItem.setPrice(rs.getString("price"));
-                    similarItem.setThumbnailUrl(rs.getString("thumbnail_url"));
-                    items.add(similarItem);
+                for (int i = 0; i < params.size(); i++) {
+                    pstmt.setString(i + 1, params.get(i));
                 }
+
+                try (ResultSet rs = pstmt.executeQuery()) {
+                    while (rs.next()) {
+                        Item similarItem = new Item();
+                        similarItem.setId(rs.getString("product_id"));
+                        similarItem.setName(rs.getString("name"));
+                        similarItem.setPrice(rs.getString("price"));
+                        similarItem.setThumbnailUrl(rs.getString("thumbnail_url"));
+                        items.add(similarItem);
+                    }
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
         return items;
     }

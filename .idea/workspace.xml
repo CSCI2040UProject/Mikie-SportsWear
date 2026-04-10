@@ -23,6 +23,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/UserGuide.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/UserGuide.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,7 +69,7 @@
     &quot;url&quot;: &quot;https://github.com/CSCI2040UProject/Mikie-SportsWear&quot;,
     &quot;accountId&quot;: &quot;e03eabd9-1d3f-40d6-a6f7-59690643b754&quot;
   }
-}</component>
+}]]></component>
   <component name="KubernetesApiPersistence">{}</component>
   <component name="KubernetesApiProvider">{
   &quot;isMigrated&quot;: true
@@ -103,6 +104,7 @@
     "Docker.docker-compose.yml: Compose Deployment.executor": "Run",
     "JUnit.ItemRepositoryTest.executor": "Run",
     "JUnit.SearchFilterTest.testSearchFilter.executor": "Run",
+    "JUnit.WishlistRepositoryTest.executor": "Run",
     "Maven.Backend.executor": "Run",
     "Maven.backend [clean].executor": "Run",
     "Maven.backend [compile].executor": "Run",
@@ -122,10 +124,10 @@
     "Spring Boot.Main.executor": "Run",
     "codeWithMe.voiceChat.enabledByDefault": "false",
     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "user-guide-and-faq",
+    "git-widget-placeholder": "main",
     "junie.onboarding.icon.badge.shown": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/davesu/Desktop/Mikie-SportsWear/frontend/public/images",
+    "last_opened_file_path": "/Users/rhysdeswart/Library/CloudStorage/MountainDuck-Whonnock/WhonnockOne/Documents/Code/2025-2026/Mikie-SportsWear/frontend",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -146,14 +148,14 @@
       <recent name="$PROJECT_DIR$/frontend/public" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/documentation" />
       <recent name="$PROJECT_DIR$/frontend/src/public" />
       <recent name="C:\Users\Dave\Project\Mike-SportsWear\backend\src" />
       <recent name="$PROJECT_DIR$/frontend/src" />
-      <recent name="$PROJECT_DIR$/frontend/src/components" />
     </key>
   </component>
-  <component name="RunManager" selected="Docker.Docker Frontend/Backend">
+  <component name="RunManager" selected="JUnit.WishlistRepositoryTest">
     <configuration name="ItemRepositoryTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="backend" />
       <extension name="coverage">
@@ -185,6 +187,21 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="WishlistRepositoryTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="backend" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="nullscape.mike.repository.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="nullscape.mike.repository" />
+      <option name="MAIN_CLASS_NAME" value="nullscape.mike.repository.WishlistRepositoryTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
       <deployment type="docker-compose.yml">
         <settings />
@@ -193,12 +210,14 @@
     </configuration>
     <list>
       <item itemvalue="Docker.Docker Frontend/Backend" />
+      <item itemvalue="JUnit.WishlistRepositoryTest" />
       <item itemvalue="JUnit.SearchFilterTest.testSearchFilter" />
       <item itemvalue="JUnit.ItemRepositoryTest" />
       <item itemvalue="Maven.Backend" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.WishlistRepositoryTest" />
         <item itemvalue="JUnit.ItemRepositoryTest" />
         <item itemvalue="JUnit.SearchFilterTest.testSearchFilter" />
       </list>
@@ -268,6 +287,7 @@
       <workItem from="1774981663133" duration="7000" />
       <workItem from="1775100313354" duration="6072000" />
       <workItem from="1775520948714" duration="5917000" />
+      <workItem from="1775701005281" duration="5876000" />
     </task>
     <task id="LOCAL-00001" summary="Working test communication between frontend and backend">
       <option name="closed" value="true" />
@@ -453,7 +473,71 @@
       <option name="project" value="LOCAL" />
       <updated>1775502596707</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="Updated npm to resolve vulnerabilities">
+      <option name="closed" value="true" />
+      <created>1775667758974</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1775667758974</updated>
+    </task>
+    <task id="LOCAL-00025" summary="Trigger build">
+      <option name="closed" value="true" />
+      <created>1775669901423</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1775669901423</updated>
+    </task>
+    <task id="LOCAL-00026" summary="Add production Dockerfile and cloudbuild config">
+      <option name="closed" value="true" />
+      <created>1775670832311</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1775670832311</updated>
+    </task>
+    <task id="LOCAL-00027" summary="Dynamic port selection for production Dockerfile">
+      <option name="closed" value="true" />
+      <created>1775671899883</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1775671899883</updated>
+    </task>
+    <task id="LOCAL-00028" summary="_redirects file added for cloudflare pages">
+      <option name="closed" value="true" />
+      <created>1775672442859</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1775672442859</updated>
+    </task>
+    <task id="LOCAL-00029" summary="cloudflare redirect changed">
+      <option name="closed" value="true" />
+      <created>1775673193970</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1775673193970</updated>
+    </task>
+    <task id="LOCAL-00030" summary="_redirects file replaced with cloudflare redirect worker">
+      <option name="closed" value="true" />
+      <created>1775674070439</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1775674070439</updated>
+    </task>
+    <task id="LOCAL-00031" summary="Optimizations for running in the cloud">
+      <option name="closed" value="true" />
+      <created>1775682720731</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1775682720731</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -513,12 +597,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Working test communication between frontend and backend" />
-    <MESSAGE value="Switch to react and build frontend with vite" />
-    <MESSAGE value="login and sign-up form added" />
-    <MESSAGE value="Solved the browser security issue" />
-    <MESSAGE value="file path stuff" />
-    <MESSAGE value="Changes to filepaths and working directory to make code work in and out of docker plus better run configs. return code 401 for invalid credentials." />
     <MESSAGE value="loading the catalog into memory and sending the JSON to the frontend" />
     <MESSAGE value="Restructuring and cookies" />
     <MESSAGE value="changing profile colour" />
@@ -536,7 +614,15 @@
     <MESSAGE value="Search implemented" />
     <MESSAGE value="fix for env of github actions testing" />
     <MESSAGE value="First load empty wishlist bug fixed" />
-    <option name="LAST_COMMIT_MESSAGE" value="First load empty wishlist bug fixed" />
+    <MESSAGE value="Updated npm to resolve vulnerabilities" />
+    <MESSAGE value="Trigger build" />
+    <MESSAGE value="Add production Dockerfile and cloudbuild config" />
+    <MESSAGE value="Dynamic port selection for production Dockerfile" />
+    <MESSAGE value="_redirects file added for cloudflare pages" />
+    <MESSAGE value="cloudflare redirect changed" />
+    <MESSAGE value="_redirects file replaced with cloudflare redirect worker" />
+    <MESSAGE value="Optimizations for running in the cloud" />
+    <option name="LAST_COMMIT_MESSAGE" value="Optimizations for running in the cloud" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
