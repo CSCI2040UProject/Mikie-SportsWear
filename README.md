@@ -11,12 +11,17 @@ There are two access levels: user and admin. The data is pulled from a CSV file 
 Mikie-SportsWear/
 ├── backend/
 │   ├── src/
-│   ├── tests/
+│   │   ├── main/
+│   │   ├── resources/
+│   │   └── test/
 │   └── data/
 ├── documentation/
 ├── frontend/
-│   ├── components/
-│   └── styles/
+│   ├── functions/
+|   ├── public/
+│   └── src/
+│   │   ├── components/
+│   │   └── styles/
 ├── node_modules/
 ├── .gitignore
 ├── docker-compose.yml
@@ -25,6 +30,9 @@ Mikie-SportsWear/
 ├── package-lock.json
 └── README.md
 ```
+The classes of the backend are contained in packages in `main/`, and their contents are visualized with class diagrams in `documentation`. Example interactions with the frontend are visualized using state diagrams.
+<img width="971" height="788" alt="UMLController" src="https://github.com/user-attachments/assets/e1d3ebe8-f1a9-47cc-8a9e-22d0756ac555" />
+
 ## Development Guide
 ### Main Languages/Tools used
 **Backend:** Java
@@ -49,7 +57,7 @@ The backend follows an MVC (Model-View-Controller) architecture with additional 
 
 This is the "View" part of our model, and it's what the user interacts with. It's written using JSX and CSS consists of all the components of the website (e.g. `FrontPage.jsx`, `Profile.jsx`, `Item.jsx`) and their styles (located in `styles` folder as CSS files).
 
-## Build Instructions
+## Run Instructions
 
 ### Run with docker:
 
@@ -65,3 +73,6 @@ This is the "View" part of our model, and it's what the user interacts with. It'
 `npm install`
 - `npm start`, access website with localhost:5173
 - Control + C in the terminal to terminate the local server
+
+### Standalone Website
+The catalog can also be accessed using this link: [https://mikie.rhysdeswart.ca/](url) 
