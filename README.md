@@ -39,6 +39,8 @@ The classes of the backend are contained in packages in `main/`, and their conte
 
 **Build Tool:** Maven
 
+**Database Management:** SQLite
+
 **Runtime Environment and Package Manager:** Node.js and npm
 
 **Frontend:** JSX + CSS
