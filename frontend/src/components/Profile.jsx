@@ -163,6 +163,26 @@ function Profile() {
                     </form>
             )
         }
+        function RemoveAdmin(){
+            function removeAdmin(e){
+                e.preventDefault();
+                const formData = new FormData(e.target);
+                const modifyUser = Object.fromEntries(formData.entries());
+                modifyUser.isAdmin = false;
+                modifyUser.password = null;
+                console.log(modifyUser);
+                handleModifyUser({modifyUser});
+            }
+            return (
+                <form onSubmit={removeAdmin}>
+                    <label htmlFor="removeAdminText">Enter a username of an existing admin to remove their admin access</label>
+                    <div>
+                        <input id="removeAdminText" type="text" name="username" placeholder="username" />
+                        <button type="submit">Submit</button>
+                    </div>
+                </form>
+            )
+        }
         return(
         <div id={styles.loggedInStyle}>
             <div>
@@ -192,6 +212,7 @@ function Profile() {
             </form>
             <br/>
             {user.isAdmin ? <AddAdmin /> : null}
+            {user.isAdmin ? <RemoveAdmin /> : null}
         </div>
 
         )
