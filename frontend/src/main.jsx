@@ -11,6 +11,8 @@ import Catalog from "./components/Catalog.jsx";
 import Item from "./components/Item.jsx";
 import {FrontPage} from "./components/FrontPage.jsx";
 import Wishlist from "./components/Wishlist.jsx";
+import UserGuide from "./components/UserGuide.jsx";
+
 {/*imports from Compare.jsx*/}
 import Compare from "./components/Compare.jsx";
 // Imports from Layout.jsx
@@ -75,6 +77,10 @@ const router = createBrowserRouter([
             {
                 path: "wishlist",
                 element: <Wishlist />,
+            },
+            {
+                path: "guide",
+                element: <UserGuide />,
             },
             {
                 path: "compare",

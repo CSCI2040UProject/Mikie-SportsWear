@@ -22,16 +22,16 @@ export function FrontPage() {
     return (
         <>
             <div style={{ textAlign: 'center', paddingTop: '2vh' }}>
-            <h1 className={'nike'}>WELCOME TO MIKIE SPORTSWEAR</h1>
-            <Link to={'/catalog/'}>Shop All items</Link>
-                <div style= {{imgAlign: 'center', paddingTop: '5vh'}}>
+                <h1 className={'nike'}>WELCOME TO MIKIE SPORTSWEAR</h1>
+                <Link to={'/catalog/'}>Shop All items</Link>
+                    <div style= {{imgAlign: 'center', paddingTop: '5vh'}}>
 
-                </div>
-            <Link to="/catalog/">
-                <img src="/Mikie.svg" alt="Mikie"  width={500} height={500} />
-            </Link>
+                    </div>
+                <Link to="/catalog/">
+                    <img src="/Mikie.svg" alt="Mikie"  width={500} height={500} />
+                </Link>
                 <div style={{ textAlign: 'center', paddingTop: '2vh' }}>
-                <p> Best Sellers </p>
+                    <p> Best Sellers </p>
                 </div>
 
                 <div style={{ display: 'flex', gap: '20px', justifyContent: 'center', marginTop: '40px' }}>
@@ -46,7 +46,6 @@ export function FrontPage() {
                     ))}
                 </div>
             </div>
-
         </>
     );
 }
