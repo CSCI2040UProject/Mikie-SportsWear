@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="49fd6356-d128-4105-b049-553e895d04f8" name="Changes" comment="Optimizations for running in the cloud">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/index.css" afterDir="false" />
+    <list default="true" id="49fd6356-d128-4105-b049-553e895d04f8" name="Changes" comment="Left justify prices in index.css">
+      <change beforePath="$PROJECT_DIR$/frontend/src/styles/UserGuide.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/styles/UserGuide.module.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -255,7 +254,7 @@
       <workItem from="1775520948714" duration="5917000" />
       <workItem from="1775701005281" duration="3560000" />
       <workItem from="1775875601137" duration="22000" />
-      <workItem from="1776132325952" duration="605000" />
+      <workItem from="1776132325952" duration="1307000" />
     </task>
     <task id="LOCAL-00001" summary="Working test communication between frontend and backend">
       <option name="closed" value="true" />
@@ -505,7 +504,15 @@
       <option name="project" value="LOCAL" />
       <updated>1775682720731</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="Left justify prices in index.css">
+      <option name="closed" value="true" />
+      <created>1776132971705</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1776132971705</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -565,7 +572,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="loading the catalog into memory and sending the JSON to the frontend" />
     <MESSAGE value="Restructuring and cookies" />
     <MESSAGE value="changing profile colour" />
     <MESSAGE value="making test admin" />
@@ -590,7 +596,8 @@
     <MESSAGE value="cloudflare redirect changed" />
     <MESSAGE value="_redirects file replaced with cloudflare redirect worker" />
     <MESSAGE value="Optimizations for running in the cloud" />
-    <option name="LAST_COMMIT_MESSAGE" value="Optimizations for running in the cloud" />
+    <MESSAGE value="Left justify prices in index.css" />
+    <option name="LAST_COMMIT_MESSAGE" value="Left justify prices in index.css" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
