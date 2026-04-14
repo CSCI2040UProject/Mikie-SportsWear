@@ -29,7 +29,7 @@ export default function UserGuide() {
             <div className = {styles.main}>
                 <h1>MIKIE SPORTSWEAR USER GUIDE</h1>
                 <p>This guide will detail how users will be able to interact with the catalog.</p>
-                <img className = {styles.guideImg} src = "public/images/guide0.png" alt = "Front page"/>
+                <img className = {styles.guideImg} src = "images/guide0.png" alt = "Front page"/>
 
                 <h2>Front Page</h2>
                 <div className = {styles.text}>
@@ -42,7 +42,7 @@ export default function UserGuide() {
                         At the top of every page will be a header with links to frequently visited areas
                         of the website.
                     </p>
-                    <img className = {styles.guideImg} src = "public/images/guide1.png" alt = "Header"/>
+                    <img className = {styles.guideImg} src = "images/guide1.png" alt = "Header"/>
                     <p>
                         From left to right, these links will redirect users to:
                     </p>
@@ -63,7 +63,7 @@ export default function UserGuide() {
                         Accessing the catalog through the latter method will automatically apply the
                         appropriate filter that the label is written as.
                     </p>
-                    <img className = {styles.guideImg} src = "public/images/guide2.png" alt = "Catalog page"/>
+                    <img className = {styles.guideImg} src = "images/guide2.png" alt = "Catalog page"/>
                     <p>
                         Here, users will be able to look through all the items in the catalog by
                         scrolling downwards. Please note that only a certain number of items are
@@ -75,7 +75,7 @@ export default function UserGuide() {
                         On the left-hand side of the page is a list of filters that the user may
                         apply to the catalog. This is highlighted in the image below.
                     </p>
-                    <img className = {styles.guideImg} src = "public/images/guide3.png" alt = "Highlight filter function"/>
+                    <img className = {styles.guideImg} src = "images/guide3.png" alt = "Highlight filter function"/>
                     <p>
                         Here, users are able to narrow down the items in the catalog based on what
                         they want to find. For example, if a user were to check the box "Men" under
@@ -94,7 +94,7 @@ export default function UserGuide() {
                         <li>Name, Ascending</li>
                         <li>Name, Descending</li>
                     </ol>
-                    <img className = {styles.guideImg} src = "public/images/guide4.png" alt = "Highlight sort function"/>
+                    <img className = {styles.guideImg} src = "images/guide4.png" alt = "Highlight sort function"/>
                     <p>
                         When sorting by price, users may choose to display the items where the prices
                         are sorted in ascending or descending order. This means sorting the price from
@@ -104,7 +104,7 @@ export default function UserGuide() {
                         Finally, users are able to search the catalog directly by using the searchbar
                         at the top left-hand corner of the catalog.
                     </p>
-                    <img className = {styles.guideImg} src = "public/images/guide5.png" alt = "Highlight search function"/>
+                    <img className = {styles.guideImg} src = "images/guide5.png" alt = "Highlight search function"/>
                     <p>
                         If the user is unable to find a specific item through the provided filter and
                         sort functions, users may instead choose to directly enter the name of the item
@@ -121,7 +121,7 @@ export default function UserGuide() {
                         image or name of the item from the catalog to be redirected to a separate
                         page that includes more of the item details.
                     </p>
-                    <img className = {styles.guideImg} src = "public/images/guide6.png" alt = "Item page"/>
+                    <img className = {styles.guideImg} src = "images/guide6.png" alt = "Item page"/>
                     <p>
                         It is on this page that users are able to view more images of the item, as well
                         as read the description of the item. The item description provides a general
@@ -132,14 +132,14 @@ export default function UserGuide() {
                         to their personal wishlist. If the user clicks the button while not currently
                         logged in, they will be prompted to do so.
                     </p>
-                    <img className = {styles.guideImg} src = "public/images/guide7.png" alt = "Highlight wishlist function"/>
+                    <img className = {styles.guideImg} src = "images/guide7.png" alt = "Highlight wishlist function"/>
                     <p>
                         Scrolling towards the bottom of the page will present the user with a list of
                         items that are similar to the one the user is currently looking at. This is
                         done by comparing the categories related to the current item and looking for
                         any other items that may share a most of the same categories.
                     </p>
-                    <img className = {styles.guideImg} src = "public/images/guide8.png" alt = "Highlight similar items"/>
+                    <img className = {styles.guideImg} src = "images/guide8.png" alt = "Highlight similar items"/>
                 </div>
 
                 <h2>Log In/Sign Up</h2>
@@ -150,7 +150,7 @@ export default function UserGuide() {
                         header. By default, they will be redirected to the log in page, however the
                         option to sign up for an account is provided beneath the log in form.
                     </p>
-                    <img className = {styles.guideImg} src = "public/images/guide9.png" alt = "Log in page"/>
+                    <img className = {styles.guideImg} src = "images/guide9.png" alt = "Log in page"/>
                     <p>
                         Users simply need to enter their personal username and password to gain access
                         to more site features, such as being able to add items to a wishlist.<br/><br/>
@@ -158,13 +158,13 @@ export default function UserGuide() {
                         Users will be able to create an account by clicking "Sign up" beneath the log
                         in form, and will be redirected to the sign up page.
                     </p>
-                    <img className = {styles.guideImg} src = "public/images/guide10.png" alt = "Sign up page"/>
+                    <img className = {styles.guideImg} src = "images/guide10.png" alt = "Sign up page"/>
                     <p>
                         Users are asked to provide a username and password for their new account. Users
                         must enter their password twice to prevent issues from an unfortunate
                         spelling error or typo.
                     </p>
-                    <img className = {styles.guideImg} src = "public/images/guide11.png" alt = "Highlight security function"/>
+                    <img className = {styles.guideImg} src = "images/guide11.png" alt = "Highlight security function"/>
                     <p>
                         To be able to create an account, the chosen username and password must follow
                         these guidelines:
@@ -192,14 +192,14 @@ export default function UserGuide() {
                         The access level of the account is also displayed underneath the currently
                         logged in user's username.
                     </p>
-                    <img className = {styles.guideImg} src = "public/images/guide12.png" alt = "Profile page"/>
+                    <img className = {styles.guideImg} src = "images/guide12.png" alt = "Profile page"/>
                     <p>
                         Users are able to freely change the username and password of their account.
                         To do so, users simply need to enter their new username and/or password into
                         the form highlighted in the following screenshot. If the user is satisfied with
                         their changes, they may click the "Change" button to finalize.
                     </p>
-                    <img className = {styles.guideImg} src = "public/images/guide13.png" alt = "Highlight change information"/>
+                    <img className = {styles.guideImg} src = "images/guide13.png" alt = "Highlight change information"/>
                     <p>
                         Please note that users do not need to enter anything into the username or
                         password fields if they do not wish to change them. For example, someone wanting
@@ -217,12 +217,12 @@ export default function UserGuide() {
                         it. Users who are not logged in are prompted to do so before being granted
                         access to the wishlist.
                     </p>
-                    <img className = {styles.guideImg} src = "public/images/guide14.png" alt = "Wishlist without account"/>
+                    <img className = {styles.guideImg} src = "images/guide14.png" alt = "Wishlist without account"/>
                     <p>
                         If the current user is already logged in but has an empty wishlist, the text
                         will instead be changed to, "Your wishlist is empty!"
                     </p>
-                    <img className = {styles.guideImg} src = "public/images/guide15.png" alt = "Wishlist with account"/>
+                    <img className = {styles.guideImg} src = "images/guide15.png" alt = "Wishlist with account"/>
                     <p>
                         Users are then free to go to any item in the catalog and click the "Add to
                         Wishlist" to add the item to their wishlist. If the item is already on the
@@ -230,8 +230,8 @@ export default function UserGuide() {
                         wishlist items are counted, and displayed as a number next to the heart icon
                         on the right-hand side of the header.
                     </p>
-                    <img className = {styles.guideImg} src = "public/images/guide16.png" alt = "Added to wishlist"/>
-                    <img className = {styles.guideImg} src = "public/images/guide17.png" alt = "Updated wishlist"/>
+                    <img className = {styles.guideImg} src = "images/guide16.png" alt = "Added to wishlist"/>
+                    <img className = {styles.guideImg} src = "images/guide17.png" alt = "Updated wishlist"/>
                     <p>
                         Returning to the wishlist page afterwards will show all items that the user
                         has added to their wishlist. Users will also have the options to once again
@@ -254,7 +254,7 @@ export default function UserGuide() {
                         For an admin to grant/revoke access from other users, they must use the
                         panel at the bottom of their profile page.
                     </p>
-                    <img className = {styles.guideImg} src = "public/images/guide18.png" alt = "Highlight change permission function"/>
+                    <img className = {styles.guideImg} src = "images/guide18.png" alt = "Highlight change permission function"/>
                     <p>
                         Upon entering the valid username of another user in the account system,
                         the checkbox show as empty for non-admin users, and filled for admin users.
@@ -267,8 +267,8 @@ export default function UserGuide() {
                         labelled "Add a new item". Clicking this button will redirect the admin to an
                         item editor page.
                     </p>
-                    <img className = {styles.guideImg} src = "public/images/guide19.png" alt = "Highlight add item function"/>
-                    <img className = {styles.guideImg} src = "public/images/guide20.png" alt = "Item editor page"/>
+                    <img className = {styles.guideImg} src = "images/guide19.png" alt = "Highlight add item function"/>
+                    <img className = {styles.guideImg} src = "images/guide20.png" alt = "Item editor page"/>
                     <p>
                         On this page, admins are presented with a form consisting of all possible
                         fields that an item must have. These fields are item name, item price, item
@@ -282,7 +282,7 @@ export default function UserGuide() {
                         wish to modify or delete. Doing so will present the admin with two new buttons
                         beneath the "Add to Wishlist" button.
                     </p>
-                    <img className = {styles.guideImg} src = "public/images/guide21.png" alt = "Highlight modify/delete item function"/>
+                    <img className = {styles.guideImg} src = "images/guide21.png" alt = "Highlight modify/delete item function"/>
                     <p>
                         Clicking on the "Delete this item" button will present the admin with a prompt,
                         asking if they wish to continue. Choosing to do so will delete the item from
@@ -291,7 +291,7 @@ export default function UserGuide() {
                         fields are already filled with the current item's details. Admins may edit
                         these details in any way they see fit.
                     </p>
-                    <img className = {styles.guideImg} src = "public/images/guide22.png" alt = "Item page with editor"/>
+                    <img className = {styles.guideImg} src = "images/guide22.png" alt = "Item page with editor"/>
                     <p>
                         After making changes to the fields, admins must click "Submit" to finalize
                         changes, which are immediately applied to the item.
