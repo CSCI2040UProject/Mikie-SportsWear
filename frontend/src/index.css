@@ -30,6 +30,10 @@ body {
   margin: 0;
 }
 
+p {
+  padding-left: 0;
+}
+
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
