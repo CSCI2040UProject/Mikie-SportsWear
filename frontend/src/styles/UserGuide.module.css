@@ -62,3 +62,7 @@ h2 {
   height: auto;
   border-style: solid;
 }
+
+.paragraph {
+  margin-left: 3vw;
+}

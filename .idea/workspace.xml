@@ -4,7 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="49fd6356-d128-4105-b049-553e895d04f8" name="Changes" comment="Left justify prices in index.css">
+    <list default="true" id="49fd6356-d128-4105-b049-553e895d04f8" name="Changes" comment="Cloudflare margin fix part 2">
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/UserGuide.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/UserGuide.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/styles/UserGuide.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/styles/UserGuide.module.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -254,7 +255,7 @@
       <workItem from="1775520948714" duration="5917000" />
       <workItem from="1775701005281" duration="3560000" />
       <workItem from="1775875601137" duration="22000" />
-      <workItem from="1776132325952" duration="1307000" />
+      <workItem from="1776132325952" duration="1561000" />
     </task>
     <task id="LOCAL-00001" summary="Working test communication between frontend and backend">
       <option name="closed" value="true" />
@@ -512,7 +513,15 @@
       <option name="project" value="LOCAL" />
       <updated>1776132971705</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="Cloudflare margin fix part 2">
+      <option name="closed" value="true" />
+      <created>1776133929167</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1776133929167</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -572,7 +581,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Restructuring and cookies" />
     <MESSAGE value="changing profile colour" />
     <MESSAGE value="making test admin" />
     <MESSAGE value="Catalog using the full width" />
@@ -597,7 +605,8 @@
     <MESSAGE value="_redirects file replaced with cloudflare redirect worker" />
     <MESSAGE value="Optimizations for running in the cloud" />
     <MESSAGE value="Left justify prices in index.css" />
-    <option name="LAST_COMMIT_MESSAGE" value="Left justify prices in index.css" />
+    <MESSAGE value="Cloudflare margin fix part 2" />
+    <option name="LAST_COMMIT_MESSAGE" value="Cloudflare margin fix part 2" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

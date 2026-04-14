@@ -28,12 +28,12 @@ export default function UserGuide() {
         <>
             <div className = {styles.main}>
                 <h1>MIKIE SPORTSWEAR USER GUIDE</h1>
-                <p>This guide will detail how users will be able to interact with the catalog.</p>
+                <p className = {styles.paragraph}>This guide will detail how users will be able to interact with the catalog.</p>
                 <img className = {styles.guideImg} src = "images/guide0.png" alt = "Front page"/>
 
                 <h2>Front Page</h2>
                 <div className = {styles.text}>
-                    <p>
+                    <p className = {styles.paragraph}>
                         When users first enter the site, they will land on the front page shown in the
                         image above. From here, users have direct access to select items, or can view
                         the entire catalog by pressing "Shop all items" between the welcome text and
@@ -43,7 +43,7 @@ export default function UserGuide() {
                         of the website.
                     </p>
                     <img className = {styles.guideImg} src = "images/guide1.png" alt = "Header"/>
-                    <p>
+                    <p className = {styles.paragraph}>
                         From left to right, these links will redirect users to:
                     </p>
                     <ul>
@@ -57,14 +57,14 @@ export default function UserGuide() {
 
                 <h2>Catalog</h2>
                 <div className = {styles.text}>
-                    <p>
+                    <p className = {styles.paragraph}>
                         The catalog can be accessed from the front page by clicking on "Shop all items",
                         or by clicking on any of the three categories labelled on the header.
                         Accessing the catalog through the latter method will automatically apply the
                         appropriate filter that the label is written as.
                     </p>
                     <img className = {styles.guideImg} src = "images/guide2.png" alt = "Catalog page"/>
-                    <p>
+                    <p className = {styles.paragraph}>
                         Here, users will be able to look through all the items in the catalog by
                         scrolling downwards. Please note that only a certain number of items are
                         displayed at a time, and that more items will be loaded as the user scrolls
@@ -76,7 +76,7 @@ export default function UserGuide() {
                         apply to the catalog. This is highlighted in the image below.
                     </p>
                     <img className = {styles.guideImg} src = "images/guide3.png" alt = "Highlight filter function"/>
-                    <p>
+                    <p className = {styles.paragraph}>
                         Here, users are able to narrow down the items in the catalog based on what
                         they want to find. For example, if a user were to check the box "Men" under
                         the "Category" list, the catalog will display only men's items. The catalog
@@ -95,7 +95,7 @@ export default function UserGuide() {
                         <li>Name, Descending</li>
                     </ol>
                     <img className = {styles.guideImg} src = "images/guide4.png" alt = "Highlight sort function"/>
-                    <p>
+                    <p className = {styles.paragraph}>
                         When sorting by price, users may choose to display the items where the prices
                         are sorted in ascending or descending order. This means sorting the price from
                         cheapest to most expensive, and vice versa. Sorting by item name will display
@@ -105,7 +105,7 @@ export default function UserGuide() {
                         at the top left-hand corner of the catalog.
                     </p>
                     <img className = {styles.guideImg} src = "images/guide5.png" alt = "Highlight search function"/>
-                    <p>
+                    <p className = {styles.paragraph}>
                         If the user is unable to find a specific item through the provided filter and
                         sort functions, users may instead choose to directly enter the name of the item
                         that they are looking for. For example, entering the word "Jordan" into the
@@ -116,13 +116,13 @@ export default function UserGuide() {
 
                 <h2>Item</h2>
                 <div className = {styles.text}>
-                    <p>
+                    <p className = {styles.paragraph}>
                         After the user finds an item they may be interested in, they can click on the
                         image or name of the item from the catalog to be redirected to a separate
                         page that includes more of the item details.
                     </p>
                     <img className = {styles.guideImg} src = "images/guide6.png" alt = "Item page"/>
-                    <p>
+                    <p className = {styles.paragraph}>
                         It is on this page that users are able to view more images of the item, as well
                         as read the description of the item. The item description provides a general
                         idea of what the item may include, as well as if it comes in any alternate
@@ -133,7 +133,7 @@ export default function UserGuide() {
                         logged in, they will be prompted to do so.
                     </p>
                     <img className = {styles.guideImg} src = "images/guide7.png" alt = "Highlight wishlist function"/>
-                    <p>
+                    <p className = {styles.paragraph}>
                         Scrolling towards the bottom of the page will present the user with a list of
                         items that are similar to the one the user is currently looking at. This is
                         done by comparing the categories related to the current item and looking for
@@ -144,14 +144,14 @@ export default function UserGuide() {
 
                 <h2>Log In/Sign Up</h2>
                 <div className = {styles.text}>
-                    <p>
+                    <p className = {styles.paragraph}>
                         If users decide they want to create an account or log into their existing one,
                         they can do so by clicking the "Log in" text at the rightmost side of the site
                         header. By default, they will be redirected to the log in page, however the
                         option to sign up for an account is provided beneath the log in form.
                     </p>
                     <img className = {styles.guideImg} src = "images/guide9.png" alt = "Log in page"/>
-                    <p>
+                    <p className = {styles.paragraph}>
                         Users simply need to enter their personal username and password to gain access
                         to more site features, such as being able to add items to a wishlist.<br/><br/>
 
@@ -159,13 +159,13 @@ export default function UserGuide() {
                         in form, and will be redirected to the sign up page.
                     </p>
                     <img className = {styles.guideImg} src = "images/guide10.png" alt = "Sign up page"/>
-                    <p>
+                    <p className = {styles.paragraph}>
                         Users are asked to provide a username and password for their new account. Users
                         must enter their password twice to prevent issues from an unfortunate
                         spelling error or typo.
                     </p>
                     <img className = {styles.guideImg} src = "images/guide11.png" alt = "Highlight security function"/>
-                    <p>
+                    <p className = {styles.paragraph}>
                         To be able to create an account, the chosen username and password must follow
                         these guidelines:
                     </p>
@@ -175,7 +175,7 @@ export default function UserGuide() {
                         <li>The username can only have alphanumeric characters</li>
                         <li>The password must include at least one number, special character, and uppercase letter</li>
                     </ol>
-                    <p>
+                    <p className = {styles.paragraph}>
                         Users will be notified if their username and/or password does not follow
                         these guidelines, as shown in the screenshot. Upon meeting these requirements,
                         a new account is added to the database and the user is automatically logged in
@@ -185,7 +185,7 @@ export default function UserGuide() {
 
                 <h2>Profile</h2>
                 <div className = {styles.text}>
-                    <p>
+                    <p className = {styles.paragraph}>
                         Upon logging into an account, creating a new account, or clicking the user icon
                         at the far right-hand side of the header will redirect the user to the profile
                         page. Here, users will be able to log out or change their account details.
@@ -193,14 +193,14 @@ export default function UserGuide() {
                         logged in user's username.
                     </p>
                     <img className = {styles.guideImg} src = "images/guide12.png" alt = "Profile page"/>
-                    <p>
+                    <p className = {styles.paragraph}>
                         Users are able to freely change the username and password of their account.
                         To do so, users simply need to enter their new username and/or password into
                         the form highlighted in the following screenshot. If the user is satisfied with
                         their changes, they may click the "Change" button to finalize.
                     </p>
                     <img className = {styles.guideImg} src = "images/guide13.png" alt = "Highlight change information"/>
-                    <p>
+                    <p className = {styles.paragraph}>
                         Please note that users do not need to enter anything into the username or
                         password fields if they do not wish to change them. For example, someone wanting
                         to change just their username would not need to enter a new password into
@@ -210,7 +210,7 @@ export default function UserGuide() {
 
                 <h2>Wishlist</h2>
                 <div className = {styles.text}>
-                    <p>
+                    <p className = {styles.paragraph}>
                         The wishlist feature is a way for users to save items they may be interested in,
                         and find them again easily without searching the catalog again. However, this
                         feature is only available to users who have created an account and logged into
@@ -218,12 +218,12 @@ export default function UserGuide() {
                         access to the wishlist.
                     </p>
                     <img className = {styles.guideImg} src = "images/guide14.png" alt = "Wishlist without account"/>
-                    <p>
+                    <p className = {styles.paragraph}>
                         If the current user is already logged in but has an empty wishlist, the text
                         will instead be changed to, "Your wishlist is empty!"
                     </p>
                     <img className = {styles.guideImg} src = "images/guide15.png" alt = "Wishlist with account"/>
-                    <p>
+                    <p className = {styles.paragraph}>
                         Users are then free to go to any item in the catalog and click the "Add to
                         Wishlist" to add the item to their wishlist. If the item is already on the
                         user's wishlist, then the button changes to "Remove from wishlist". All
@@ -232,7 +232,7 @@ export default function UserGuide() {
                     </p>
                     <img className = {styles.guideImg} src = "images/guide16.png" alt = "Added to wishlist"/>
                     <img className = {styles.guideImg} src = "images/guide17.png" alt = "Updated wishlist"/>
-                    <p>
+                    <p className = {styles.paragraph}>
                         Returning to the wishlist page afterwards will show all items that the user
                         has added to their wishlist. Users will also have the options to once again
                         view the individual items they have saved, or to remove it from the wishlist
@@ -242,7 +242,7 @@ export default function UserGuide() {
 
                 <h2>Admin Actions</h2>
                 <div className = {styles.text}>
-                    <p>
+                    <p className = {styles.paragraph}>
                         The following features are only available to users who own an account
                         with an access level of "Admin":
                     </p>
@@ -250,12 +250,12 @@ export default function UserGuide() {
                         <li>Adding, modifying, and deleting items from the catalog</li>
                         <li>Granting/Revoking admin access from other users</li>
                     </ul>
-                    <p>
+                    <p className = {styles.paragraph}>
                         For an admin to grant/revoke access from other users, they must use the
                         panel at the bottom of their profile page.
                     </p>
                     <img className = {styles.guideImg} src = "images/guide18.png" alt = "Highlight change permission function"/>
-                    <p>
+                    <p className = {styles.paragraph}>
                         Upon entering the valid username of another user in the account system,
                         the checkbox show as empty for non-admin users, and filled for admin users.
                         The admin then has the option to uncheck the box to revoke access, or fill it
@@ -269,7 +269,7 @@ export default function UserGuide() {
                     </p>
                     <img className = {styles.guideImg} src = "images/guide19.png" alt = "Highlight add item function"/>
                     <img className = {styles.guideImg} src = "images/guide20.png" alt = "Item editor page"/>
-                    <p>
+                    <p className = {styles.paragraph}>
                         On this page, admins are presented with a form consisting of all possible
                         fields that an item must have. These fields are item name, item price, item
                         description, item colour, alternative colours, and a button allowing admins to
@@ -283,7 +283,7 @@ export default function UserGuide() {
                         beneath the "Add to Wishlist" button.
                     </p>
                     <img className = {styles.guideImg} src = "images/guide21.png" alt = "Highlight modify/delete item function"/>
-                    <p>
+                    <p className = {styles.paragraph}>
                         Clicking on the "Delete this item" button will present the admin with a prompt,
                         asking if they wish to continue. Choosing to do so will delete the item from
                         the catalog, and it will no longer exist. Clicking "Modify this Item" will
@@ -292,7 +292,7 @@ export default function UserGuide() {
                         these details in any way they see fit.
                     </p>
                     <img className = {styles.guideImg} src = "images/guide22.png" alt = "Item page with editor"/>
-                    <p>
+                    <p className = {styles.paragraph}>
                         After making changes to the fields, admins must click "Submit" to finalize
                         changes, which are immediately applied to the item.
                     </p>
@@ -306,7 +306,7 @@ export default function UserGuide() {
                         <p style={{ fontWeight: "bold" }}>{faq.question}</p>
                         { openIndex === index && (
                             <div className = {styles.answer}>
-                                <p>{faq.answer}</p>
+                                <p className = {styles.paragraph}>{faq.answer}</p>
                             </div>
                         )}
                     </div>
